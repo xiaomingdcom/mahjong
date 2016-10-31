@@ -227,6 +227,7 @@
             this.pictureBox_humanPlayer_card2.Size = new System.Drawing.Size(70, 120);
             this.pictureBox_humanPlayer_card2.TabIndex = 11;
             this.pictureBox_humanPlayer_card2.TabStop = false;
+            this.pictureBox_humanPlayer_card2.Click += new System.EventHandler(this.pictureBox_humanPlayer_card2_Click);
             // 
             // pictureBox_humanPlayer_card3
             // 
@@ -307,7 +308,6 @@
             this.pictureBox_leftAIPlayer_card7.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_leftAIPlayer_card7.TabIndex = 21;
             this.pictureBox_leftAIPlayer_card7.TabStop = false;
-            this.pictureBox_leftAIPlayer_card7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // pictureBox_leftAIPlayer_card6
             // 
@@ -398,7 +398,6 @@
             this.pictureBox_rightAIPlayer_card7.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card7.TabIndex = 34;
             this.pictureBox_rightAIPlayer_card7.TabStop = false;
-            this.pictureBox_rightAIPlayer_card7.Click += new System.EventHandler(this.pictureBox18_Click);
             // 
             // pictureBox_rightAIPlayer_card8
             // 
@@ -634,7 +633,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "四川麻将";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).EndInit();

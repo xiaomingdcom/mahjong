@@ -12,6 +12,8 @@ namespace mahjong
 {
     public partial class Form1 : Form
     {
+        int i = 0;
+
         string humanPlayer_card1 = "back";
         string humanPlayer_card2 = "back";
         string humanPlayer_card3 = "back";
@@ -65,29 +67,20 @@ namespace mahjong
         string oppositeAIPlayer_card11 = "back";
         string oppositeAIPlayer_card12 = "back";
         string oppositeAIPlayer_card13 = "back";
+
+        //fapai;
         public Form1()
         {
             InitializeComponent();
-        }      
-
+        }
         private void pictureBox_humanPlayer_card1_Click(object sender, EventArgs e)
         {
             pictureBox_humanPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\wan1.jpg");
         }
 
-        private void pictureBox7_Click(object sender, EventArgs e)
+        private void pictureBox_humanPlayer_card2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            pictureBox_humanPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\tiao1.jpg");
         }
     }
 }
