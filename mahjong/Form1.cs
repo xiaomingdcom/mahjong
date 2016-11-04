@@ -172,7 +172,7 @@ namespace mahjong
             fapai();
             my_show();
             Thread.Sleep(500);
-            mopai();
+            mopai(humanPlayer_card14);
             my_show();
         }
 
@@ -183,7 +183,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card1);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -195,7 +195,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card2);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -207,7 +207,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card3);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -219,7 +219,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card4);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -231,7 +231,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card5);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -243,7 +243,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card6);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -255,7 +255,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card7);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -267,7 +267,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card8);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -279,7 +279,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card9);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -291,7 +291,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card10);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -303,7 +303,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card11);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -315,7 +315,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card12);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
@@ -327,7 +327,7 @@ namespace mahjong
             Thread.Sleep(500);
             ask();
             Thread.Sleep(500);
-            mopai(humanPlayer_card13);
+            mopai(humanPlayer_card14);
             hupai();
             my_show();
         }
