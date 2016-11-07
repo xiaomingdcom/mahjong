@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace mahjong
 {
@@ -22,9 +23,11 @@ namespace mahjong
         bool oppositeAIPlayer_start = false;
         bool leftAIPlayer_start = false;
 
+        private SoundPlayer sp;
+
         public void whostart()//从哪个玩家开始
         {
-            rightAIPlayer_start = true;
+            humanPlayer_start = true;
         }
 
         public void fapai()//发牌程序
@@ -264,6 +267,8 @@ namespace mahjong
                     //gameover
                     break;
             }
+            sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            sp.PlaySync();
         }
 
         public void rightAIPlayer_chupai(string pai, int N)
@@ -329,6 +334,8 @@ namespace mahjong
                 default:
                     break;
             }
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            sp.PlaySync();
             ask();
         }
 
@@ -395,6 +402,8 @@ namespace mahjong
                 default:
                     break;
             }
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            sp.PlaySync();
             ask();
         }
 
@@ -461,6 +470,8 @@ namespace mahjong
                 default:
                     break;
             }
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            sp.PlaySync();
             ask();
         }
 
@@ -555,6 +566,7 @@ namespace mahjong
             humanPlayer_chupai(pb.Name, humanPlayer_havePlayedcard_num);
             pb.Name = "blank";
             my_show();
+            Thread.Sleep(500);
 
             rightAIPlayer_havePlayedcard_num++;
             rightAIPlayer_chupai("t1", rightAIPlayer_havePlayedcard_num);
@@ -568,8 +580,8 @@ namespace mahjong
             Thread.Sleep(200);
             Thread.Sleep(200);
             human_mopai();
-            hupai();
             my_show();
+            hupai();
         }
 
         private void game_start_Click(object sender, EventArgs e)//点击start事件
@@ -621,11 +633,18 @@ namespace mahjong
                         leftAIPlayer_havePlayedcard_num++;
                         leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
                     }
+                    else
+                    {
+                        if (humanPlayer_start == true)
+                        {
+                            //
+                        }
+                    }
                 }
             }
             human_mopai();
-            hupai();
             my_show();
+            hupai();
         }
     }
 }
