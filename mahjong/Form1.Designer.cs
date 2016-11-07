@@ -138,6 +138,7 @@
             this.pictureBox_oppositeAIPlayer_havePlayedcard12 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard14 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard13 = new System.Windows.Forms.PictureBox();
+            this.game_start = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -257,7 +258,7 @@
             this.pictureBox_humanPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card1.TabIndex = 0;
             this.pictureBox_humanPlayer_card1.TabStop = false;
-            this.pictureBox_humanPlayer_card1.Click += new System.EventHandler(this.pictureBox_humanPlayer_card1_Click);
+            this.pictureBox_humanPlayer_card1.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card7
             // 
@@ -267,7 +268,7 @@
             this.pictureBox_humanPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card7.TabIndex = 1;
             this.pictureBox_humanPlayer_card7.TabStop = false;
-            this.pictureBox_humanPlayer_card7.Click += new System.EventHandler(this.pictureBox_humanPlayer_card7_Click);
+            this.pictureBox_humanPlayer_card7.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card8
             // 
@@ -277,7 +278,7 @@
             this.pictureBox_humanPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card8.TabIndex = 2;
             this.pictureBox_humanPlayer_card8.TabStop = false;
-            this.pictureBox_humanPlayer_card8.Click += new System.EventHandler(this.pictureBox_humanPlayer_card8_Click);
+            this.pictureBox_humanPlayer_card8.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card6
             // 
@@ -287,7 +288,7 @@
             this.pictureBox_humanPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card6.TabIndex = 3;
             this.pictureBox_humanPlayer_card6.TabStop = false;
-            this.pictureBox_humanPlayer_card6.Click += new System.EventHandler(this.pictureBox_humanPlayer_card6_Click);
+            this.pictureBox_humanPlayer_card6.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card5
             // 
@@ -297,7 +298,7 @@
             this.pictureBox_humanPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card5.TabIndex = 4;
             this.pictureBox_humanPlayer_card5.TabStop = false;
-            this.pictureBox_humanPlayer_card5.Click += new System.EventHandler(this.pictureBox_humanPlayer_card5_Click);
+            this.pictureBox_humanPlayer_card5.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card13
             // 
@@ -307,7 +308,7 @@
             this.pictureBox_humanPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card13.TabIndex = 5;
             this.pictureBox_humanPlayer_card13.TabStop = false;
-            this.pictureBox_humanPlayer_card13.Click += new System.EventHandler(this.pictureBox_humanPlayer_card13_Click);
+            this.pictureBox_humanPlayer_card13.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card14
             // 
@@ -317,7 +318,7 @@
             this.pictureBox_humanPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card14.TabIndex = 6;
             this.pictureBox_humanPlayer_card14.TabStop = false;
-            this.pictureBox_humanPlayer_card14.Click += new System.EventHandler(this.pictureBox_humanPlayer_card14_Click);
+            this.pictureBox_humanPlayer_card14.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card12
             // 
@@ -327,7 +328,7 @@
             this.pictureBox_humanPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card12.TabIndex = 7;
             this.pictureBox_humanPlayer_card12.TabStop = false;
-            this.pictureBox_humanPlayer_card12.Click += new System.EventHandler(this.pictureBox_humanPlayer_card12_Click);
+            this.pictureBox_humanPlayer_card12.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card11
             // 
@@ -337,7 +338,7 @@
             this.pictureBox_humanPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card11.TabIndex = 9;
             this.pictureBox_humanPlayer_card11.TabStop = false;
-            this.pictureBox_humanPlayer_card11.Click += new System.EventHandler(this.pictureBox_humanPlayer_card11_Click);
+            this.pictureBox_humanPlayer_card11.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card9
             // 
@@ -347,7 +348,7 @@
             this.pictureBox_humanPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card9.TabIndex = 10;
             this.pictureBox_humanPlayer_card9.TabStop = false;
-            this.pictureBox_humanPlayer_card9.Click += new System.EventHandler(this.pictureBox_humanPlayer_card9_Click);
+            this.pictureBox_humanPlayer_card9.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card2
             // 
@@ -357,7 +358,7 @@
             this.pictureBox_humanPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card2.TabIndex = 11;
             this.pictureBox_humanPlayer_card2.TabStop = false;
-            this.pictureBox_humanPlayer_card2.Click += new System.EventHandler(this.pictureBox_humanPlayer_card2_Click);
+            this.pictureBox_humanPlayer_card2.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card3
             // 
@@ -367,7 +368,7 @@
             this.pictureBox_humanPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card3.TabIndex = 12;
             this.pictureBox_humanPlayer_card3.TabStop = false;
-            this.pictureBox_humanPlayer_card3.Click += new System.EventHandler(this.pictureBox_humanPlayer_card3_Click);
+            this.pictureBox_humanPlayer_card3.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card4
             // 
@@ -377,7 +378,7 @@
             this.pictureBox_humanPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card4.TabIndex = 13;
             this.pictureBox_humanPlayer_card4.TabStop = false;
-            this.pictureBox_humanPlayer_card4.Click += new System.EventHandler(this.pictureBox_humanPlayer_card4_Click);
+            this.pictureBox_humanPlayer_card4.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_humanPlayer_card10
             // 
@@ -387,7 +388,7 @@
             this.pictureBox_humanPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_humanPlayer_card10.TabIndex = 14;
             this.pictureBox_humanPlayer_card10.TabStop = false;
-            this.pictureBox_humanPlayer_card10.Click += new System.EventHandler(this.pictureBox_humanPlayer_card10_Click);
+            this.pictureBox_humanPlayer_card10.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
             // 
             // pictureBox_leftAIPlayer_card13
             // 
@@ -1210,6 +1211,16 @@
             this.pictureBox_oppositeAIPlayer_havePlayedcard13.TabIndex = 101;
             this.pictureBox_oppositeAIPlayer_havePlayedcard13.TabStop = false;
             // 
+            // game_start
+            // 
+            this.game_start.Location = new System.Drawing.Point(442, 371);
+            this.game_start.Name = "game_start";
+            this.game_start.Size = new System.Drawing.Size(147, 41);
+            this.game_start.TabIndex = 103;
+            this.game_start.Text = "start";
+            this.game_start.UseVisualStyleBackColor = true;
+            this.game_start.Click += new System.EventHandler(this.game_start_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1217,6 +1228,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 653);
+            this.Controls.Add(this.game_start);
             this.Controls.Add(this.pictureBox_oppositeAIPlayer_havePlayedcard13);
             this.Controls.Add(this.pictureBox_humanPlayer_havePlayedcard13);
             this.Controls.Add(this.pictureBox_oppositeAIPlayer_havePlayedcard14);
@@ -1554,6 +1566,7 @@
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard12;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard14;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard13;
+        private System.Windows.Forms.Button game_start;
     }
 }
 
