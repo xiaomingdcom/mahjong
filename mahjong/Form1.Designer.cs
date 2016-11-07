@@ -26,7 +26,7 @@
         /// 设计器支持所需的方法 - 不要修改
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox_humanPlayer_card1 = new System.Windows.Forms.PictureBox();
@@ -136,7 +136,7 @@
             this.pictureBox_oppositeAIPlayer_havePlayedcard11 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard7 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard13 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
@@ -245,7 +245,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1192,14 +1192,14 @@
             this.pictureBox_oppositeAIPlayer_havePlayedcard12.TabIndex = 70;
             this.pictureBox_oppositeAIPlayer_havePlayedcard12.TabStop = false;
             // 
-            // pictureBox13
+            // pictureBox_oppositeAIPlayer_havePlayedcard14
             // 
-            this.pictureBox13.Location = new System.Drawing.Point(682, 135);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(20, 30);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 100;
-            this.pictureBox13.TabStop = false;
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.Location = new System.Drawing.Point(682, 135);
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.Name = "pictureBox_oppositeAIPlayer_havePlayedcard14";
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.Size = new System.Drawing.Size(20, 30);
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.TabIndex = 100;
+            this.pictureBox_oppositeAIPlayer_havePlayedcard14.TabStop = false;
             // 
             // pictureBox_oppositeAIPlayer_havePlayedcard13
             // 
@@ -1219,7 +1219,7 @@
             this.ClientSize = new System.Drawing.Size(1082, 653);
             this.Controls.Add(this.pictureBox_oppositeAIPlayer_havePlayedcard13);
             this.Controls.Add(this.pictureBox_humanPlayer_havePlayedcard13);
-            this.Controls.Add(this.pictureBox13);
+            this.Controls.Add(this.pictureBox_oppositeAIPlayer_havePlayedcard14);
             this.Controls.Add(this.pictureBox_humanPlayer_havePlayedcard14);
             this.Controls.Add(this.pictureBox_leftAIPlayer_havePlayedcard4);
             this.Controls.Add(this.pictureBox_leftAIPlayer_havePlayedcard1);
@@ -1326,6 +1326,7 @@
             this.Controls.Add(this.pictureBox_humanPlayer_card8);
             this.Controls.Add(this.pictureBox_humanPlayer_card7);
             this.Controls.Add(this.pictureBox_humanPlayer_card1);
+            this.IsMdiContainer = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "四川麻将";
@@ -1436,7 +1437,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).EndInit();
             this.ResumeLayout(false);
 
@@ -1444,7 +1445,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card1;
+        private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card1;//
         private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card7;
         private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card8;
         private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card6;
@@ -1551,7 +1552,7 @@
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard11;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard7;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard12;
-        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard14;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard13;
     }
 }
