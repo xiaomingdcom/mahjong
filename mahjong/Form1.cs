@@ -18,12 +18,126 @@ namespace mahjong
         int leftAIPlayer_havePlayedcard_num = 0;
         int rightAIPlayer_havePlayedcard_num = 0;
         int oppositeAIPlayer_havePlayedcard_num = 0;
-        bool humanPlayer_start = false;//从哪位玩家开始
+        public bool humanPlayer_start = false;//从哪位玩家开始
         bool rightAIPlayer_start = false;
         bool oppositeAIPlayer_start = false;
         bool leftAIPlayer_start = false;
 
         private SoundPlayer sp;
+
+        public PictureBox gethumanpb1()//返回return pictureBox_humanPlayer_cardi
+        {
+            return pictureBox_humanPlayer_card1;
+        }
+        public PictureBox gethumanpb2()
+        {
+            return pictureBox_humanPlayer_card2;
+        }
+        public PictureBox gethumanpb3()
+        {
+            return pictureBox_humanPlayer_card3;
+        }
+        public PictureBox gethumanpb4()
+        {
+            return pictureBox_humanPlayer_card4;
+        }
+        public PictureBox gethumanpb5()
+        {
+            return pictureBox_humanPlayer_card5;
+        }
+        public PictureBox gethumanpb6()
+        {
+            return pictureBox_humanPlayer_card6;
+        }
+        public PictureBox gethumanpb7()
+        {
+            return pictureBox_humanPlayer_card7;
+        }
+        public PictureBox gethumanpb8()
+        {
+            return pictureBox_humanPlayer_card8;
+        }
+        public PictureBox gethumanpb9()
+        {
+            return pictureBox_humanPlayer_card9;
+        }
+        public PictureBox gethumanpb10()
+        {
+            return pictureBox_humanPlayer_card10;
+        }
+        public PictureBox gethumanpb11()
+        {
+            return pictureBox_humanPlayer_card11;
+        }
+        public PictureBox gethumanpb12()
+        {
+            return pictureBox_humanPlayer_card12;
+        }
+        public PictureBox gethumanpb13()
+        {
+            return pictureBox_humanPlayer_card13;
+        }
+        public PictureBox gethumanpb14()
+        {
+            return pictureBox_humanPlayer_card14;
+        }
+
+        public PictureBox gethumanhaveplayedpb1()
+        {
+            return pictureBox_humanPlayer_havePlayedcard1;
+        }
+        public PictureBox gethumanhaveplayedpb2()
+        {
+            return pictureBox_humanPlayer_havePlayedcard2;
+        }
+        public PictureBox gethumanhaveplayedpb3()
+        {
+            return pictureBox_humanPlayer_havePlayedcard3;
+        }
+        public PictureBox gethumanhaveplayedpb4()
+        {
+            return pictureBox_humanPlayer_havePlayedcard4;
+        }
+        public PictureBox gethumanhaveplayedpb5()
+        {
+            return pictureBox_humanPlayer_havePlayedcard5;
+        }
+        public PictureBox gethumanhaveplayedpb6()
+        {
+            return pictureBox_humanPlayer_havePlayedcard6;
+        }
+        public PictureBox gethumanhaveplayedpb7()
+        {
+            return pictureBox_humanPlayer_havePlayedcard7;
+        }
+        public PictureBox gethumanhaveplayedpb8()
+        {
+            return pictureBox_humanPlayer_havePlayedcard8;
+        }
+        public PictureBox gethumanhaveplayedpb9()
+        {
+            return pictureBox_humanPlayer_havePlayedcard9;
+        }
+        public PictureBox gethumanhaveplayedpb10()
+        {
+            return pictureBox_humanPlayer_havePlayedcard10;
+        }
+        public PictureBox gethumanhaveplayedpb11()
+        {
+            return pictureBox_humanPlayer_havePlayedcard11;
+        }
+        public PictureBox gethumanhaveplayedpb12()
+        {
+            return pictureBox_humanPlayer_havePlayedcard12;
+        }
+        public PictureBox gethumanhaveplayedpb13()
+        {
+            return pictureBox_humanPlayer_havePlayedcard13;
+        }
+        public PictureBox gethumanhaveplayedpb14()
+        {
+            return pictureBox_humanPlayer_havePlayedcard14;
+        }
 
         public void whostart()//从哪个玩家开始
         {
@@ -56,6 +170,7 @@ namespace mahjong
             leftAIPlayer_start = false;
 
             game_start.Visible = true;
+
             pictureBox_humanPlayer_card1.Enabled = false;//start之前不可响应
             pictureBox_humanPlayer_card2.Enabled = false;
             pictureBox_humanPlayer_card3.Enabled = false;
@@ -267,8 +382,8 @@ namespace mahjong
                     //gameover
                     break;
             }
-            sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            sp.PlaySync();
+            //sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            //sp.PlaySync();
         }
 
         public void rightAIPlayer_chupai(string pai, int N)
@@ -334,8 +449,8 @@ namespace mahjong
                 default:
                     break;
             }
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            sp.PlaySync();
+            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            //sp.PlaySync();
             ask();
         }
 
@@ -402,8 +517,8 @@ namespace mahjong
                 default:
                     break;
             }
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            sp.PlaySync();
+            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            //sp.PlaySync();
             ask();
         }
 
@@ -470,8 +585,8 @@ namespace mahjong
                 default:
                     break;
             }
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            sp.PlaySync();
+            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
+            //sp.PlaySync();
             ask();
         }
 
