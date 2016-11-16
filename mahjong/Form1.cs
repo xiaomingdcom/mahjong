@@ -14,6 +14,13 @@ namespace mahjong
 {
     public partial class Form1 : Form
     {
+        public static int D_X = 2;//location.x的改变
+        public static int D_Y = 6;//location.y的改变
+        public static int D_WIDTH = 4;//width的改变
+        public static int D_HEIGHT = 6;//height的改变
+
+        public static int TIME_MAX=100;
+
         int humanPlayer_havePlayedcard_num = 0;//玩家已出牌计数
         int leftAIPlayer_havePlayedcard_num = 0;
         int rightAIPlayer_havePlayedcard_num = 0;
@@ -162,15 +169,8 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Name = "blank";
         }
 
-        public void my_initialize()//自定义初始化内容
+        public void human_picturebox_enablef()
         {
-            humanPlayer_start = false;
-            rightAIPlayer_start = false;
-            oppositeAIPlayer_start = false;
-            leftAIPlayer_start = false;
-
-            game_start.Visible = true;
-
             pictureBox_humanPlayer_card1.Enabled = false;//start之前不可响应
             pictureBox_humanPlayer_card2.Enabled = false;
             pictureBox_humanPlayer_card3.Enabled = false;
@@ -185,6 +185,46 @@ namespace mahjong
             pictureBox_humanPlayer_card12.Enabled = false;
             pictureBox_humanPlayer_card13.Enabled = false;
             pictureBox_humanPlayer_card14.Enabled = false;
+        }
+
+        public void human_picturebox_enablet()
+        {
+            pictureBox_humanPlayer_card1.Enabled = true;//start之前不可响应
+            pictureBox_humanPlayer_card2.Enabled = true;
+            pictureBox_humanPlayer_card3.Enabled = true;
+            pictureBox_humanPlayer_card4.Enabled = true;
+            pictureBox_humanPlayer_card5.Enabled = true;
+            pictureBox_humanPlayer_card6.Enabled = true;
+            pictureBox_humanPlayer_card7.Enabled = true;
+            pictureBox_humanPlayer_card8.Enabled = true;
+            pictureBox_humanPlayer_card9.Enabled = true;
+            pictureBox_humanPlayer_card10.Enabled = true;
+            pictureBox_humanPlayer_card11.Enabled = true;
+            pictureBox_humanPlayer_card12.Enabled = true;
+            pictureBox_humanPlayer_card13.Enabled = true;
+            pictureBox_humanPlayer_card14.Enabled = true;
+        }
+
+        public void my_initialize()//自定义初始化内容
+        {
+            humanPlayer_start = false;
+            rightAIPlayer_start = false;
+            oppositeAIPlayer_start = false;
+            leftAIPlayer_start = false;
+
+            human_peng.Enabled = false;
+            human_gang.Enabled = false;
+            human_hu.Enabled = false;
+            human_guo.Enabled = false;
+
+            human_peng.Name = "no";
+            human_gang.Name = "no";
+            human_hu.Name = "no";
+            human_guo.Name = "no";
+
+            game_start.Visible = true;
+
+            human_picturebox_enablef();
 
             //三个AIPlayer手牌只显示背面
             pictureBox_leftAIPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
@@ -451,7 +491,9 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ask();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
         }
 
         public void oppositeAIPlayer_chupai(string pai, int N)
@@ -519,7 +561,9 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ask();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
         }
 
         public void leftAIPlayer_chupai(string pai, int N)
@@ -587,14 +631,46 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ask();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
         }
 
-        public void ask()//询问是否碰，杠
+        public void remind_play(object param)//长时间不出牌提醒
         {
-            if (true)//碰
+            human_guo.BackColor = Color.Green;
+            Thread.Sleep(500);
+            human_guo.BackColor = Color.Transparent;
+            //兵贵神速
+            //soundplay
+        }
+
+        public void ask_peng(object param)
+        {
+            int i = 0;
+            if (true)//能碰
             {
-                if (MessageBox.Show("是否碰","",MessageBoxButtons.OKCancel)==DialogResult.OK)
+                human_peng.Enabled = true;
+                human_guo.Enabled = true;
+                human_picturebox_enablef();//humanpicturebox不能响应
+                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
+                {
+                    Thread.Sleep(500);
+                    if (human_peng.Name == "yes" || human_guo.Name == "yes")
+                    {
+                        break;
+                    }
+                    if (i % 10 == 0)//一段时间不点，提醒
+                    {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(remind_play));
+                    }
+                }
+                if (i == TIME_MAX)//长时间不出即为过
+                {
+                    human_guo.Name = "yes";
+                }
+
+                if (human_peng.Name == "yes")
                 {
                     //碰
                 }
@@ -602,10 +678,40 @@ namespace mahjong
                 {
                     //不碰
                 }
+                human_peng.Name = "no";
+                human_guo.Name = "no";
+                human_peng.Enabled = false;
+                human_guo.Enabled = false;
+                human_picturebox_enablet();
             }
-            else
+        }
+
+        public void ask_gang(object param)
+        {
+            int i = 0;
+            if (true)//能杠
             {
-                if (MessageBox.Show("是否杠", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                human_gang.Enabled = true;
+                human_guo.Enabled = true;
+                human_picturebox_enablef();//humanpicturebox不能响应
+                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
+                {
+                    Thread.Sleep(500);
+                    if (human_gang.Name == "yes" || human_guo.Name == "yes")
+                    {
+                        break;
+                    }
+                    if (i % 10 == 0)//一段时间不点，提醒
+                    {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(remind_play));
+                    }
+                }
+                if (i == TIME_MAX)//长时间不出即为过
+                {
+                    human_guo.Name = "yes";
+                }
+
+                if (human_gang.Name == "yes")
                 {
                     //杠
                 }
@@ -613,10 +719,79 @@ namespace mahjong
                 {
                     //不杠
                 }
+                human_gang.Name = "no";
+                human_guo.Name = "no";
+                human_gang.Enabled = false;
+                human_guo.Enabled = false;
+                human_picturebox_enablet();
             }
         }
 
-        public void hupai()//判断是否和牌
+        public void ask_hu(object param)//询问是否碰，杠
+        {
+            int i = 0;                   
+            if (true)//能胡
+            {
+                human_hu.Enabled = true;
+                human_guo.Enabled = true;
+                human_picturebox_enablef();//humanpicturebox不能响应
+                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
+                {
+                    Thread.Sleep(500);
+                    if (human_hu.Name == "yes" || human_guo.Name == "yes")
+                    {
+                        break;
+                    }
+                    if (i % 10 == 0)//一段时间不点，提醒
+                    {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(remind_play));
+                    }                  
+                }
+                if (i == TIME_MAX)//长时间不出即为过
+                {
+                    human_guo.Name = "yes";
+                }
+
+                if (human_hu.Name == "yes")
+                {
+                    //胡
+                    if (true)//如果赢
+                    {
+                        MessageBox.Show("you win", "", MessageBoxButtons.OK);
+                    }
+                    else//输
+                    {
+                        MessageBox.Show("you lose", "", MessageBoxButtons.OK);
+                    }
+                    if (MessageBox.Show("是否重新开始游戏", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        //初始化
+                        my_initialize();
+                    }
+                    else
+                    {
+                        Application.Exit();//退出游戏
+                    }
+                }
+                else
+                {
+                    //不胡
+                }
+
+                /*Form1_1 child1 = new Form1_1();
+                child1.MdiParent = this;
+                child1.Text = "是否和牌";
+                child1.ShowDialog();*/
+                
+            }
+            human_hu.Name = "no";
+            human_guo.Name = "no";
+            human_hu.Enabled = false;
+            human_guo.Enabled = false;
+            human_picturebox_enablet();
+        }
+
+        /*public void hupai()//判断是否和牌
         {
             if (MessageBox.Show("是否和牌","", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
@@ -639,16 +814,16 @@ namespace mahjong
                     Application.Exit();//退出游戏
                 }
 
-                /*Form1_1 child1 = new Form1_1();
+                Form1_1 child1 = new Form1_1();
                 child1.MdiParent = this;
                 child1.Text = "是否和牌";
-                child1.ShowDialog();*/     
+                child1.ShowDialog();   
             }
             else
             {
                 //不和牌
             }
-        }
+        }*/
 
         public void my_show()//整理手牌并显示图片
         {
@@ -693,28 +868,15 @@ namespace mahjong
             leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
 
             Thread.Sleep(200);
-            Thread.Sleep(200);
             human_mopai();
             my_show();
-            hupai();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
         }
 
         private void game_start_Click(object sender, EventArgs e)//点击start事件
         {
             game_start.Visible = false;
-            pictureBox_humanPlayer_card1.Enabled = true;//start之后可响应
-            pictureBox_humanPlayer_card2.Enabled = true;
-            pictureBox_humanPlayer_card3.Enabled = true;
-            pictureBox_humanPlayer_card4.Enabled = true;
-            pictureBox_humanPlayer_card5.Enabled = true;
-            pictureBox_humanPlayer_card6.Enabled = true;
-            pictureBox_humanPlayer_card7.Enabled = true;
-            pictureBox_humanPlayer_card8.Enabled = true;
-            pictureBox_humanPlayer_card9.Enabled = true;
-            pictureBox_humanPlayer_card10.Enabled = true;
-            pictureBox_humanPlayer_card12.Enabled = true;
-            pictureBox_humanPlayer_card13.Enabled = true;
-            pictureBox_humanPlayer_card14.Enabled = true;
+            human_picturebox_enablet();
 
             whostart();
             fapai();
@@ -759,7 +921,41 @@ namespace mahjong
             }
             human_mopai();
             my_show();
-            hupai();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+        }
+
+        private void human_ask_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.Name = "yes";
+        }
+
+        private void human_picturebox_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.Location = new Point(pb.Location.X - D_X, pb.Location.Y - D_Y);
+            pb.Size = new Size(pb.Width + D_WIDTH, pb.Height + D_HEIGHT);          
+        }
+
+        private void human_picturebox_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.Location = new Point(pb.Location.X + D_X, pb.Location.Y + D_Y);
+            pb.Size = new Size(pb.Width - D_WIDTH, pb.Height - D_HEIGHT);           
+        }
+
+        private void human_ask_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.Location = new Point(button.Location.X - D_X, button.Location.Y - D_Y);
+            button.Size = new Size(button.Width + D_WIDTH, button.Height + D_HEIGHT);
+        }
+
+        private void human_ask_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.Location = new Point(button.Location.X + D_X, button.Location.Y + D_Y);
+            button.Size = new Size(button.Width - D_WIDTH, button.Height - D_HEIGHT);
         }
     }
 }

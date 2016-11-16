@@ -19,7 +19,7 @@ namespace mahjong
 
         private void hupai_yes_Click(object sender, EventArgs e)
         {
-            (this.Owner as Form1).humanPlayer_start = false;
+            //(this.Owner as Form1).humanPlayer_start = false;
             this.Close();
         }
 

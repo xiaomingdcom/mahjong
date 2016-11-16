@@ -139,6 +139,10 @@
             this.pictureBox_oppositeAIPlayer_havePlayedcard14 = new System.Windows.Forms.PictureBox();
             this.pictureBox_oppositeAIPlayer_havePlayedcard13 = new System.Windows.Forms.PictureBox();
             this.game_start = new System.Windows.Forms.Button();
+            this.human_peng = new System.Windows.Forms.Button();
+            this.human_gang = new System.Windows.Forms.Button();
+            this.human_hu = new System.Windows.Forms.Button();
+            this.human_guo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -259,6 +263,8 @@
             this.pictureBox_humanPlayer_card1.TabIndex = 0;
             this.pictureBox_humanPlayer_card1.TabStop = false;
             this.pictureBox_humanPlayer_card1.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card1.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card1.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card7
             // 
@@ -269,6 +275,8 @@
             this.pictureBox_humanPlayer_card7.TabIndex = 1;
             this.pictureBox_humanPlayer_card7.TabStop = false;
             this.pictureBox_humanPlayer_card7.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card7.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card7.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card8
             // 
@@ -279,6 +287,8 @@
             this.pictureBox_humanPlayer_card8.TabIndex = 2;
             this.pictureBox_humanPlayer_card8.TabStop = false;
             this.pictureBox_humanPlayer_card8.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card8.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card8.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card6
             // 
@@ -289,6 +299,8 @@
             this.pictureBox_humanPlayer_card6.TabIndex = 3;
             this.pictureBox_humanPlayer_card6.TabStop = false;
             this.pictureBox_humanPlayer_card6.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card6.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card6.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card5
             // 
@@ -299,6 +311,8 @@
             this.pictureBox_humanPlayer_card5.TabIndex = 4;
             this.pictureBox_humanPlayer_card5.TabStop = false;
             this.pictureBox_humanPlayer_card5.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card5.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card5.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card13
             // 
@@ -309,6 +323,8 @@
             this.pictureBox_humanPlayer_card13.TabIndex = 5;
             this.pictureBox_humanPlayer_card13.TabStop = false;
             this.pictureBox_humanPlayer_card13.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card13.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card13.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card14
             // 
@@ -319,6 +335,8 @@
             this.pictureBox_humanPlayer_card14.TabIndex = 6;
             this.pictureBox_humanPlayer_card14.TabStop = false;
             this.pictureBox_humanPlayer_card14.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card14.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card14.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card12
             // 
@@ -329,6 +347,8 @@
             this.pictureBox_humanPlayer_card12.TabIndex = 7;
             this.pictureBox_humanPlayer_card12.TabStop = false;
             this.pictureBox_humanPlayer_card12.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card12.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card12.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card11
             // 
@@ -339,6 +359,8 @@
             this.pictureBox_humanPlayer_card11.TabIndex = 9;
             this.pictureBox_humanPlayer_card11.TabStop = false;
             this.pictureBox_humanPlayer_card11.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card11.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card11.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card9
             // 
@@ -349,6 +371,8 @@
             this.pictureBox_humanPlayer_card9.TabIndex = 10;
             this.pictureBox_humanPlayer_card9.TabStop = false;
             this.pictureBox_humanPlayer_card9.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card9.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card9.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card2
             // 
@@ -359,6 +383,8 @@
             this.pictureBox_humanPlayer_card2.TabIndex = 11;
             this.pictureBox_humanPlayer_card2.TabStop = false;
             this.pictureBox_humanPlayer_card2.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card2.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card2.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card3
             // 
@@ -369,6 +395,8 @@
             this.pictureBox_humanPlayer_card3.TabIndex = 12;
             this.pictureBox_humanPlayer_card3.TabStop = false;
             this.pictureBox_humanPlayer_card3.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card3.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card3.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card4
             // 
@@ -379,6 +407,8 @@
             this.pictureBox_humanPlayer_card4.TabIndex = 13;
             this.pictureBox_humanPlayer_card4.TabStop = false;
             this.pictureBox_humanPlayer_card4.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card4.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card4.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_humanPlayer_card10
             // 
@@ -389,6 +419,8 @@
             this.pictureBox_humanPlayer_card10.TabIndex = 14;
             this.pictureBox_humanPlayer_card10.TabStop = false;
             this.pictureBox_humanPlayer_card10.Click += new System.EventHandler(this.pictureBox_humanPlayer_card_Click);
+            this.pictureBox_humanPlayer_card10.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
+            this.pictureBox_humanPlayer_card10.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
             // pictureBox_leftAIPlayer_card13
             // 
@@ -709,7 +741,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard2
             // 
-            this.pictureBox_humanPlayer_havePlayedcard2.Location = new System.Drawing.Point(370, 439);
+            this.pictureBox_humanPlayer_havePlayedcard2.Location = new System.Drawing.Point(278, 448);
             this.pictureBox_humanPlayer_havePlayedcard2.Name = "pictureBox_humanPlayer_havePlayedcard2";
             this.pictureBox_humanPlayer_havePlayedcard2.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -718,7 +750,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard3
             // 
-            this.pictureBox_humanPlayer_havePlayedcard3.Location = new System.Drawing.Point(396, 439);
+            this.pictureBox_humanPlayer_havePlayedcard3.Location = new System.Drawing.Point(304, 448);
             this.pictureBox_humanPlayer_havePlayedcard3.Name = "pictureBox_humanPlayer_havePlayedcard3";
             this.pictureBox_humanPlayer_havePlayedcard3.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -727,7 +759,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard4
             // 
-            this.pictureBox_humanPlayer_havePlayedcard4.Location = new System.Drawing.Point(422, 439);
+            this.pictureBox_humanPlayer_havePlayedcard4.Location = new System.Drawing.Point(330, 448);
             this.pictureBox_humanPlayer_havePlayedcard4.Name = "pictureBox_humanPlayer_havePlayedcard4";
             this.pictureBox_humanPlayer_havePlayedcard4.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -736,7 +768,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard5
             // 
-            this.pictureBox_humanPlayer_havePlayedcard5.Location = new System.Drawing.Point(448, 439);
+            this.pictureBox_humanPlayer_havePlayedcard5.Location = new System.Drawing.Point(356, 448);
             this.pictureBox_humanPlayer_havePlayedcard5.Name = "pictureBox_humanPlayer_havePlayedcard5";
             this.pictureBox_humanPlayer_havePlayedcard5.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -745,7 +777,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard6
             // 
-            this.pictureBox_humanPlayer_havePlayedcard6.Location = new System.Drawing.Point(474, 439);
+            this.pictureBox_humanPlayer_havePlayedcard6.Location = new System.Drawing.Point(382, 448);
             this.pictureBox_humanPlayer_havePlayedcard6.Name = "pictureBox_humanPlayer_havePlayedcard6";
             this.pictureBox_humanPlayer_havePlayedcard6.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -754,7 +786,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard8
             // 
-            this.pictureBox_humanPlayer_havePlayedcard8.Location = new System.Drawing.Point(526, 439);
+            this.pictureBox_humanPlayer_havePlayedcard8.Location = new System.Drawing.Point(434, 448);
             this.pictureBox_humanPlayer_havePlayedcard8.Name = "pictureBox_humanPlayer_havePlayedcard8";
             this.pictureBox_humanPlayer_havePlayedcard8.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -763,7 +795,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard9
             // 
-            this.pictureBox_humanPlayer_havePlayedcard9.Location = new System.Drawing.Point(552, 439);
+            this.pictureBox_humanPlayer_havePlayedcard9.Location = new System.Drawing.Point(460, 448);
             this.pictureBox_humanPlayer_havePlayedcard9.Name = "pictureBox_humanPlayer_havePlayedcard9";
             this.pictureBox_humanPlayer_havePlayedcard9.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -772,7 +804,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard10
             // 
-            this.pictureBox_humanPlayer_havePlayedcard10.Location = new System.Drawing.Point(578, 439);
+            this.pictureBox_humanPlayer_havePlayedcard10.Location = new System.Drawing.Point(486, 448);
             this.pictureBox_humanPlayer_havePlayedcard10.Name = "pictureBox_humanPlayer_havePlayedcard10";
             this.pictureBox_humanPlayer_havePlayedcard10.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -781,7 +813,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard1
             // 
-            this.pictureBox_humanPlayer_havePlayedcard1.Location = new System.Drawing.Point(344, 439);
+            this.pictureBox_humanPlayer_havePlayedcard1.Location = new System.Drawing.Point(252, 448);
             this.pictureBox_humanPlayer_havePlayedcard1.Name = "pictureBox_humanPlayer_havePlayedcard1";
             this.pictureBox_humanPlayer_havePlayedcard1.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -790,7 +822,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard11
             // 
-            this.pictureBox_humanPlayer_havePlayedcard11.Location = new System.Drawing.Point(604, 439);
+            this.pictureBox_humanPlayer_havePlayedcard11.Location = new System.Drawing.Point(512, 448);
             this.pictureBox_humanPlayer_havePlayedcard11.Name = "pictureBox_humanPlayer_havePlayedcard11";
             this.pictureBox_humanPlayer_havePlayedcard11.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -799,7 +831,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard7
             // 
-            this.pictureBox_humanPlayer_havePlayedcard7.Location = new System.Drawing.Point(500, 439);
+            this.pictureBox_humanPlayer_havePlayedcard7.Location = new System.Drawing.Point(408, 448);
             this.pictureBox_humanPlayer_havePlayedcard7.Name = "pictureBox_humanPlayer_havePlayedcard7";
             this.pictureBox_humanPlayer_havePlayedcard7.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -808,7 +840,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard12
             // 
-            this.pictureBox_humanPlayer_havePlayedcard12.Location = new System.Drawing.Point(630, 439);
+            this.pictureBox_humanPlayer_havePlayedcard12.Location = new System.Drawing.Point(538, 448);
             this.pictureBox_humanPlayer_havePlayedcard12.Name = "pictureBox_humanPlayer_havePlayedcard12";
             this.pictureBox_humanPlayer_havePlayedcard12.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -817,7 +849,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard1
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard1.Location = new System.Drawing.Point(867, 83);
+            this.pictureBox_rightAIPlayer_havePlayedcard1.Location = new System.Drawing.Point(867, 53);
             this.pictureBox_rightAIPlayer_havePlayedcard1.Name = "pictureBox_rightAIPlayer_havePlayedcard1";
             this.pictureBox_rightAIPlayer_havePlayedcard1.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -826,7 +858,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard2
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard2.Location = new System.Drawing.Point(867, 109);
+            this.pictureBox_rightAIPlayer_havePlayedcard2.Location = new System.Drawing.Point(867, 79);
             this.pictureBox_rightAIPlayer_havePlayedcard2.Name = "pictureBox_rightAIPlayer_havePlayedcard2";
             this.pictureBox_rightAIPlayer_havePlayedcard2.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -835,7 +867,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard4
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard4.Location = new System.Drawing.Point(867, 161);
+            this.pictureBox_rightAIPlayer_havePlayedcard4.Location = new System.Drawing.Point(867, 131);
             this.pictureBox_rightAIPlayer_havePlayedcard4.Name = "pictureBox_rightAIPlayer_havePlayedcard4";
             this.pictureBox_rightAIPlayer_havePlayedcard4.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -844,7 +876,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard7
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard7.Location = new System.Drawing.Point(867, 239);
+            this.pictureBox_rightAIPlayer_havePlayedcard7.Location = new System.Drawing.Point(867, 209);
             this.pictureBox_rightAIPlayer_havePlayedcard7.Name = "pictureBox_rightAIPlayer_havePlayedcard7";
             this.pictureBox_rightAIPlayer_havePlayedcard7.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -853,7 +885,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard9
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard9.Location = new System.Drawing.Point(867, 291);
+            this.pictureBox_rightAIPlayer_havePlayedcard9.Location = new System.Drawing.Point(867, 261);
             this.pictureBox_rightAIPlayer_havePlayedcard9.Name = "pictureBox_rightAIPlayer_havePlayedcard9";
             this.pictureBox_rightAIPlayer_havePlayedcard9.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -862,7 +894,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard12
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard12.Location = new System.Drawing.Point(867, 370);
+            this.pictureBox_rightAIPlayer_havePlayedcard12.Location = new System.Drawing.Point(867, 340);
             this.pictureBox_rightAIPlayer_havePlayedcard12.Name = "pictureBox_rightAIPlayer_havePlayedcard12";
             this.pictureBox_rightAIPlayer_havePlayedcard12.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -871,7 +903,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard14
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard14.Location = new System.Drawing.Point(867, 422);
+            this.pictureBox_rightAIPlayer_havePlayedcard14.Location = new System.Drawing.Point(867, 392);
             this.pictureBox_rightAIPlayer_havePlayedcard14.Name = "pictureBox_rightAIPlayer_havePlayedcard14";
             this.pictureBox_rightAIPlayer_havePlayedcard14.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -880,7 +912,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard13
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard13.Location = new System.Drawing.Point(867, 396);
+            this.pictureBox_rightAIPlayer_havePlayedcard13.Location = new System.Drawing.Point(867, 366);
             this.pictureBox_rightAIPlayer_havePlayedcard13.Name = "pictureBox_rightAIPlayer_havePlayedcard13";
             this.pictureBox_rightAIPlayer_havePlayedcard13.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -889,7 +921,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard3
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard3.Location = new System.Drawing.Point(867, 135);
+            this.pictureBox_rightAIPlayer_havePlayedcard3.Location = new System.Drawing.Point(867, 105);
             this.pictureBox_rightAIPlayer_havePlayedcard3.Name = "pictureBox_rightAIPlayer_havePlayedcard3";
             this.pictureBox_rightAIPlayer_havePlayedcard3.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -898,7 +930,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard6
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard6.Location = new System.Drawing.Point(867, 213);
+            this.pictureBox_rightAIPlayer_havePlayedcard6.Location = new System.Drawing.Point(867, 183);
             this.pictureBox_rightAIPlayer_havePlayedcard6.Name = "pictureBox_rightAIPlayer_havePlayedcard6";
             this.pictureBox_rightAIPlayer_havePlayedcard6.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -907,7 +939,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard5
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard5.Location = new System.Drawing.Point(867, 187);
+            this.pictureBox_rightAIPlayer_havePlayedcard5.Location = new System.Drawing.Point(867, 157);
             this.pictureBox_rightAIPlayer_havePlayedcard5.Name = "pictureBox_rightAIPlayer_havePlayedcard5";
             this.pictureBox_rightAIPlayer_havePlayedcard5.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -916,7 +948,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard8
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard8.Location = new System.Drawing.Point(867, 265);
+            this.pictureBox_rightAIPlayer_havePlayedcard8.Location = new System.Drawing.Point(867, 235);
             this.pictureBox_rightAIPlayer_havePlayedcard8.Name = "pictureBox_rightAIPlayer_havePlayedcard8";
             this.pictureBox_rightAIPlayer_havePlayedcard8.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -925,7 +957,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard10
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard10.Location = new System.Drawing.Point(867, 317);
+            this.pictureBox_rightAIPlayer_havePlayedcard10.Location = new System.Drawing.Point(867, 287);
             this.pictureBox_rightAIPlayer_havePlayedcard10.Name = "pictureBox_rightAIPlayer_havePlayedcard10";
             this.pictureBox_rightAIPlayer_havePlayedcard10.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -934,7 +966,7 @@
             // 
             // pictureBox_rightAIPlayer_havePlayedcard11
             // 
-            this.pictureBox_rightAIPlayer_havePlayedcard11.Location = new System.Drawing.Point(867, 344);
+            this.pictureBox_rightAIPlayer_havePlayedcard11.Location = new System.Drawing.Point(867, 314);
             this.pictureBox_rightAIPlayer_havePlayedcard11.Name = "pictureBox_rightAIPlayer_havePlayedcard11";
             this.pictureBox_rightAIPlayer_havePlayedcard11.Size = new System.Drawing.Size(30, 20);
             this.pictureBox_rightAIPlayer_havePlayedcard11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1069,7 +1101,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard14
             // 
-            this.pictureBox_humanPlayer_havePlayedcard14.Location = new System.Drawing.Point(682, 439);
+            this.pictureBox_humanPlayer_havePlayedcard14.Location = new System.Drawing.Point(590, 448);
             this.pictureBox_humanPlayer_havePlayedcard14.Name = "pictureBox_humanPlayer_havePlayedcard14";
             this.pictureBox_humanPlayer_havePlayedcard14.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1078,7 +1110,7 @@
             // 
             // pictureBox_humanPlayer_havePlayedcard13
             // 
-            this.pictureBox_humanPlayer_havePlayedcard13.Location = new System.Drawing.Point(656, 439);
+            this.pictureBox_humanPlayer_havePlayedcard13.Location = new System.Drawing.Point(564, 448);
             this.pictureBox_humanPlayer_havePlayedcard13.Name = "pictureBox_humanPlayer_havePlayedcard13";
             this.pictureBox_humanPlayer_havePlayedcard13.Size = new System.Drawing.Size(20, 30);
             this.pictureBox_humanPlayer_havePlayedcard13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1221,6 +1253,58 @@
             this.game_start.UseVisualStyleBackColor = true;
             this.game_start.Click += new System.EventHandler(this.game_start_Click);
             // 
+            // human_peng
+            // 
+            this.human_peng.Font = new System.Drawing.Font("隶书", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.human_peng.Location = new System.Drawing.Point(674, 439);
+            this.human_peng.Name = "human_peng";
+            this.human_peng.Size = new System.Drawing.Size(50, 60);
+            this.human_peng.TabIndex = 105;
+            this.human_peng.Text = "碰";
+            this.human_peng.UseVisualStyleBackColor = true;
+            this.human_peng.Click += new System.EventHandler(this.human_ask_Click);
+            this.human_peng.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
+            this.human_peng.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
+            // 
+            // human_gang
+            // 
+            this.human_gang.Font = new System.Drawing.Font("隶书", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.human_gang.Location = new System.Drawing.Point(730, 439);
+            this.human_gang.Name = "human_gang";
+            this.human_gang.Size = new System.Drawing.Size(50, 60);
+            this.human_gang.TabIndex = 106;
+            this.human_gang.Text = "杠";
+            this.human_gang.UseVisualStyleBackColor = true;
+            this.human_gang.Click += new System.EventHandler(this.human_ask_Click);
+            this.human_gang.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
+            this.human_gang.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
+            // 
+            // human_hu
+            // 
+            this.human_hu.Font = new System.Drawing.Font("隶书", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.human_hu.Location = new System.Drawing.Point(786, 439);
+            this.human_hu.Name = "human_hu";
+            this.human_hu.Size = new System.Drawing.Size(50, 60);
+            this.human_hu.TabIndex = 107;
+            this.human_hu.Text = "胡";
+            this.human_hu.UseVisualStyleBackColor = true;
+            this.human_hu.Click += new System.EventHandler(this.human_ask_Click);
+            this.human_hu.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
+            this.human_hu.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
+            // 
+            // human_guo
+            // 
+            this.human_guo.Font = new System.Drawing.Font("隶书", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.human_guo.Location = new System.Drawing.Point(842, 439);
+            this.human_guo.Name = "human_guo";
+            this.human_guo.Size = new System.Drawing.Size(50, 60);
+            this.human_guo.TabIndex = 108;
+            this.human_guo.Text = "过";
+            this.human_guo.UseVisualStyleBackColor = true;
+            this.human_guo.Click += new System.EventHandler(this.human_ask_Click);
+            this.human_guo.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
+            this.human_guo.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1228,6 +1312,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 653);
+            this.Controls.Add(this.human_guo);
+            this.Controls.Add(this.human_hu);
+            this.Controls.Add(this.human_gang);
+            this.Controls.Add(this.human_peng);
             this.Controls.Add(this.game_start);
             this.Controls.Add(this.pictureBox_oppositeAIPlayer_havePlayedcard13);
             this.Controls.Add(this.pictureBox_humanPlayer_havePlayedcard13);
@@ -1567,6 +1655,10 @@
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard14;
         private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_havePlayedcard13;
         private System.Windows.Forms.Button game_start;
+        private System.Windows.Forms.Button human_peng;
+        private System.Windows.Forms.Button human_gang;
+        private System.Windows.Forms.Button human_hu;
+        private System.Windows.Forms.Button human_guo;
     }
 }
 
