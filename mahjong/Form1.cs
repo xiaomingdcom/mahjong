@@ -9,15 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Media;
+using System.Runtime.InteropServices;
+using TableCPPDLL;
 
 namespace mahjong
 {
     public partial class Form1 : Form
     {
+        #region//变量定义
+        //cTable ta = new cTable();
         public static int D_X = 2;//location.x的改变
         public static int D_Y = 6;//location.y的改变
         public static int D_WIDTH = 4;//width的改变
         public static int D_HEIGHT = 6;//height的改变
+        public bool thread_busy = false;
 
         public static int TIME_MAX=100;
 
@@ -31,7 +36,9 @@ namespace mahjong
         bool leftAIPlayer_start = false;
 
         private SoundPlayer sp;
+        #endregion
 
+        #region//get方法
         public PictureBox gethumanpb1()//返回return pictureBox_humanPlayer_cardi
         {
             return pictureBox_humanPlayer_card1;
@@ -145,6 +152,26 @@ namespace mahjong
         {
             return pictureBox_humanPlayer_havePlayedcard14;
         }
+        #endregion
+
+        //public delegate int deask();
+
+        /*public void ask_wait()//主线程等待
+        {
+            for(int i=0; ; i++)
+            {
+                test.BackColor = Color.Green;
+                if (human_peng.Enabled == true || human_gang.Enabled == true || human_hu.Enabled == true || human_guo.Enabled == true)
+                {                   
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    test.BackColor = Color.Transparent;
+                    break;
+                }
+            }
+        }*/
 
         public void whostart()//从哪个玩家开始
         {
@@ -153,19 +180,19 @@ namespace mahjong
 
         public void fapai()//发牌程序
         {
-            pictureBox_humanPlayer_card1.Name = "t1";
-            pictureBox_humanPlayer_card2.Name = "t1";
+            pictureBox_humanPlayer_card1.Name = "b3";
+            pictureBox_humanPlayer_card2.Name = "t2";
             pictureBox_humanPlayer_card3.Name = "t1";
-            pictureBox_humanPlayer_card4.Name = "t1";
-            pictureBox_humanPlayer_card5.Name = "t1";
-            pictureBox_humanPlayer_card6.Name = "t1";
-            pictureBox_humanPlayer_card7.Name = "t1";
-            pictureBox_humanPlayer_card8.Name = "t1";
-            pictureBox_humanPlayer_card9.Name = "t1";
-            pictureBox_humanPlayer_card10.Name = "t1";
-            pictureBox_humanPlayer_card11.Name = "t1";
-            pictureBox_humanPlayer_card12.Name = "t1";
-            pictureBox_humanPlayer_card13.Name = "t1";
+            pictureBox_humanPlayer_card4.Name = "t4";
+            pictureBox_humanPlayer_card5.Name = "t5";
+            pictureBox_humanPlayer_card6.Name = "t6";
+            pictureBox_humanPlayer_card7.Name = "t7";
+            pictureBox_humanPlayer_card8.Name = "t8";
+            pictureBox_humanPlayer_card9.Name = "t9";
+            pictureBox_humanPlayer_card10.Name = "w1";
+            pictureBox_humanPlayer_card11.Name = "w2";
+            pictureBox_humanPlayer_card12.Name = "w3";
+            pictureBox_humanPlayer_card13.Name = "w4";
             pictureBox_humanPlayer_card14.Name = "blank";
         }
 
@@ -355,7 +382,7 @@ namespace mahjong
 
         public void human_mopai()//摸牌程序
         {
-            pictureBox_humanPlayer_card14.Name = "w1";
+            pictureBox_humanPlayer_card14.Name = "t1";
         }
 
         public void humanPlayer_chupai(string pai ,int N)//出牌程序
@@ -491,9 +518,10 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));            
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+            //ask_wait();
         }
 
         public void oppositeAIPlayer_chupai(string pai, int N)
@@ -561,9 +589,10 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+            //ask_wait();
         }
 
         public void leftAIPlayer_chupai(string pai, int N)
@@ -631,9 +660,10 @@ namespace mahjong
             }
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+            //ask_wait();
         }
 
         public void remind_play(object param)//长时间不出牌提醒
@@ -729,7 +759,24 @@ namespace mahjong
 
         public void ask_hu(object param)//询问是否碰，杠
         {
-            int i = 0;                   
+            int i = 0;
+            if (thread_busy == true)
+            {
+                for (i = 0; ; i++)
+                {
+                    //test.BackColor = Color.Green;
+                    if (human_peng.Enabled == true || human_gang.Enabled == true || human_hu.Enabled == true || human_guo.Enabled == true)
+                    {
+                        Thread.Sleep(500);
+                    }
+                    else
+                    {
+                        //test.BackColor = Color.Transparent;
+                        break;
+                    }
+                }
+            }
+            thread_busy = true;                   
             if (true)//能胡
             {
                 human_hu.Enabled = true;
@@ -784,11 +831,13 @@ namespace mahjong
                 child1.ShowDialog();*/
                 
             }
+            thread_busy = false;
             human_hu.Name = "no";
             human_guo.Name = "no";
             human_hu.Enabled = false;
             human_guo.Enabled = false;
             human_picturebox_enablet();
+            //return 1;
         }
 
         /*public void hupai()//判断是否和牌
@@ -825,8 +874,143 @@ namespace mahjong
             }
         }*/
 
+        protected bool my_compare(string pb1,string pb2)//比较pb1和pb2，如果pb1>pb2，return true,小于等于return false                 
+        {
+            if (pb1=="blank")
+            {
+                return true;
+            }
+            else
+            {
+                if (pb2 == "blank")
+                {
+                    return false;
+                }
+                else if(pb1.CompareTo(pb2) > 0)
+                {
+                    return true;
+                }
+            }          
+            return false;
+        }
+
         public void my_show()//整理手牌并显示图片
         {
+            string pb;
+            for (int i=1;i<14;i++)
+            {
+                for(int j = 1; j <= 14-i; j++)
+                {
+                    switch (j)
+                    {
+                        case 1:
+                            if(my_compare(pictureBox_humanPlayer_card1.Name, pictureBox_humanPlayer_card2.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card1.Name;
+                                pictureBox_humanPlayer_card1.Name = pictureBox_humanPlayer_card2.Name;
+                                pictureBox_humanPlayer_card2.Name = pb;
+                            }                       
+                            break;
+                        case 2:
+                            if (my_compare(pictureBox_humanPlayer_card2.Name, pictureBox_humanPlayer_card3.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card2.Name;
+                                pictureBox_humanPlayer_card2.Name = pictureBox_humanPlayer_card3.Name;
+                                pictureBox_humanPlayer_card3.Name = pb;
+                            }
+                            break;
+                        case 3:
+                            if (my_compare(pictureBox_humanPlayer_card3.Name, pictureBox_humanPlayer_card4.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card3.Name;
+                                pictureBox_humanPlayer_card3.Name = pictureBox_humanPlayer_card4.Name;
+                                pictureBox_humanPlayer_card4.Name = pb;
+                            }
+                            break;
+                        case 4:
+                            if (my_compare(pictureBox_humanPlayer_card4.Name, pictureBox_humanPlayer_card5.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card4.Name;
+                                pictureBox_humanPlayer_card4.Name = pictureBox_humanPlayer_card5.Name;
+                                pictureBox_humanPlayer_card5.Name = pb;
+                            }
+                            break;
+                        case 5:
+                            if (my_compare(pictureBox_humanPlayer_card5.Name, pictureBox_humanPlayer_card6.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card5.Name;
+                                pictureBox_humanPlayer_card5.Name = pictureBox_humanPlayer_card6.Name;
+                                pictureBox_humanPlayer_card6.Name = pb;
+                            }
+                            break;
+                        case 6:
+                            if (my_compare(pictureBox_humanPlayer_card6.Name, pictureBox_humanPlayer_card7.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card6.Name;
+                                pictureBox_humanPlayer_card6.Name = pictureBox_humanPlayer_card7.Name;
+                                pictureBox_humanPlayer_card7.Name = pb;
+                            }
+                            break;
+                        case 7:
+                            if (my_compare(pictureBox_humanPlayer_card7.Name, pictureBox_humanPlayer_card8.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card7.Name;
+                                pictureBox_humanPlayer_card7.Name = pictureBox_humanPlayer_card8.Name;
+                                pictureBox_humanPlayer_card8.Name = pb;
+                            }
+                            break;
+                        case 8:
+                            if (my_compare(pictureBox_humanPlayer_card8.Name, pictureBox_humanPlayer_card9.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card8.Name;
+                                pictureBox_humanPlayer_card8.Name = pictureBox_humanPlayer_card9.Name;
+                                pictureBox_humanPlayer_card9.Name = pb;
+                            }
+                            break;
+                        case 9:
+                            if (my_compare(pictureBox_humanPlayer_card9.Name, pictureBox_humanPlayer_card10.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card9.Name;
+                                pictureBox_humanPlayer_card9.Name = pictureBox_humanPlayer_card10.Name;
+                                pictureBox_humanPlayer_card10.Name = pb;
+                            }
+                            break;
+                        case 10:
+                            if (my_compare(pictureBox_humanPlayer_card10.Name, pictureBox_humanPlayer_card11.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card10.Name;
+                                pictureBox_humanPlayer_card10.Name = pictureBox_humanPlayer_card11.Name;
+                                pictureBox_humanPlayer_card11.Name = pb;
+                            }
+                            break;
+                        case 11:
+                            if (my_compare(pictureBox_humanPlayer_card11.Name, pictureBox_humanPlayer_card12.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card11.Name;
+                                pictureBox_humanPlayer_card11.Name = pictureBox_humanPlayer_card12.Name;
+                                pictureBox_humanPlayer_card12.Name = pb;
+                            }
+                            break;
+                        case 12:
+                            if (my_compare(pictureBox_humanPlayer_card12.Name, pictureBox_humanPlayer_card13.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card12.Name;
+                                pictureBox_humanPlayer_card12.Name = pictureBox_humanPlayer_card13.Name;
+                                pictureBox_humanPlayer_card13.Name = pb;
+                            }
+                            break;
+                        case 13:
+                            if (my_compare(pictureBox_humanPlayer_card13.Name, pictureBox_humanPlayer_card14.Name))
+                            {
+                                pb = pictureBox_humanPlayer_card13.Name;
+                                pictureBox_humanPlayer_card13.Name = pictureBox_humanPlayer_card14.Name;
+                                pictureBox_humanPlayer_card14.Name = pb;
+                            }
+                            break;
+                    }
+                }
+            }
+
             pictureBox_humanPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card1.Name + ".jpg");
             pictureBox_humanPlayer_card2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card2.Name + ".jpg");
             pictureBox_humanPlayer_card3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card3.Name + ".jpg");
@@ -856,7 +1040,7 @@ namespace mahjong
             humanPlayer_chupai(pb.Name, humanPlayer_havePlayedcard_num);
             pb.Name = "blank";
             my_show();
-            Thread.Sleep(500);
+            //Thread.Sleep(500);
 
             rightAIPlayer_havePlayedcard_num++;
             rightAIPlayer_chupai("t1", rightAIPlayer_havePlayedcard_num);
@@ -867,10 +1051,11 @@ namespace mahjong
             leftAIPlayer_havePlayedcard_num++;
             leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
 
-            Thread.Sleep(200);
+            //Thread.Sleep(200);
             human_mopai();
-            my_show();
+            my_show();           
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+            //ask_wait();
         }
 
         private void game_start_Click(object sender, EventArgs e)//点击start事件
@@ -881,7 +1066,7 @@ namespace mahjong
             whostart();
             fapai();
             my_show();
-            Thread.Sleep(200);
+            //Thread.Sleep(2000);
             if (rightAIPlayer_start == true)
             {
                 rightAIPlayer_havePlayedcard_num++;
@@ -921,7 +1106,11 @@ namespace mahjong
             }
             human_mopai();
             my_show();
+            //ask_wait();
+            //deask ask=ask_hu;//private delegate int Newask_huDelegate(int ms);
+            //ask.BeginInvoke(null, null);
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
+            //ask_wait();
         }
 
         private void human_ask_Click(object sender, EventArgs e)

@@ -143,6 +143,7 @@
             this.human_gang = new System.Windows.Forms.Button();
             this.human_hu = new System.Windows.Forms.Button();
             this.human_guo = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -1305,6 +1306,15 @@
             this.human_guo.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
             this.human_guo.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
             // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(468, 250);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(75, 23);
+            this.test.TabIndex = 111;
+            this.test.Text = "test";
+            this.test.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1312,6 +1322,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 653);
+            this.Controls.Add(this.test);
             this.Controls.Add(this.human_guo);
             this.Controls.Add(this.human_hu);
             this.Controls.Add(this.human_gang);
@@ -1659,6 +1670,7 @@
         private System.Windows.Forms.Button human_gang;
         private System.Windows.Forms.Button human_hu;
         private System.Windows.Forms.Button human_guo;
+        private System.Windows.Forms.Button test;
     }
 }
 
