@@ -23,6 +23,12 @@ namespace mahjong
         public static int D_WIDTH = 4;//width的改变
         public static int D_HEIGHT = 6;//height的改变
         public bool thread_busy = false;
+        public string whoask = "none";//谁询问
+
+        public bool humanPlayerdone = false;
+        public bool rightAIPlayerdone = false;
+        public bool oppositeAIPlayerdone = false;
+        public bool leftAIPlayerdone = false;
 
         public static int TIME_MAX=100;
 
@@ -35,7 +41,7 @@ namespace mahjong
         bool oppositeAIPlayer_start = false;
         bool leftAIPlayer_start = false;
 
-        private SoundPlayer sp;
+        //private SoundPlayer sp;
         #endregion
 
         #region//get方法
@@ -232,7 +238,7 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Enabled = true;
         }
 
-        public void my_initialize()//自定义初始化内容
+        protected void my_initialize()//自定义初始化内容
         {
             humanPlayer_start = false;
             rightAIPlayer_start = false;
@@ -385,9 +391,9 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Name = "t1";
         }
 
-        public void humanPlayer_chupai(string pai ,int N)//出牌程序
+        public void humanPlayer_chupai(string pai)//出牌程序
         {
-            switch (N)
+            switch (humanPlayer_havePlayedcard_num)
             {
                 case 1:
                     pictureBox_humanPlayer_havePlayedcard1.Name = pai;
@@ -451,11 +457,26 @@ namespace mahjong
             }
             //sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
+            humanPlayerdone = true;
         }
 
-        public void rightAIPlayer_chupai(string pai, int N)
+        public void rightAIPlayer_chupai(object param)
         {
-            switch (N)
+            Thread.Sleep(500);
+            for (int i=0; ; i++)
+            {
+                if (humanPlayerdone == false)//humanplayer未出牌
+                {
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string pai = "t1";
+            switch (rightAIPlayer_havePlayedcard_num)
             {
                 case 1:
                     pictureBox_rightAIPlayer_havePlayedcard1.Name = pai;
@@ -519,14 +540,28 @@ namespace mahjong
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
             //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));            
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));   
+            whoask = "rightAIPlayer";
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
-            //ask_wait();
         }
 
-        public void oppositeAIPlayer_chupai(string pai, int N)
+        public void oppositeAIPlayer_chupai(object param)
         {
-            switch (N)
+            Thread.Sleep(1000);
+            for (int i = 0; ; i++)
+            {
+                if (rightAIPlayerdone==false)//humanplayer未出牌
+                {
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string pai = "t1";
+            switch (oppositeAIPlayer_havePlayedcard_num)
             {
                 case 1:
                     pictureBox_oppositeAIPlayer_havePlayedcard1.Name = pai;
@@ -591,13 +626,28 @@ namespace mahjong
             //sp.PlaySync();
             //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
             //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            whoask = "oppositeAIPlayer";
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
             //ask_wait();
         }
 
-        public void leftAIPlayer_chupai(string pai, int N)
+        public void leftAIPlayer_chupai(object param)
         {
-            switch (N)
+            Thread.Sleep(1500);
+            for (int i = 0; ; i++)
+            {
+                if (oppositeAIPlayerdone==false)//humanplayer未出牌
+                {
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string pai = "t1";
+            switch (leftAIPlayer_havePlayedcard_num)
             {
                 case 1:
                     pictureBox_leftAIPlayer_havePlayedcard1.Name = pai;
@@ -662,6 +712,7 @@ namespace mahjong
             //sp.PlaySync();
             //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_peng));
             //ThreadPool.QueueUserWorkItem(new WaitCallback(ask_gang));
+            whoask = "leftAIPlayer";
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
             //ask_wait();
         }
@@ -759,8 +810,10 @@ namespace mahjong
 
         public void ask_hu(object param)//询问是否碰，杠
         {
+            //human_peng.Click += game_start_Click;
+            test.Click += game_start_Click;
             int i = 0;
-            if (thread_busy == true)
+            if (thread_busy == true)//有线程在进行则等待
             {
                 for (i = 0; ; i++)
                 {
@@ -831,12 +884,29 @@ namespace mahjong
                 child1.ShowDialog();*/
                 
             }
-            thread_busy = false;
+            switch (whoask)
+            {
+                case "none":
+                    break;
+                case "rightAIPlayer":
+                    rightAIPlayerdone = true;
+                    break;
+                case "oppesiteAIPlayer":
+                    rightAIPlayerdone = true;
+                    break;
+                case "leftAIPlayer":
+                    humanPlayerdone = false;
+                    rightAIPlayerdone = false;
+                    oppositeAIPlayerdone = false;
+                    leftAIPlayerdone = false;
+                    break;
+            }
             human_hu.Name = "no";
             human_guo.Name = "no";
             human_hu.Enabled = false;
             human_guo.Enabled = false;
             human_picturebox_enablet();
+            thread_busy = false;
             //return 1;
         }
 
@@ -1030,6 +1100,7 @@ namespace mahjong
         public Form1()//初始化
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
             my_initialize();//自定义的初始化内容           
         }
 
@@ -1037,23 +1108,22 @@ namespace mahjong
         {
             PictureBox pb = (PictureBox)sender;
             humanPlayer_havePlayedcard_num++;
-            humanPlayer_chupai(pb.Name, humanPlayer_havePlayedcard_num);
+            humanPlayer_chupai(pb.Name);
             pb.Name = "blank";
             my_show();
-            //Thread.Sleep(500);
 
             rightAIPlayer_havePlayedcard_num++;
-            rightAIPlayer_chupai("t1", rightAIPlayer_havePlayedcard_num);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(rightAIPlayer_chupai));
 
             oppositeAIPlayer_havePlayedcard_num++;
-            oppositeAIPlayer_chupai("t1", oppositeAIPlayer_havePlayedcard_num);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_chupai));
 
             leftAIPlayer_havePlayedcard_num++;
-            leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
 
-            //Thread.Sleep(200);
             human_mopai();
-            my_show();           
+            my_show();
+            whoask = "none";//自摸           
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
             //ask_wait();
         }
@@ -1070,45 +1140,46 @@ namespace mahjong
             if (rightAIPlayer_start == true)
             {
                 rightAIPlayer_havePlayedcard_num++;
-                rightAIPlayer_chupai("t1", rightAIPlayer_havePlayedcard_num);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(rightAIPlayer_chupai));
 
                 oppositeAIPlayer_havePlayedcard_num++;
-                oppositeAIPlayer_chupai("t1", oppositeAIPlayer_havePlayedcard_num);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_chupai));
 
                 leftAIPlayer_havePlayedcard_num++;
-                leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
             }
             else
             {
                 if (oppositeAIPlayer_start == true)
                 {
                     oppositeAIPlayer_havePlayedcard_num++;
-                    oppositeAIPlayer_chupai("t1", oppositeAIPlayer_havePlayedcard_num);
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_chupai));
 
                     leftAIPlayer_havePlayedcard_num++;
-                    leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
                 }
                 else
                 {
                     if (leftAIPlayer_start == true)
                     {
                         leftAIPlayer_havePlayedcard_num++;
-                        leftAIPlayer_chupai("t1", leftAIPlayer_havePlayedcard_num);
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
                     }
                     else
                     {
                         if (humanPlayer_start == true)
                         {
-                            //
+                            humanPlayerdone = false;
+                            rightAIPlayerdone = false;
+                            oppositeAIPlayerdone = false;
+                            leftAIPlayerdone = false;
                         }
                     }
                 }
             }
             human_mopai();
             my_show();
-            //ask_wait();
-            //deask ask=ask_hu;//private delegate int Newask_huDelegate(int ms);
-            //ask.BeginInvoke(null, null);
+            whoask = "none";
             ThreadPool.QueueUserWorkItem(new WaitCallback(ask_hu));
             //ask_wait();
         }
