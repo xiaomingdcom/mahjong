@@ -471,7 +471,7 @@ namespace mahjong
             human_mopai();
             my_show();
             ask_hu();
-            int j=0;
+            int j = 0;
             j++;
         }
 
@@ -557,7 +557,7 @@ namespace mahjong
             //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
             //sp.PlaySync();
             ask_peng();
-            ask_gang();              
+            ask_gang();
             ask_hu();
             rightAIPlayerdone = true;
             humanPlayerdone = false;
@@ -871,7 +871,7 @@ namespace mahjong
 
                     if (true)//如果赢
                     {
-                        MessageBox.Show("you win", "", MessageBoxButtons.OK);                       
+                        MessageBox.Show("you win", "", MessageBoxButtons.OK);
                     }
                     else//输
                     {
@@ -1062,7 +1062,7 @@ namespace mahjong
             if (background_music_on == true)
             {
                 sp.PlayLooping();
-            }          
+            }
         }
 
         public Form1()//初始化
@@ -1089,7 +1089,7 @@ namespace mahjong
 
             leftAIPlayer_havePlayedcard_num++;
             ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
-                     
+
             ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
         }
 
@@ -1160,7 +1160,9 @@ namespace mahjong
             my_show();
             Thread.Sleep(500);
 
-            ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
+            Thread t = new Thread(human_play);
+            t.Start();
         }
 
         private void human_ask_Click(object sender, EventArgs e)//判断是碰杠胡过
@@ -1211,11 +1213,6 @@ namespace mahjong
                 background_music.Text = "on";
                 sp.PlayLooping();
             }
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
     }
 }
