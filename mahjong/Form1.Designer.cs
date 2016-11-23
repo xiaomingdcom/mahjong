@@ -143,6 +143,11 @@
             this.human_gang = new System.Windows.Forms.Button();
             this.human_hu = new System.Windows.Forms.Button();
             this.human_guo = new System.Windows.Forms.Button();
+            this.humanPlayer_money = new System.Windows.Forms.Label();
+            this.rightAIPlayer_money = new System.Windows.Forms.Label();
+            this.oppositeAIPlayer_money = new System.Windows.Forms.Label();
+            this.leftAIPlayer_money = new System.Windows.Forms.Label();
+            this.background_music = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -1247,7 +1252,7 @@
             // 
             // game_start
             // 
-            this.game_start.Location = new System.Drawing.Point(471, 360);
+            this.game_start.Location = new System.Drawing.Point(486, 360);
             this.game_start.Name = "game_start";
             this.game_start.Size = new System.Drawing.Size(147, 41);
             this.game_start.TabIndex = 103;
@@ -1307,6 +1312,56 @@
             this.human_guo.MouseEnter += new System.EventHandler(this.human_ask_MouseEnter);
             this.human_guo.MouseLeave += new System.EventHandler(this.human_ask_MouseLeave);
             // 
+            // humanPlayer_money
+            // 
+            this.humanPlayer_money.Enabled = false;
+            this.humanPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.humanPlayer_money.Location = new System.Drawing.Point(460, 543);
+            this.humanPlayer_money.Name = "humanPlayer_money";
+            this.humanPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.humanPlayer_money.TabIndex = 110;
+            this.humanPlayer_money.Text = " ";
+            // 
+            // rightAIPlayer_money
+            // 
+            this.rightAIPlayer_money.Enabled = false;
+            this.rightAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rightAIPlayer_money.Location = new System.Drawing.Point(916, 263);
+            this.rightAIPlayer_money.Name = "rightAIPlayer_money";
+            this.rightAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.rightAIPlayer_money.TabIndex = 111;
+            this.rightAIPlayer_money.Text = " ";
+            // 
+            // oppositeAIPlayer_money
+            // 
+            this.oppositeAIPlayer_money.Enabled = false;
+            this.oppositeAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.oppositeAIPlayer_money.Location = new System.Drawing.Point(450, 68);
+            this.oppositeAIPlayer_money.Name = "oppositeAIPlayer_money";
+            this.oppositeAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.oppositeAIPlayer_money.TabIndex = 112;
+            this.oppositeAIPlayer_money.Text = " ";
+            // 
+            // leftAIPlayer_money
+            // 
+            this.leftAIPlayer_money.Enabled = false;
+            this.leftAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.leftAIPlayer_money.Location = new System.Drawing.Point(59, 236);
+            this.leftAIPlayer_money.Name = "leftAIPlayer_money";
+            this.leftAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.leftAIPlayer_money.TabIndex = 113;
+            this.leftAIPlayer_money.Text = " ";
+            // 
+            // background_music
+            // 
+            this.background_music.Location = new System.Drawing.Point(1136, 3);
+            this.background_music.Name = "background_music";
+            this.background_music.Size = new System.Drawing.Size(45, 44);
+            this.background_music.TabIndex = 115;
+            this.background_music.Text = "on";
+            this.background_music.UseVisualStyleBackColor = true;
+            this.background_music.Click += new System.EventHandler(this.background_music_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1314,6 +1369,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 703);
+            this.Controls.Add(this.background_music);
+            this.Controls.Add(this.leftAIPlayer_money);
+            this.Controls.Add(this.oppositeAIPlayer_money);
+            this.Controls.Add(this.rightAIPlayer_money);
+            this.Controls.Add(this.humanPlayer_money);
             this.Controls.Add(this.human_guo);
             this.Controls.Add(this.human_hu);
             this.Controls.Add(this.human_gang);
@@ -1661,6 +1721,11 @@
         private System.Windows.Forms.Button human_gang;
         private System.Windows.Forms.Button human_hu;
         private System.Windows.Forms.Button human_guo;
+        private System.Windows.Forms.Label humanPlayer_money;
+        private System.Windows.Forms.Label rightAIPlayer_money;
+        private System.Windows.Forms.Label oppositeAIPlayer_money;
+        private System.Windows.Forms.Label leftAIPlayer_money;
+        private System.Windows.Forms.Button background_music;
     }
 }
 
