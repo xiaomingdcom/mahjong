@@ -148,6 +148,7 @@
             this.oppositeAIPlayer_money = new System.Windows.Forms.Label();
             this.leftAIPlayer_money = new System.Windows.Forms.Label();
             this.background_music = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -1362,6 +1363,10 @@
             this.background_music.UseVisualStyleBackColor = true;
             this.background_music.Click += new System.EventHandler(this.background_music_Click);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1726,6 +1731,7 @@
         private System.Windows.Forms.Label oppositeAIPlayer_money;
         private System.Windows.Forms.Label leftAIPlayer_money;
         private System.Windows.Forms.Button background_music;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
