@@ -1160,7 +1160,7 @@ namespace mahjong
             my_show();
             Thread.Sleep(500);
 
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));//这里不用线程池，卡住的情况未出现
             Thread t = new Thread(human_play);
             t.Start();
         }
