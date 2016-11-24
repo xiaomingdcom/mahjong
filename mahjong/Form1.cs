@@ -462,6 +462,7 @@ namespace mahjong
             my_show();
             ask_hu();
             human_picturebox_enablet();
+            Thread.CurrentThread.Abort();
         }
 
         public void rightAIPlayer_chupai(object param)
@@ -550,6 +551,7 @@ namespace mahjong
             ask_hu();
             rightAIPlayerdone = true;
             humanPlayerdone = false;
+            Thread.CurrentThread.Abort();
         }
 
         public void oppositeAIPlayer_chupai(object param)
@@ -638,6 +640,7 @@ namespace mahjong
             ask_hu();
             oppositeAIPlayerdone = true;
             rightAIPlayerdone = false;
+            Thread.CurrentThread.Abort();
         }
 
         public void leftAIPlayer_chupai(object param)
@@ -726,7 +729,8 @@ namespace mahjong
             ask_hu();
             leftAIPlayerdone = true;
             oppositeAIPlayerdone = false;
-            human_picturebox_enablet();
+            //human_picturebox_enablet();
+            Thread.CurrentThread.Abort();
         }
 
         public void remind_play(object param)//长时间不出牌提醒
@@ -882,7 +886,6 @@ namespace mahjong
                     human_guo.Name = "no";
                     human_hu.Enabled = false;
                     human_guo.Enabled = false;
-                    Application.ExitThread();
                 }
             }
         }
