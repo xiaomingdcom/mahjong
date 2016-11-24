@@ -729,7 +729,6 @@ namespace mahjong
             ask_hu();
             leftAIPlayerdone = true;
             oppositeAIPlayerdone = false;
-            //human_picturebox_enablet();
             Thread.CurrentThread.Abort();
         }
 
@@ -738,6 +737,26 @@ namespace mahjong
             human_guo.BackColor = Color.Green;
             Thread.Sleep(500);
             human_guo.BackColor = Color.Transparent;
+            if (humanPlayerdone == true)
+            {
+                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\remind_play.wav");
+                sp.PlaySync();
+            }
+            if (rightAIPlayerdone == true)
+            {
+                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\remind_play.wav");
+                sp.PlaySync();
+            }
+            if (oppositeAIPlayerdone == true)
+            {
+                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\remind_play.wav");
+                sp.PlaySync();
+            }
+            if (leftAIPlayerdone == true)
+            {
+                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\humanPlayer\\remind_play.wav");
+                sp.PlaySync();
+            }
             //兵贵神速
             //soundplay
         }
@@ -834,7 +853,7 @@ namespace mahjong
                     {
                         break;
                     }
-                    if (i % 10 == 0)//一段时间不点，提醒
+                    if (i % 10 == 0&&i>20)//一段时间不点，提醒
                     {
                         ThreadPool.QueueUserWorkItem(new WaitCallback(remind_play));
                     }
