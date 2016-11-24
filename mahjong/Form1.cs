@@ -28,7 +28,7 @@ namespace mahjong
         public bool oppositeAIPlayerdone = false;
         public bool leftAIPlayerdone = false;
 
-        public static int TIME_MAX = 10;
+        public static int TIME_MAX = 100;
 
         int humanPlayer_havePlayedcard_num = 0;//玩家已出牌计数
         int leftAIPlayer_havePlayedcard_num = 0;
@@ -39,8 +39,7 @@ namespace mahjong
         bool oppositeAIPlayer_start = false;
         bool leftAIPlayer_start = false;
 
-        static protected bool background_music_on;//默认false,怎么记忆?
-        protected SoundPlayer sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\backgroundmusic.wav");
+        protected SoundPlayer sp;
         #endregion
 
         #region//get方法
@@ -220,15 +219,6 @@ namespace mahjong
 
         protected void my_initialize()//自定义初始化内容
         {
-            if (background_music_on == true)
-            {
-                background_music.Text = "on";
-            }
-            else
-            {
-                background_music.Text = "off";
-            }
-
             humanPlayer_money.Visible = false;
             rightAIPlayer_money.Visible = false;
             oppositeAIPlayer_money.Visible = false;
@@ -449,8 +439,8 @@ namespace mahjong
                     //gameover
                     break;
             }
-            //sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            //sp.PlaySync();
+            sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\humanPlayer\\" + pai + ".wav");
+            sp.PlaySync();
             humanPlayerdone = true;
             leftAIPlayerdone = false;
         }
@@ -471,8 +461,7 @@ namespace mahjong
             human_mopai();
             my_show();
             ask_hu();
-            int j = 0;
-            j++;
+            human_picturebox_enablet();
         }
 
         public void rightAIPlayer_chupai(object param)
@@ -554,8 +543,8 @@ namespace mahjong
                 default:
                     break;
             }
-            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            //sp.PlaySync();
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\" + pai + ".wav");
+            sp.PlaySync();
             ask_peng();
             ask_gang();
             ask_hu();
@@ -642,14 +631,13 @@ namespace mahjong
                 default:
                     break;
             }
-            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            //sp.PlaySync();
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\" + pai + ".wav");
+            sp.PlaySync();
             ask_peng();
             ask_gang();
             ask_hu();
             oppositeAIPlayerdone = true;
             rightAIPlayerdone = false;
-            //ask_wait();
         }
 
         public void leftAIPlayer_chupai(object param)
@@ -731,13 +719,14 @@ namespace mahjong
                 default:
                     break;
             }
-            //sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\" + pai + ".wav");
-            //sp.PlaySync();
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\" + pai + ".wav");
+            sp.PlaySync();
             ask_peng();
             ask_gang();
             ask_hu();
             leftAIPlayerdone = true;
             oppositeAIPlayerdone = false;
+            human_picturebox_enablet();
         }
 
         public void remind_play(object param)//长时间不出牌提醒
@@ -756,7 +745,6 @@ namespace mahjong
             {
                 human_peng.Enabled = true;
                 human_guo.Enabled = true;
-                human_picturebox_enablef();//humanpicturebox不能响应
                 for (i = 0; i < TIME_MAX; i++)//有bug，需改进
                 {
                     Thread.Sleep(500);
@@ -786,7 +774,6 @@ namespace mahjong
                 human_guo.Name = "no";
                 human_peng.Enabled = false;
                 human_guo.Enabled = false;
-                human_picturebox_enablet();
             }
         }
 
@@ -797,7 +784,6 @@ namespace mahjong
             {
                 human_gang.Enabled = true;
                 human_guo.Enabled = true;
-                human_picturebox_enablef();//humanpicturebox不能响应
                 for (i = 0; i < TIME_MAX; i++)//有bug，需改进
                 {
                     Thread.Sleep(500);
@@ -827,7 +813,6 @@ namespace mahjong
                 human_guo.Name = "no";
                 human_gang.Enabled = false;
                 human_guo.Enabled = false;
-                human_picturebox_enablet();
             }
         }
 
@@ -838,7 +823,6 @@ namespace mahjong
             {
                 human_hu.Enabled = true;
                 human_guo.Enabled = true;
-                human_picturebox_enablef();//humanpicturebox不能响应
                 for (i = 0; i < TIME_MAX; i++)//有bug，需改进
                 {
                     Thread.Sleep(500);
@@ -884,7 +868,7 @@ namespace mahjong
                     }
                     else
                     {
-                        sp.Stop();
+                        mediaplayer_backgroundmusic.Ctlcontrols.stop();
                         Application.Exit();//退出游戏
                     }
                 }
@@ -898,7 +882,6 @@ namespace mahjong
                     human_guo.Name = "no";
                     human_hu.Enabled = false;
                     human_guo.Enabled = false;
-                    human_picturebox_enablet();
                     Application.ExitThread();
                 }
             }
@@ -1057,20 +1040,14 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card14.Name + ".jpg");
         }
 
-        protected void backgroundmusic_play(object param)
-        {
-            if (background_music_on == true)
-            {
-                sp.PlayLooping();
-            }
-        }
-
         public Form1()//初始化
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;//忽略跨线程错误
             my_initialize();//自定义的初始化内容   
-            ThreadPool.QueueUserWorkItem(new WaitCallback(backgroundmusic_play));//播放背景音乐
+            mediaplayer_backgroundmusic.URL="C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\backgroundmusic.wav";
+            mediaplayer_backgroundmusic.Ctlcontrols.play();
+            mediaplayer_backgroundmusic.settings.setMode("loop", true);
         }
 
         private void pictureBox_humanPlayer_card_Click(object sender, EventArgs e)//点击picturebox事件
@@ -1080,23 +1057,31 @@ namespace mahjong
             humanPlayer_chupai(pb.Name);
             pb.Name = "blank";
             my_show();
+            human_picturebox_enablef();
 
             rightAIPlayer_havePlayedcard_num++;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(rightAIPlayer_chupai));
+            Thread tr = new Thread(rightAIPlayer_chupai);
+            tr.Start();
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(rightAIPlayer_chupai));
 
             oppositeAIPlayer_havePlayedcard_num++;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_chupai));
+            Thread to = new Thread(oppositeAIPlayer_chupai);
+            to.Start();
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_chupai));
 
             leftAIPlayer_havePlayedcard_num++;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
+            Thread tl = new Thread(leftAIPlayer_chupai);
+            tl.Start();
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_chupai));
 
-            ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
+            Thread t = new Thread(human_play);
+            t.Start();
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(human_play));
         }
 
         private void game_start_Click(object sender, EventArgs e)//点击start事件
         {
             game_start.Visible = false;
-            human_picturebox_enablet();
 
             whostart();
             #region//根据谁开始初始化
@@ -1197,22 +1182,6 @@ namespace mahjong
             Button button = (Button)sender;
             button.Location = new Point(button.Location.X + D_X, button.Location.Y + D_Y);
             button.Size = new Size(button.Width - D_WIDTH, button.Height - D_HEIGHT);
-        }
-
-        private void background_music_Click(object sender, EventArgs e)
-        {
-            if (background_music_on == true)
-            {
-                background_music_on = false;
-                background_music.Text = "off";
-                sp.Stop();
-            }
-            else
-            {
-                background_music_on = true;
-                background_music.Text = "on";
-                sp.PlayLooping();
-            }
         }
     }
 }

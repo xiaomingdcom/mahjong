@@ -147,7 +147,7 @@
             this.rightAIPlayer_money = new System.Windows.Forms.Label();
             this.oppositeAIPlayer_money = new System.Windows.Forms.Label();
             this.leftAIPlayer_money = new System.Windows.Forms.Label();
-            this.background_music = new System.Windows.Forms.Button();
+            this.mediaplayer_backgroundmusic = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -257,6 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_humanPlayer_card1
@@ -1352,15 +1353,14 @@
             this.leftAIPlayer_money.TabIndex = 113;
             this.leftAIPlayer_money.Text = " ";
             // 
-            // background_music
+            // mediaplayer_backgroundmusic
             // 
-            this.background_music.Location = new System.Drawing.Point(1136, 3);
-            this.background_music.Name = "background_music";
-            this.background_music.Size = new System.Drawing.Size(45, 44);
-            this.background_music.TabIndex = 115;
-            this.background_music.Text = "on";
-            this.background_music.UseVisualStyleBackColor = true;
-            this.background_music.Click += new System.EventHandler(this.background_music_Click);
+            this.mediaplayer_backgroundmusic.Enabled = true;
+            this.mediaplayer_backgroundmusic.Location = new System.Drawing.Point(3, -9);
+            this.mediaplayer_backgroundmusic.Name = "mediaplayer_backgroundmusic";
+            this.mediaplayer_backgroundmusic.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaplayer_backgroundmusic.OcxState")));
+            this.mediaplayer_backgroundmusic.Size = new System.Drawing.Size(36, 42);
+            this.mediaplayer_backgroundmusic.TabIndex = 117;
             // 
             // Form1
             // 
@@ -1369,7 +1369,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 703);
-            this.Controls.Add(this.background_music);
+            this.Controls.Add(this.mediaplayer_backgroundmusic);
             this.Controls.Add(this.leftAIPlayer_money);
             this.Controls.Add(this.oppositeAIPlayer_money);
             this.Controls.Add(this.rightAIPlayer_money);
@@ -1601,6 +1601,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1725,7 +1726,7 @@
         private System.Windows.Forms.Label rightAIPlayer_money;
         private System.Windows.Forms.Label oppositeAIPlayer_money;
         private System.Windows.Forms.Label leftAIPlayer_money;
-        private System.Windows.Forms.Button background_music;
+        private AxWMPLib.AxWindowsMediaPlayer mediaplayer_backgroundmusic;
     }
 }
 
