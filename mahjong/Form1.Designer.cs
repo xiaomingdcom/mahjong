@@ -1253,7 +1253,7 @@
             // 
             // game_start
             // 
-            this.game_start.Location = new System.Drawing.Point(477, 375);
+            this.game_start.Location = new System.Drawing.Point(486, 376);
             this.game_start.Name = "game_start";
             this.game_start.Size = new System.Drawing.Size(147, 41);
             this.game_start.TabIndex = 103;
@@ -1315,41 +1315,41 @@
             // 
             // humanPlayer_money
             // 
-            this.humanPlayer_money.Enabled = false;
+            this.humanPlayer_money.BackColor = System.Drawing.Color.White;
             this.humanPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.humanPlayer_money.Location = new System.Drawing.Point(460, 543);
+            this.humanPlayer_money.Location = new System.Drawing.Point(770, 535);
             this.humanPlayer_money.Name = "humanPlayer_money";
-            this.humanPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.humanPlayer_money.Size = new System.Drawing.Size(200, 30);
             this.humanPlayer_money.TabIndex = 110;
             this.humanPlayer_money.Text = " ";
             // 
             // rightAIPlayer_money
             // 
-            this.rightAIPlayer_money.Enabled = false;
+            this.rightAIPlayer_money.BackColor = System.Drawing.Color.White;
             this.rightAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rightAIPlayer_money.Location = new System.Drawing.Point(916, 263);
+            this.rightAIPlayer_money.Location = new System.Drawing.Point(916, 3);
             this.rightAIPlayer_money.Name = "rightAIPlayer_money";
-            this.rightAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.rightAIPlayer_money.Size = new System.Drawing.Size(200, 30);
             this.rightAIPlayer_money.TabIndex = 111;
             this.rightAIPlayer_money.Text = " ";
             // 
             // oppositeAIPlayer_money
             // 
-            this.oppositeAIPlayer_money.Enabled = false;
+            this.oppositeAIPlayer_money.BackColor = System.Drawing.Color.White;
             this.oppositeAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.oppositeAIPlayer_money.Location = new System.Drawing.Point(450, 68);
+            this.oppositeAIPlayer_money.Location = new System.Drawing.Point(478, 3);
             this.oppositeAIPlayer_money.Name = "oppositeAIPlayer_money";
-            this.oppositeAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.oppositeAIPlayer_money.Size = new System.Drawing.Size(200, 30);
             this.oppositeAIPlayer_money.TabIndex = 112;
             this.oppositeAIPlayer_money.Text = " ";
             // 
             // leftAIPlayer_money
             // 
-            this.leftAIPlayer_money.Enabled = false;
+            this.leftAIPlayer_money.BackColor = System.Drawing.Color.White;
             this.leftAIPlayer_money.Font = new System.Drawing.Font("隶书", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.leftAIPlayer_money.Location = new System.Drawing.Point(59, 236);
+            this.leftAIPlayer_money.Location = new System.Drawing.Point(59, 3);
             this.leftAIPlayer_money.Name = "leftAIPlayer_money";
-            this.leftAIPlayer_money.Size = new System.Drawing.Size(200, 60);
+            this.leftAIPlayer_money.Size = new System.Drawing.Size(200, 30);
             this.leftAIPlayer_money.TabIndex = 113;
             this.leftAIPlayer_money.Text = " ";
             // 
