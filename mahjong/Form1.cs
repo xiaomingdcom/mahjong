@@ -271,22 +271,22 @@ namespace mahjong
             human_guo.BackColor = Color.Transparent;
             if (humanPlayerdone == true)
             {
-                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\remind_play.wav");
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\remind_play.wav");
                 sp.PlaySync();
             }
             if (rightAIPlayerdone == true)
             {
-                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\remind_play.wav");
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\remind_play.wav");
                 sp.PlaySync();
             }
             if (oppositeAIPlayerdone == true)
             {
-                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\remind_play.wav");
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\remind_play.wav");
                 sp.PlaySync();
             }
             if (leftAIPlayerdone == true)
             {
-                sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\humanPlayer\\remind_play.wav");
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\remind_play.wav");
                 sp.PlaySync();
             }
             //兵贵神速
@@ -390,47 +390,48 @@ namespace mahjong
             human_picturebox_enablef();
 
             //三个AIPlayer手牌只显示背面
-            pictureBox_leftAIPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
+            Image pb=Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+            pictureBox_leftAIPlayer_card1.Image = pb;
+            pictureBox_leftAIPlayer_card2.Image = pb;
+            pictureBox_leftAIPlayer_card3.Image = pb;
+            pictureBox_leftAIPlayer_card4.Image = pb;
+            pictureBox_leftAIPlayer_card5.Image = pb;
+            pictureBox_leftAIPlayer_card6.Image = pb;
+            pictureBox_leftAIPlayer_card7.Image = pb;
+            pictureBox_leftAIPlayer_card8.Image = pb;
+            pictureBox_leftAIPlayer_card9.Image = pb;
+            pictureBox_leftAIPlayer_card10.Image = pb;
+            pictureBox_leftAIPlayer_card11.Image = pb;
+            pictureBox_leftAIPlayer_card12.Image = pb;
+            pictureBox_leftAIPlayer_card13.Image = pb;
 
-            pictureBox_rightAIPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_rightAIPlayer_card13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
+            pictureBox_rightAIPlayer_card1.Image = pb;
+            pictureBox_rightAIPlayer_card2.Image = pb;
+            pictureBox_rightAIPlayer_card3.Image = pb;
+            pictureBox_rightAIPlayer_card4.Image = pb;
+            pictureBox_rightAIPlayer_card5.Image = pb;
+            pictureBox_rightAIPlayer_card6.Image = pb;
+            pictureBox_rightAIPlayer_card7.Image = pb;
+            pictureBox_rightAIPlayer_card8.Image = pb;
+            pictureBox_rightAIPlayer_card9.Image = pb;
+            pictureBox_rightAIPlayer_card10.Image = pb;
+            pictureBox_rightAIPlayer_card11.Image = pb;
+            pictureBox_rightAIPlayer_card12.Image = pb;
+            pictureBox_rightAIPlayer_card13.Image = pb;
 
-            pictureBox_oppositeAIPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
-            pictureBox_oppositeAIPlayer_card13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\cardback.jpg");
+            pictureBox_oppositeAIPlayer_card1.Image = pb;
+            pictureBox_oppositeAIPlayer_card2.Image = pb;
+            pictureBox_oppositeAIPlayer_card3.Image = pb;
+            pictureBox_oppositeAIPlayer_card4.Image = pb;
+            pictureBox_oppositeAIPlayer_card5.Image = pb;
+            pictureBox_oppositeAIPlayer_card6.Image = pb;
+            pictureBox_oppositeAIPlayer_card7.Image = pb;
+            pictureBox_oppositeAIPlayer_card8.Image = pb;
+            pictureBox_oppositeAIPlayer_card9.Image = pb;
+            pictureBox_oppositeAIPlayer_card10.Image = pb;
+            pictureBox_oppositeAIPlayer_card11.Image = pb;
+            pictureBox_oppositeAIPlayer_card12.Image = pb;
+            pictureBox_oppositeAIPlayer_card13.Image = pb;
 
             //出过得牌数置零
             humanPlayer_havePlayedcard_num = 0;
@@ -455,65 +456,66 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Name = "blank";
 
             //四位玩家已打出的牌初始化
-            pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
+            pb = Image.FromFile(Application.StartupPath + "\\picture\\blank.jpg");
+            pictureBox_humanPlayer_havePlayedcard1.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard2.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard3.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard4.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard5.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard6.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard7.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard8.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard9.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard10.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard11.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard12.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard13.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard14.Image = pb;
 
-            pictureBox_rightAIPlayer_havePlayedcard1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_rightAIPlayer_havePlayedcard14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
+            pictureBox_rightAIPlayer_havePlayedcard1.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard2.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard3.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard4.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard5.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard6.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard7.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard8.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard9.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard10.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard11.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard12.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard13.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard14.Image = pb;
 
-            pictureBox_oppositeAIPlayer_havePlayedcard1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_oppositeAIPlayer_havePlayedcard14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
+            pictureBox_oppositeAIPlayer_havePlayedcard1.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard2.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard3.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard4.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard5.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard6.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard7.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard8.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard9.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard10.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard11.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard12.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard13.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard14.Image = pb;
 
-            pictureBox_leftAIPlayer_havePlayedcard1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
-            pictureBox_leftAIPlayer_havePlayedcard14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\blank.jpg");
+            pictureBox_leftAIPlayer_havePlayedcard1.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard2.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard3.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard4.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard5.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard6.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard7.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard8.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard9.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard10.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard11.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard12.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard13.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard14.Image = pb;
         }
 
         protected void my_show()//整理手牌并显示图片
@@ -633,20 +635,20 @@ namespace mahjong
                 }
             }
 
-            pictureBox_humanPlayer_card1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card1.Name + ".jpg");
-            pictureBox_humanPlayer_card2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card2.Name + ".jpg");
-            pictureBox_humanPlayer_card3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card3.Name + ".jpg");
-            pictureBox_humanPlayer_card4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card4.Name + ".jpg");
-            pictureBox_humanPlayer_card5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card5.Name + ".jpg");
-            pictureBox_humanPlayer_card6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card6.Name + ".jpg");
-            pictureBox_humanPlayer_card7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card7.Name + ".jpg");
-            pictureBox_humanPlayer_card8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card8.Name + ".jpg");
-            pictureBox_humanPlayer_card9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card9.Name + ".jpg");
-            pictureBox_humanPlayer_card10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card10.Name + ".jpg");
-            pictureBox_humanPlayer_card11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card11.Name + ".jpg");
-            pictureBox_humanPlayer_card12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card12.Name + ".jpg");
-            pictureBox_humanPlayer_card13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card13.Name + ".jpg");
-            pictureBox_humanPlayer_card14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pictureBox_humanPlayer_card14.Name + ".jpg");
+            pictureBox_humanPlayer_card1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card1.Name + ".jpg");
+            pictureBox_humanPlayer_card2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card2.Name + ".jpg");
+            pictureBox_humanPlayer_card3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card3.Name + ".jpg");
+            pictureBox_humanPlayer_card4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card4.Name + ".jpg");
+            pictureBox_humanPlayer_card5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card5.Name + ".jpg");
+            pictureBox_humanPlayer_card6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card6.Name + ".jpg");
+            pictureBox_humanPlayer_card7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card7.Name + ".jpg");
+            pictureBox_humanPlayer_card8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card8.Name + ".jpg");
+            pictureBox_humanPlayer_card9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card9.Name + ".jpg");
+            pictureBox_humanPlayer_card10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card10.Name + ".jpg");
+            pictureBox_humanPlayer_card11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card11.Name + ".jpg");
+            pictureBox_humanPlayer_card12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card12.Name + ".jpg");
+            pictureBox_humanPlayer_card13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card13.Name + ".jpg");
+            pictureBox_humanPlayer_card14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card14.Name + ".jpg");
         }
         #endregion
 
@@ -674,64 +676,64 @@ namespace mahjong
             {
                 case 1:
                     pictureBox_humanPlayer_havePlayedcard1.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 2:
                     pictureBox_humanPlayer_havePlayedcard2.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 3:
                     pictureBox_humanPlayer_havePlayedcard3.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 4:
                     pictureBox_humanPlayer_havePlayedcard4.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 5:
                     pictureBox_humanPlayer_havePlayedcard5.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 6:
                     pictureBox_humanPlayer_havePlayedcard6.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 7:
                     pictureBox_humanPlayer_havePlayedcard7.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 8:
                     pictureBox_humanPlayer_havePlayedcard8.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 9:
                     pictureBox_humanPlayer_havePlayedcard9.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 10:
                     pictureBox_humanPlayer_havePlayedcard10.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 11:
                     pictureBox_humanPlayer_havePlayedcard11.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 12:
                     pictureBox_humanPlayer_havePlayedcard12.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 13:
                     pictureBox_humanPlayer_havePlayedcard13.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 case 14:
                     pictureBox_humanPlayer_havePlayedcard14.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
                     break;
                 default:
                     break;
             }
-            sp=new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\humanPlayer\\" + pai + ".wav");
+            sp=new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\" + pai + ".wav");
             sp.PlaySync();
             #endregion
 
@@ -811,7 +813,7 @@ namespace mahjong
         protected void rightAIPlayer_chupai(string pai)
         {
             card_haveused = false;//只要刚出牌，牌肯定没用过
-            Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
             rightAIPlayer_havePlayedcard_num++;
             switch (rightAIPlayer_havePlayedcard_num)
@@ -891,7 +893,7 @@ namespace mahjong
             {
                 rightAIPlayer_peng = false;
                 pictureBox_rightAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -899,7 +901,7 @@ namespace mahjong
             {
                 rightAIPlayer_gang = false;
                 pictureBox_rightAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -937,7 +939,7 @@ namespace mahjong
             ask_rightAIPlayer();
             current_card = "t1";
             rightAIPlayer_chupai(current_card);
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\" + current_card + ".wav");
+            sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
@@ -968,7 +970,7 @@ namespace mahjong
         protected void oppositeAIPlayer_chupai(string pai)
         {
             card_haveused = false;//只要刚出牌，牌肯定没用过
-            Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);
             oppositeAIPlayer_havePlayedcard_num++;
             switch (oppositeAIPlayer_havePlayedcard_num)
@@ -1048,7 +1050,7 @@ namespace mahjong
             {
                 oppositeAIPlayer_peng = false;
                 pictureBox_oppositeAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -1056,7 +1058,7 @@ namespace mahjong
             {
                 oppositeAIPlayer_gang = false;
                 pictureBox_oppositeAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -1095,7 +1097,7 @@ namespace mahjong
             current_card = "t1";
             leftAIPlayer_chupai(current_card);
 
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\" + current_card + ".wav");
+            sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
@@ -1126,7 +1128,7 @@ namespace mahjong
         protected void leftAIPlayer_chupai(string pai)
         {
             card_haveused = false;//只要刚出牌，牌肯定没用过
-            Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + pai + ".jpg");
+            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
             leftAIPlayer_havePlayedcard_num++;
             switch (leftAIPlayer_havePlayedcard_num)
@@ -1206,7 +1208,7 @@ namespace mahjong
             {
                 leftAIPlayer_peng = false;
                 pictureBox_leftAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -1214,7 +1216,7 @@ namespace mahjong
             {
                 leftAIPlayer_gang = false;
                 pictureBox_leftAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
             }
@@ -1253,7 +1255,7 @@ namespace mahjong
             current_card = "t1";//出牌
             leftAIPlayer_chupai(current_card);
 
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\" + current_card + ".wav");
+            sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
@@ -1571,6 +1573,8 @@ namespace mahjong
                 if (human_hu.Name == "yes")//胡
                 {
                     humanPlayer_money.Text = "胡啦";
+                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\hu.wav");
+                    sp.PlaySync();
                     humanPlayer_money.BackColor = Color.Red;
                     humanPlayer_money.Visible = true;
                     intgameover++;
@@ -1618,6 +1622,9 @@ namespace mahjong
                                 {
                                     if (true)//胡
                                     {
+                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                        sp.PlaySync();
+
                                         rightAIPlayer_gameover = true;
                                         intgameover++;
                                         if (intgameover == 3)
@@ -1645,6 +1652,9 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                                sp.PlaySync();
+
                                                 card_haveused = true;
                                                 oppositeAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1665,12 +1675,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
+                                                    sp.PlaySync();
                                                     oppositeAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
+                                                        sp.PlaySync();
                                                         oppositeAIPlayer_gang = true;
                                                     }
                                                 }                                                
@@ -1688,6 +1702,8 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                                sp.PlaySync();
                                                 card_haveused = true;
                                                 leftAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1709,12 +1725,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
+                                                    sp.PlaySync();
                                                     leftAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
+                                                        sp.PlaySync();
                                                         leftAIPlayer_gang = true;
                                                     }
                                                 }
@@ -1746,6 +1766,8 @@ namespace mahjong
                                 {
                                     if (true)//胡
                                     {
+                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                        sp.PlaySync();
                                         oppositeAIPlayer_gameover = true;
                                         intgameover++;
                                         if (intgameover == 3)
@@ -1773,6 +1795,8 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                                sp.PlaySync();
                                                 card_haveused = true;
                                                 leftAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1793,12 +1817,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                                    sp.PlaySync();
                                                     leftAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                                        sp.PlaySync();
                                                         leftAIPlayer_gang = true;
                                                     }
                                                 }
@@ -1816,6 +1844,8 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                                sp.PlaySync();
                                                 card_haveused = true;
                                                 rightAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1836,12 +1866,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
+                                                    sp.PlaySync();
                                                     rightAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
+                                                        sp.PlaySync();
                                                         rightAIPlayer_gang = true;
                                                     }
                                                 }
@@ -1873,6 +1907,8 @@ namespace mahjong
                                 {
                                     if (true)//胡
                                     {
+                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                        sp.PlaySync();
                                         leftAIPlayer_gameover = true;
                                         intgameover++;
                                         if (intgameover == 3)
@@ -1900,6 +1936,9 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                                sp.PlaySync();
+
                                                 card_haveused = true;
                                                 rightAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1920,12 +1959,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
+                                                    sp.PlaySync();
                                                     rightAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
+                                                        sp.PlaySync();
                                                         rightAIPlayer_gang = true;
                                                     }
                                                 }
@@ -1943,6 +1986,9 @@ namespace mahjong
                                             #region//胡
                                             if (true)//胡
                                             {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                                sp.PlaySync();
+
                                                 card_haveused = true;
                                                 oppositeAIPlayer_gameover = true;
                                                 intgameover++;
@@ -1963,12 +2009,16 @@ namespace mahjong
                                                 card_haveused = true;
                                                 if (true)//选择碰
                                                 {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
+                                                    sp.PlaySync();
                                                     oppositeAIPlayer_peng = true;
                                                 }
                                                 else
                                                 {
                                                     if (true)//选择杠
                                                     {
+                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
+                                                        sp.PlaySync();
                                                         oppositeAIPlayer_gang = true;
                                                     }
                                                 }
@@ -1998,6 +2048,17 @@ namespace mahjong
                 #region//碰 杠
                 if (human_peng.Name == "yes" || human_gang.Name == "yes")//碰 杠
                 {
+                    if (human_peng.Name == "yes")
+                    {
+                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\peng.wav");
+                        sp.PlaySync();
+                    }
+                    if (human_gang.Name == "yes")
+                    {
+                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\gang.wav");
+                        sp.PlaySync();
+                    }
+
                     if (humanPlayerdone == true)//当前是right线程
                     {
                         oppositeAIPlayer_cancel = true;
@@ -2058,55 +2119,43 @@ namespace mahjong
             #region//根据谁开始初始化
             if (rightAIPlayer_start == true)
             {
-                humanPlayerdone = true;
-                rightAIPlayerdone = false;
-                oppositeAIPlayerdone = false;
-                leftAIPlayerdone = false;
+                humanPlayer_next();
 
-                rightAIPlayer_havePlayedcard_num++;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(rightAIPlayer_play));
+                Thread tr = new Thread(rightAIPlayer_play);
+                tr.Start();
 
-                oppositeAIPlayer_havePlayedcard_num++;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_play));
+                Thread to = new Thread(oppositeAIPlayer_play);
+                to.Start();
 
-                leftAIPlayer_havePlayedcard_num++;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_play));
+                Thread tl = new Thread(leftAIPlayer_play);
+                tl.Start();
             }
             else
             {
                 if (oppositeAIPlayer_start == true)
                 {
-                    humanPlayerdone = false;
-                    rightAIPlayerdone = true;
-                    oppositeAIPlayerdone = false;
-                    leftAIPlayerdone = false;
+                    rightAIPlayer_next();
 
-                    oppositeAIPlayer_havePlayedcard_num++;
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(oppositeAIPlayer_play));
+                    Thread to = new Thread(oppositeAIPlayer_play);
+                    to.Start();
 
-                    leftAIPlayer_havePlayedcard_num++;
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_play));
+                    Thread tl = new Thread(leftAIPlayer_play);
+                    tl.Start();
                 }
                 else
                 {
                     if (leftAIPlayer_start == true)
                     {
-                        humanPlayerdone = false;
-                        rightAIPlayerdone = false;
-                        oppositeAIPlayerdone = true;
-                        leftAIPlayerdone = false;
+                        oppositeAIPlayer_next();
 
-                        leftAIPlayer_havePlayedcard_num++;
-                        ThreadPool.QueueUserWorkItem(new WaitCallback(leftAIPlayer_play));
+                        Thread tl = new Thread(leftAIPlayer_play);
+                        tl.Start();
                     }
                     else
                     {
                         if (humanPlayer_start == true)
                         {
-                            humanPlayerdone = false;
-                            rightAIPlayerdone = false;
-                            oppositeAIPlayerdone = false;
-                            leftAIPlayerdone = true;
+                            leftAIPlayer_next();
                         }
                     }
                 }

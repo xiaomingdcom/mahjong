@@ -1253,7 +1253,7 @@
             // 
             // game_start
             // 
-            this.game_start.Location = new System.Drawing.Point(486, 376);
+            this.game_start.Location = new System.Drawing.Point(513, 375);
             this.game_start.Name = "game_start";
             this.game_start.Size = new System.Drawing.Size(147, 41);
             this.game_start.TabIndex = 103;
