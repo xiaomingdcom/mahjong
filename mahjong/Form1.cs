@@ -11,14 +11,23 @@ using System.Threading;
 using System.Media;
 using System.Runtime.InteropServices;
 using TableCPPDLL;
-
+/// <summary>
+/// 加入碰杠胡过音乐
+/// </summary>
 namespace mahjong
 {
     public partial class Form1 : Form
     {
         #region//变量定义
         protected SoundPlayer sp;
-        public static int TIME_MAX = 100;
+        protected static int TIME_MAX = 100;
+
+        protected bool rightAIPlayer_peng = false;//暂定不初始化
+        protected bool rightAIPlayer_gang = false;
+        protected bool leftAIPlayer_peng = false;
+        protected bool leftAIPlayer_gang = false;
+        protected bool oppositeAIPlayer_peng = false;
+        protected bool oppositeAIPlayer_gang = false;
 
         protected bool humanPlayer_cancel = false;
         protected bool rightAIPlayer_cancel = false;
@@ -27,28 +36,28 @@ namespace mahjong
 
         protected bool card_haveused = false;//当前牌用过了没有
 
-        public static int D_X = 2;//location.x的改变
-        public static int D_Y = 6;//location.y的改变
-        public static int D_WIDTH = 4;//width的改变
-        public static int D_HEIGHT = 6;//height的改变 不用初始化的变量
+        protected static int D_X = 2;//location.x的改变
+        protected static int D_Y = 6;//location.y的改变
+        protected static int D_WIDTH = 4;//width的改变
+        protected static int D_HEIGHT = 6;//height的改变 不用初始化的变量       
 
-
+        protected string current_card = "blank";
         protected bool humanPlayer_gameover = false;
         protected bool rightAIPlayer_gameover = false;
         protected bool oppositeAIPlayer_gameover = false;
         protected bool leftAIPlayer_gameover = false;
         protected int intgameover = 0;//gameover=3时游戏结束，三个人胡了
 
-        public bool humanPlayerdone = false;
-        public bool rightAIPlayerdone = false;
-        public bool oppositeAIPlayerdone = false;
-        public bool leftAIPlayerdone = false;
+        protected bool humanPlayerdone = false;
+        protected bool rightAIPlayerdone = false;
+        protected bool oppositeAIPlayerdone = false;
+        protected bool leftAIPlayerdone = false;
 
         int humanPlayer_havePlayedcard_num = 0;//玩家已出牌计数
         int leftAIPlayer_havePlayedcard_num = 0;
         int rightAIPlayer_havePlayedcard_num = 0;
         int oppositeAIPlayer_havePlayedcard_num = 0;
-        public bool humanPlayer_start = false;//从哪位玩家开始
+        protected bool humanPlayer_start = false;//从哪位玩家开始
         bool rightAIPlayer_start = false;
         bool oppositeAIPlayer_start = false;
         bool leftAIPlayer_start = false;
@@ -343,6 +352,8 @@ namespace mahjong
 
         protected void my_initialize()//自定义初始化内容
         {
+            current_card = "blank";
+
             humanPlayer_gameover = false;
             rightAIPlayer_gameover = false;
             oppositeAIPlayer_gameover = false;
@@ -641,7 +652,16 @@ namespace mahjong
         #region//human
         protected void human_mopai()//摸牌程序
         {
-            pictureBox_humanPlayer_card14.Name = "t1";
+            current_card = "t1";
+            pictureBox_humanPlayer_card14.Name = current_card;
+        }
+
+        protected void humanPlayer_next()
+        {
+            humanPlayerdone = true;
+            leftAIPlayerdone = false;
+            oppositeAIPlayerdone = false;
+            rightAIPlayerdone = false;
         }
 
         protected void humanPlayer_chupai(string pai)//出牌程序
@@ -717,26 +737,19 @@ namespace mahjong
             #region//ask           
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer_gang();
-                //ask_rightAIPlayer_peng();
-                //ask_rightAIPlayer_hu();
+                //ask_rightAIPlayer();
             }
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_oppositeAIPlayer_peng();
-                //ask_oppositeAIPlayer_gang();
-                ask_oppositeAIPlayer_hu();
+                ask_oppositeAIPlayer();
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer_peng();
-                //ask_leftAIPlayer_gang();
-                //ask_leftAIPlayer_hu();
+                //ask_leftAIPlayer();
             }
             #endregion
 
-            humanPlayerdone = true;
-            leftAIPlayerdone = false;
+            humanPlayer_next();
         }
         #endregion
         protected void human_play(object param)
@@ -762,19 +775,35 @@ namespace mahjong
             }
             #endregion
 
-            human_mopai();
-            my_show();
-            ask_humanPlayer_hu();
-            if (humanPlayer_gameover == false)
+            if (human_peng.Name == "yes")//碰
+            {
+                human_peng.Name = "no";
+                pictureBox_humanPlayer_card14.Name = current_card;//碰的牌先放在14                
+            }
+            if (human_gang.Name == "yes")
+            {
+                human_gang.Name = "no";
+                pictureBox_humanPlayer_card14.Name = current_card;//杠的牌先放在14
+            }
+            if (human_peng.Name == "no" && human_gang.Name == "no")
+            {
+                human_mopai();             
+            }
+
+            my_show();//之后要加指示那张牌是碰的/杠的
+            ask_humanPlayer();
+            if (humanPlayer_gameover == false)//没胡就开始出牌
             {
                 human_picturebox_enablet();
             }
+            human_hu.Name = "no";
             Thread.CurrentThread.Abort();
         }
 
         #region//right
         protected void rightAIPlayer_mopai()
         {
+            current_card = "t1";
 
         }
 
@@ -878,31 +907,45 @@ namespace mahjong
             }
             #endregion
 
-            rightAIPlayer_mopai();
-            ask_rightAIPlayer_hu();
-            string pai = "t1";
-            rightAIPlayer_chupai(pai);
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\" + pai + ".wav");
+            if (rightAIPlayer_peng == true)
+            {
+                rightAIPlayer_peng = false;
+                pictureBox_rightAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (rightAIPlayer_gang == true)
+            {
+                rightAIPlayer_gang = false;
+                pictureBox_rightAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (rightAIPlayer_peng == false && rightAIPlayer_gang == false)
+            {
+                rightAIPlayer_mopai();
+            }
+
+            ask_rightAIPlayer();
+            current_card = "t1";
+            rightAIPlayer_chupai(current_card);
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\rightAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_oppositeAIPlayer_gang();
-                //ask_oppositeAIPlayer_peng();
-                //ask_oppositeAIPlayer_hu();//同时能碰杠胡怎么办
+                //ask_oppositeAIPlayer();
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer_gang();
-                //ask_leftAIPlayer_peng();
-                //ask_leftAIPlayer_hu();
+                //ask_leftAIPlayer();
             }
             if (humanPlayer_gameover == false && card_haveused == false)
             {
-                //ask_humanPlayer_peng();
-                //ask_humanPlayer_gang();
-                ask_humanPlayer_hu();
+                ask_humanPlayer();
             }
             #endregion
 
@@ -913,7 +956,7 @@ namespace mahjong
         #region//opposite
         protected void oppositeAIPlayer_mopai()
         {
-
+            current_card = "t1";
         }
 
         protected void oppositeAIPlayer_chupai(string pai)
@@ -1016,31 +1059,45 @@ namespace mahjong
             }
             #endregion
 
-            oppositeAIPlayer_mopai();
-            ask_oppositeAIPlayer_hu();
-            string pai = "t1";
-            leftAIPlayer_chupai(pai);
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\" + pai + ".wav");
+            if (oppositeAIPlayer_peng == true)
+            {
+                oppositeAIPlayer_peng = false;
+                pictureBox_oppositeAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (oppositeAIPlayer_gang == true)
+            {
+                oppositeAIPlayer_gang = false;
+                pictureBox_oppositeAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if(oppositeAIPlayer_peng == false && oppositeAIPlayer_gang == false)
+            {
+                oppositeAIPlayer_mopai();
+            }
+
+            ask_oppositeAIPlayer();
+            current_card = "t1";
+            leftAIPlayer_chupai(current_card);
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer_gang();
-                //ask_leftAIPlayer_peng();
-                //ask_leftAIPlayer_hu();
+                //ask_leftAIPlayer();
             }
             if (humanPlayer_gameover == false && card_haveused == false)
             {
-                //ask_humanPlayer_peng();
-                //ask_humanPlayer_gang();
-                ask_humanPlayer_hu();
+                ask_humanPlayer();
             }
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer_gang();
-                //ask_rightAIPlayer_peng();
-                //ask_rightAIPlayer_hu();
+                //ask_rightAIPlayer();
             }
             #endregion
 
@@ -1051,7 +1108,7 @@ namespace mahjong
         #region//left
         protected void leftAIPlayer_mopai()
         {
-
+            current_card = "t1";
         }
 
         protected void leftAIPlayer_chupai(string pai)
@@ -1154,31 +1211,45 @@ namespace mahjong
             }
             #endregion
 
-            leftAIPlayer_mopai();
-            ask_leftAIPlayer_hu();
-            string pai = "t1";
-            leftAIPlayer_chupai(pai);
-            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\" + pai + ".wav");
+            if (leftAIPlayer_peng == true)
+            {
+                leftAIPlayer_peng = false;
+                pictureBox_leftAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (leftAIPlayer_gang == true)
+            {
+                leftAIPlayer_gang = false;
+                pictureBox_leftAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (leftAIPlayer_peng == false && leftAIPlayer_gang == false)
+            {
+                leftAIPlayer_mopai();
+            }
+
+            ask_leftAIPlayer();
+            current_card = "t1";//出牌
+            leftAIPlayer_chupai(current_card);
+            sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
             #region//ask
             if (humanPlayer_gameover == false && card_haveused == false)
             {
-                //ask_humanPlayer_peng();
-                //ask_humanPlayer_gang();
-                ask_humanPlayer_hu();
+                ask_humanPlayer();
             }
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer_gang();
-                //ask_rightAIPlayer_peng();
-                //ask_rightAIPlayer_hu();
+                //ask_rightAIPlayer();
             }
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_oppositeAIPlayer_peng();
-                //ask_oppositeAIPlayer_gang();
-                //ask_oppositeAIPlayer_hu();
+                //ask_oppositeAIPlayer();
             }
             #endregion
 
@@ -1187,20 +1258,11 @@ namespace mahjong
         }
 
         #region//ask
-        protected void ask_rightAIPlayer_peng()
-        {
-
-        }//问右手玩家碰杠胡过
-
-        protected void ask_rightAIPlayer_gang()
-        {
-
-        }
-
-        protected void ask_rightAIPlayer_hu()
+        protected void ask_rightAIPlayer()
         {
             if (true)//能胡
             {
+                #region//胡
                 if (true)//胡
                 {
                     rightAIPlayer_money.Text = "胡啦";
@@ -1243,27 +1305,57 @@ namespace mahjong
                         }
                     }
                 }
-                else//不胡
-                {
+                #endregion
 
+                #region//碰//杠
+                if (true)//碰/杠
+                {
+                    if (true)//选择碰
+                    {
+                        rightAIPlayer_peng = true;
+                    }
+                    else
+                    {
+                        if (true)//选择杠
+                        {
+                            rightAIPlayer_gang = true;
+                        }
+                    }
+
+                    if (leftAIPlayerdone == true)//当前是主线程（human）
+                    {
+
+                    }
+                    if (rightAIPlayerdone == true)//当前是opposite线程
+                    {
+                        humanPlayer_next();
+                        Thread tr = new Thread(rightAIPlayer_play);
+                        tr.Start();
+                        Thread to = new Thread(oppositeAIPlayer_play);
+                        to.Start();
+                        Thread.CurrentThread.Abort();
+                    }
+                    if (oppositeAIPlayerdone == true)//当前是left线程
+                    {
+                        humanPlayer_next();
+                        Thread tr = new Thread(rightAIPlayer_play);
+                        tr.Start();
+                        Thread to = new Thread(oppositeAIPlayer_play);
+                        to.Start();
+                        Thread tl = new Thread(leftAIPlayer_play);
+                        tl.Start();
+                        Thread.CurrentThread.Abort();
+                    }
                 }
+                #endregion
             }
         }
 
-        protected void ask_oppositeAIPlayer_peng()
-        {
-
-        }//问对面玩家碰杠胡过
-
-        protected void ask_oppositeAIPlayer_gang()
-        {
-
-        }
-
-        protected void ask_oppositeAIPlayer_hu()
+        protected void ask_oppositeAIPlayer()
         {
             if (true)//能胡
             {
+                #region//胡
                 if (true)//胡
                 {
                     oppositeAIPlayer_money.Text = "胡啦";
@@ -1300,27 +1392,50 @@ namespace mahjong
                         }
                     }
                 }
-                else//不胡
-                {
+                #endregion
 
+                #region//碰/杠
+                if (true)//碰/杠
+                {
+                    if (true)//选择碰
+                    {
+                        oppositeAIPlayer_peng = true;
+                    }
+                    else
+                    {
+                        if (true)//选择杠
+                        {
+                            oppositeAIPlayer_gang = true;
+                        }
+                    }
+
+                    if (leftAIPlayerdone == true)//当前是主线程（human）
+                    {
+                        rightAIPlayer_cancel = true;
+                    }
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+
+                    }
+                    if (oppositeAIPlayerdone == true)//当前是left线程
+                    {                     
+                        rightAIPlayer_next();
+                        Thread to = new Thread(oppositeAIPlayer_play);
+                        to.Start();
+                        Thread tl = new Thread(leftAIPlayer_play);
+                        tl.Start();
+                        Thread.CurrentThread.Abort();
+                    }
                 }
+                #endregion
             }
         }
 
-        protected void ask_leftAIPlayer_peng()
+        protected void ask_leftAIPlayer()
         {
-
-        }//问左手玩家碰杠胡过
-
-        protected void ask_leftAIPlayer_gang()
-        {
-
-        }
-
-        protected void ask_leftAIPlayer_hu()
-        {
-            if (true)//能胡
+            if (true)//能胡/碰/杠
             {
+                #region//胡
                 if (true)//胡
                 {
                     leftAIPlayer_money.Text = "胡啦";
@@ -1357,103 +1472,65 @@ namespace mahjong
                         }
                     }
                 }
-                else//不胡
-                {
+                #endregion
 
+                #region//碰/杠
+                if (true)//碰/杠
+                {
+                    if (true)//选择碰
+                    {
+                        leftAIPlayer_peng = true;
+                    }
+                    else
+                    {
+                        if (true)//选择杠
+                        {
+                            leftAIPlayer_gang = true;
+                        }
+                    }                 
+                    
+                    if (leftAIPlayerdone == true)//当前是主线程（human）
+                    {
+                        rightAIPlayer_cancel = true;
+                        oppositeAIPlayer_cancel = true;
+
+                    }
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        oppositeAIPlayer_cancel = true;
+                    }
+                    if (rightAIPlayerdone == true)//当前是opposite线程
+                    {
+
+                    }
                 }
+                #endregion
             }
         }
 
-        protected void ask_humanPlayer_peng()
+        protected void ask_humanPlayer()
         {
             int i = 0;
-            if (false)//能碰
-            {
-                human_peng.Enabled = true;
-                human_guo.Enabled = true;
-                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
-                {
-                    Thread.Sleep(500);
-                    if (human_peng.Name == "yes" || human_guo.Name == "yes")
-                    {
-                        break;
-                    }
-                    if (i % 10 == 0)//一段时间不点，提醒
-                    {
-                        remind_play();
-                    }
-                }
-                if (i == TIME_MAX)//长时间不出即为过
-                {
-                    human_guo.Name = "yes";
-                }
-
-                if (human_peng.Name == "yes")
-                {
-                    //碰
-                }
-                else
-                {
-                    //不碰
-                }
-                human_peng.Name = "no";
-                human_guo.Name = "no";
-                human_peng.Enabled = false;
-                human_guo.Enabled = false;
-            }
-        }//询问human玩家碰杠胡过
-
-        protected void ask_humanPlayer_gang()
-        {
-            int i = 0;
-            if (false)//能杠
-            {
-                human_gang.Enabled = true;
-                human_guo.Enabled = true;
-                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
-                {
-                    Thread.Sleep(500);
-                    if (human_gang.Name == "yes" || human_guo.Name == "yes")
-                    {
-                        break;
-                    }
-                    if (i % 10 == 0)//一段时间不点，提醒
-                    {
-                        remind_play();
-                    }
-                }
-                if (i == TIME_MAX)//长时间不出即为过
-                {
-                    human_guo.Name = "yes";
-                }
-
-                if (human_gang.Name == "yes")
-                {
-                    //杠
-                }
-                else
-                {
-                    //不杠
-                }
-                human_gang.Name = "no";
-                human_guo.Name = "no";
-                human_gang.Enabled = false;
-                human_guo.Enabled = false;
-            }
-        }
-
-        protected void ask_humanPlayer_hu()
-        {
-            int i = 0;
-            if (true)//能胡
+            if (true)//能胡或者能杠/碰
             {
                 #region//响应
-                human_hu.Enabled = true;
                 human_guo.Enabled = true;
+                if (true)//能胡
+                {
+                    human_hu.Enabled = true;
+                }
+                if (leftAIPlayerdone == false)//&&自己摸牌不能碰&&能碰
+                {
+                    human_peng.Enabled = true;
+                }
+                if (leftAIPlayerdone == false)//&&自己摸的不能杠&&能杠
+                {
+                    human_gang.Enabled = true;
+                }
                 for (i = 0; i < TIME_MAX; i++)//有bug，需改进
                 {
                     Thread.Sleep(500);
-                    if (human_hu.Name == "yes" || human_guo.Name == "yes")
+                    if (human_hu.Name == "yes" || human_guo.Name == "yes" || human_peng.Name == "yes" || human_gang.Name == "yes")
                     {
                         break;
                     }
@@ -1466,10 +1543,13 @@ namespace mahjong
                 {
                     human_guo.Name = "yes";
                 }
+                human_peng.Enabled = false;
+                human_gang.Enabled = false;
                 human_hu.Enabled = false;
                 human_guo.Enabled = false;
                 #endregion
 
+                #region//胡
                 if (human_hu.Name == "yes")//胡
                 {
                     humanPlayer_money.Text = "胡啦";
@@ -1477,6 +1557,7 @@ namespace mahjong
                     humanPlayer_money.Visible = true;
                     intgameover++;
                     humanPlayer_gameover = true;
+
                     #region//取消其他所有线程
                     if (leftAIPlayerdone == true)//当前是human线程
                     {
@@ -1532,8 +1613,8 @@ namespace mahjong
                                 }
                                 if (rightAIPlayer_cancel == false)
                                 {
-                                    string pai = "t1";
-                                    rightAIPlayer_chupai(pai);
+                                    current_card = "t1";
+                                    rightAIPlayer_chupai(current_card);
 
                                     #region//ask
                                     if (oppositeAIPlayer_gameover == false && card_haveused == false)//right问胡了opposite
@@ -1618,8 +1699,8 @@ namespace mahjong
                                 }
                                 if (oppositeAIPlayer_cancel == false)
                                 {
-                                    string pai = "t1";
-                                    oppositeAIPlayer_chupai(pai);
+                                    current_card = "t1";
+                                    oppositeAIPlayer_chupai(current_card);
 
                                     #region//ask
                                     if (leftAIPlayer_gameover == false && card_haveused == false)
@@ -1701,8 +1782,8 @@ namespace mahjong
                                 }
                                 if (leftAIPlayer_cancel == false)
                                 {
-                                    string pai = "t1";
-                                    leftAIPlayer_chupai(pai);
+                                    current_card = "t1";
+                                    leftAIPlayer_chupai(current_card);
 
                                     #region//ask
                                     if (rightAIPlayer_gameover == false && card_haveused == false)
@@ -1764,12 +1845,27 @@ namespace mahjong
                         }
                     }             
                 }
-                else
+                #endregion
+
+                #region//碰 杠
+                if (human_peng.Name == "yes" || human_gang.Name == "yes")//碰 杠
                 {
-                    //不胡
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        oppositeAIPlayer_cancel = true;
+                        leftAIPlayer_cancel = true;
+                    }
+                    if (rightAIPlayerdone == true)//opposite
+                    {
+                        leftAIPlayer_cancel = true;
+                    }
+                    if (oppositeAIPlayerdone == true)//left
+                    {
+
+                    }
                 }
-                human_hu.Name = "no";
-                human_guo.Name = "no";
+                #endregion
+                human_guo.Name = "no";//不能取消
             }
         }
         #endregion
