@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using TableCPPDLL;
 /// <summary>
 /// 加入碰杠胡过音乐
+/// 
 /// </summary>
 namespace mahjong
 {
@@ -883,6 +884,30 @@ namespace mahjong
             oppositeAIPlayerdone = false;
             leftAIPlayerdone = false;
         }
+
+        protected void rightAIPlayer_peng_gang()//根据right是碰还是杠执行的操作
+        {
+            if (rightAIPlayer_peng == true)
+            {
+                rightAIPlayer_peng = false;
+                pictureBox_rightAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (rightAIPlayer_gang == true)
+            {
+                rightAIPlayer_gang = false;
+                pictureBox_rightAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (rightAIPlayer_peng == false && rightAIPlayer_gang == false)
+            {
+                rightAIPlayer_mopai();
+            }
+        }
         #endregion
         protected void rightAIPlayer_play(object param)
         {
@@ -907,26 +932,7 @@ namespace mahjong
             }
             #endregion
 
-            if (rightAIPlayer_peng == true)
-            {
-                rightAIPlayer_peng = false;
-                pictureBox_rightAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if (rightAIPlayer_gang == true)
-            {
-                rightAIPlayer_gang = false;
-                pictureBox_rightAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if (rightAIPlayer_peng == false && rightAIPlayer_gang == false)
-            {
-                rightAIPlayer_mopai();
-            }
+            rightAIPlayer_peng_gang();
 
             ask_rightAIPlayer();
             current_card = "t1";
@@ -1035,6 +1041,30 @@ namespace mahjong
             leftAIPlayerdone = false;
             humanPlayerdone = false;
         }
+
+        protected void oppositeAIPlayer_peng_gang()
+        {
+            if (oppositeAIPlayer_peng == true)
+            {
+                oppositeAIPlayer_peng = false;
+                pictureBox_oppositeAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (oppositeAIPlayer_gang == true)
+            {
+                oppositeAIPlayer_gang = false;
+                pictureBox_oppositeAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (oppositeAIPlayer_peng == false && oppositeAIPlayer_gang == false)
+            {
+                oppositeAIPlayer_mopai();
+            }
+        }
         #endregion
         protected void oppositeAIPlayer_play(object param)
         {
@@ -1059,30 +1089,12 @@ namespace mahjong
             }
             #endregion
 
-            if (oppositeAIPlayer_peng == true)
-            {
-                oppositeAIPlayer_peng = false;
-                pictureBox_oppositeAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if (oppositeAIPlayer_gang == true)
-            {
-                oppositeAIPlayer_gang = false;
-                pictureBox_oppositeAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if(oppositeAIPlayer_peng == false && oppositeAIPlayer_gang == false)
-            {
-                oppositeAIPlayer_mopai();
-            }
-
+            oppositeAIPlayer_peng_gang();
             ask_oppositeAIPlayer();
+
             current_card = "t1";
             leftAIPlayer_chupai(current_card);
+
             sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\oppositeAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
@@ -1187,6 +1199,30 @@ namespace mahjong
             humanPlayerdone = false;
             rightAIPlayerdone = false;
         }
+
+        protected void leftAIPlayer_peng_gang()
+        {
+            if (leftAIPlayer_peng == true)
+            {
+                leftAIPlayer_peng = false;
+                pictureBox_leftAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (leftAIPlayer_gang == true)
+            {
+                leftAIPlayer_gang = false;
+                pictureBox_leftAIPlayer_card1.Name = current_card;
+                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
+            }
+            if (leftAIPlayer_peng == false && leftAIPlayer_gang == false)
+            {
+                leftAIPlayer_mopai();
+            }
+        }
         #endregion
         protected void leftAIPlayer_play(object param)
         {
@@ -1211,30 +1247,12 @@ namespace mahjong
             }
             #endregion
 
-            if (leftAIPlayer_peng == true)
-            {
-                leftAIPlayer_peng = false;
-                pictureBox_leftAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if (leftAIPlayer_gang == true)
-            {
-                leftAIPlayer_gang = false;
-                pictureBox_leftAIPlayer_card1.Name = current_card;
-                Image picture_ro = Image.FromFile("C:\\Users\\lenovo\\Desktop\\mahjong\\picture\\" + current_card + ".jpg");
-                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
-            }
-            if (leftAIPlayer_peng == false && leftAIPlayer_gang == false)
-            {
-                leftAIPlayer_mopai();
-            }
-
+            leftAIPlayer_peng_gang();
             ask_leftAIPlayer();
+
             current_card = "t1";//出牌
             leftAIPlayer_chupai(current_card);
+
             sp = new SoundPlayer("C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\leftAIPlayer\\" + current_card + ".wav");
             sp.PlaySync();
 
@@ -1519,15 +1537,15 @@ namespace mahjong
                 {
                     human_hu.Enabled = true;
                 }
-                if (leftAIPlayerdone == false)//&&自己摸牌不能碰&&能碰
+                if (leftAIPlayerdone == false && true)//&&自己摸牌不能碰&&能碰
                 {
                     human_peng.Enabled = true;
                 }
-                if (leftAIPlayerdone == false)//&&自己摸的不能杠&&能杠
+                if (leftAIPlayerdone == false && true)//&&自己摸的不能杠&&能杠
                 {
                     human_gang.Enabled = true;
                 }
-                for (i = 0; i < TIME_MAX; i++)//有bug，需改进
+                for (i = 0; i < TIME_MAX; i++)
                 {
                     Thread.Sleep(500);
                     if (human_hu.Name == "yes" || human_guo.Name == "yes" || human_peng.Name == "yes" || human_gang.Name == "yes")
@@ -1591,10 +1609,11 @@ namespace mahjong
                     {
                         for (i=0; ; i++)
                         {
-                            #region//right
+                            #region//right回合
                             if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)//right
                             {
-                                rightAIPlayer_mopai();
+                                rightAIPlayer_peng_gang();
+                                #region//right_ask_right_humandone()
                                 if (true)//能胡,自摸
                                 {
                                     if (true)//胡
@@ -1607,23 +1626,23 @@ namespace mahjong
                                         }
                                         else
                                         {
-                                            rightAIPlayer_cancel = true;
+                                            rightAIPlayer_cancel = true;//游戏未结束跳过出牌
                                         }
                                     }                                   
                                 }
+                                #endregion
                                 if (rightAIPlayer_cancel == false)
                                 {
                                     current_card = "t1";
                                     rightAIPlayer_chupai(current_card);
 
                                     #region//ask
-                                    if (oppositeAIPlayer_gameover == false && card_haveused == false)//right问胡了opposite
+                                    if (oppositeAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_oppositeAIPlayer_gang_humandone();
-                                        //ask_oppositeAIPlayer_peng_humandone();
-                                        //right_ask_oppositeAIPlayer_hu_humandone();
-                                        if (true)//能胡
+                                        #region//right_ask_opposite_humandone()
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1638,15 +1657,35 @@ namespace mahjong
 
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    oppositeAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        oppositeAIPlayer_gang = true;
+                                                    }
+                                                }                                                
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
-                                    if (leftAIPlayer_gameover == false && card_haveused == false)//right问胡了left
+                                    
+                                    if (leftAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_leftAIPlayer_gang();
-                                        //ask_leftAIPlayer_peng();
-                                        //ask_leftAIPlayer_hu();
-                                        if (true)//能胡
+                                        #region//right_ask_left_humandone()
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1662,7 +1701,28 @@ namespace mahjong
                                                     leftAIPlayer_cancel = true;
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    leftAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        leftAIPlayer_gang = true;
+                                                    }
+                                                }
+                                                oppositeAIPlayer_cancel = true;
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
                                     #endregion
                                 }
@@ -1677,10 +1737,11 @@ namespace mahjong
                             }
                             #endregion
 
-                            #region//opposite
+                            #region//opposite回合
                             if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)//opposite
                             {
-                                oppositeAIPlayer_mopai();
+                                oppositeAIPlayer_peng_gang();
+                                #region//opposite_ask_opposite_humandone
                                 if (true)//自摸能胡
                                 {
                                     if (true)//胡
@@ -1697,6 +1758,7 @@ namespace mahjong
                                         }
                                     }
                                 }
+                                #endregion
                                 if (oppositeAIPlayer_cancel == false)
                                 {
                                     current_card = "t1";
@@ -1705,10 +1767,10 @@ namespace mahjong
                                     #region//ask
                                     if (leftAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_leftAIPlayer_gang();
-                                        //ask_leftAIPlayer_peng();
-                                        if (true)//能胡
+                                        #region//opposite_ask_left_humandone
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1723,14 +1785,35 @@ namespace mahjong
                                                     leftAIPlayer_cancel = true;
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    leftAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        leftAIPlayer_gang = true;
+                                                    }
+                                                }
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
+
                                     if (rightAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_rightAIPlayer_gang();
-                                        //ask_rightAIPlayer_peng();
-                                        if (true)//能胡
+                                        #region//opposite_ask_right_humandone
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1745,7 +1828,28 @@ namespace mahjong
                                                     leftAIPlayer_cancel = true;
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    rightAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        rightAIPlayer_gang = true;
+                                                    }
+                                                }
+                                                leftAIPlayer_cancel = true;
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
                                     #endregion
                                 }
@@ -1760,10 +1864,11 @@ namespace mahjong
                             }
                             #endregion
 
-                            #region//left
+                            #region//left回合
                             if (leftAIPlayer_gameover == false && leftAIPlayer_cancel==false)//left
                             {
-                                leftAIPlayer_mopai();
+                                leftAIPlayer_peng_gang();
+                                #region//left_ask_left_humandone
                                 if (true)//自摸能胡
                                 {
                                     if (true)//胡
@@ -1780,6 +1885,7 @@ namespace mahjong
                                         }
                                     }
                                 }
+                                #endregion
                                 if (leftAIPlayer_cancel == false)
                                 {
                                     current_card = "t1";
@@ -1788,10 +1894,10 @@ namespace mahjong
                                     #region//ask
                                     if (rightAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_rightAIPlayer_gang();
-                                        //ask_rightAIPlayer_peng();
-                                        if (true)//能胡
+                                        #region//left_ask_right_humandone
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1806,14 +1912,35 @@ namespace mahjong
 
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    rightAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        rightAIPlayer_gang = true;
+                                                    }
+                                                }
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
+
                                     if (oppositeAIPlayer_gameover == false && card_haveused == false)
                                     {
-                                        //ask_oppositeAIPlayer_peng();
-                                        //ask_oppositeAIPlayer_gang();
-                                        if (true)//能胡
+                                        #region//left_ask_opposite_humandone
+                                        if (true)//能胡/碰/杠
                                         {
+                                            #region//胡
                                             if (true)//胡
                                             {
                                                 card_haveused = true;
@@ -1828,7 +1955,28 @@ namespace mahjong
                                                     rightAIPlayer_cancel = true;
                                                 }
                                             }
+                                            #endregion
+
+                                            #region//碰/杠
+                                            if (true)//碰/杠
+                                            {
+                                                card_haveused = true;
+                                                if (true)//选择碰
+                                                {
+                                                    oppositeAIPlayer_peng = true;
+                                                }
+                                                else
+                                                {
+                                                    if (true)//选择杠
+                                                    {
+                                                        oppositeAIPlayer_gang = true;
+                                                    }
+                                                }
+                                                rightAIPlayer_cancel = true;
+                                            }
+                                            #endregion
                                         }
+                                        #endregion
                                     }
                                     #endregion
                                 }
