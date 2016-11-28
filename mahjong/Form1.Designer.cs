@@ -148,6 +148,7 @@
             this.oppositeAIPlayer_money = new System.Windows.Forms.Label();
             this.leftAIPlayer_money = new System.Windows.Forms.Label();
             this.mediaplayer_backgroundmusic = new AxWMPLib.AxWindowsMediaPlayer();
+            this.game_exit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -1362,6 +1363,16 @@
             this.mediaplayer_backgroundmusic.Size = new System.Drawing.Size(36, 42);
             this.mediaplayer_backgroundmusic.TabIndex = 117;
             // 
+            // game_exit
+            // 
+            this.game_exit.Location = new System.Drawing.Point(691, 378);
+            this.game_exit.Name = "game_exit";
+            this.game_exit.Size = new System.Drawing.Size(100, 35);
+            this.game_exit.TabIndex = 119;
+            this.game_exit.Text = "exit";
+            this.game_exit.UseVisualStyleBackColor = true;
+            this.game_exit.Click += new System.EventHandler(this.game_exit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1369,6 +1380,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 703);
+            this.Controls.Add(this.game_exit);
             this.Controls.Add(this.mediaplayer_backgroundmusic);
             this.Controls.Add(this.leftAIPlayer_money);
             this.Controls.Add(this.oppositeAIPlayer_money);
@@ -1488,6 +1500,7 @@
             this.Controls.Add(this.pictureBox_humanPlayer_card8);
             this.Controls.Add(this.pictureBox_humanPlayer_card7);
             this.Controls.Add(this.pictureBox_humanPlayer_card1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1727,6 +1740,7 @@
         private System.Windows.Forms.Label oppositeAIPlayer_money;
         private System.Windows.Forms.Label leftAIPlayer_money;
         private AxWMPLib.AxWindowsMediaPlayer mediaplayer_backgroundmusic;
+        private System.Windows.Forms.Button game_exit;
     }
 }
 

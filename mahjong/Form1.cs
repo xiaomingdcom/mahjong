@@ -205,7 +205,12 @@ namespace mahjong
 
         protected void gameover()//游戏结束要执行的操作
         {
-            if(humanPlayer_gameover)
+            humanPlayer_cancel = true;
+            rightAIPlayer_cancel = true;
+            oppositeAIPlayer_cancel = true;
+            leftAIPlayer_cancel = true;
+
+            if (humanPlayer_gameover)
             {
                 humanPlayer_money.Text = "胡啦！money100";//赢/输多少钱
             }
@@ -251,17 +256,8 @@ namespace mahjong
             {
                 MessageBox.Show("you lose", "", MessageBoxButtons.OK);
             }
-            if (MessageBox.Show("是否重新开始游戏", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                //初始化
-                my_initialize();
-            }
-            else
-            {
-                mediaplayer_backgroundmusic.Ctlcontrols.stop();
-                Application.Exit();//退出游戏
-            }
-            Thread.CurrentThread.Abort();
+            game_start.Visible = true;
+            game_exit.Visible = true;
         }
 
         protected void remind_play()//长时间不出牌提醒
@@ -355,6 +351,11 @@ namespace mahjong
         {
             current_card = "blank";
 
+            humanPlayer_cancel = false;
+            rightAIPlayer_cancel = false;
+            oppositeAIPlayer_cancel = false;
+            leftAIPlayer_cancel = false;
+
             humanPlayer_gameover = false;
             rightAIPlayer_gameover = false;
             oppositeAIPlayer_gameover = false;
@@ -384,8 +385,6 @@ namespace mahjong
             human_gang.Name = "no";
             human_hu.Name = "no";
             human_guo.Name = "no";
-
-            game_start.Visible = true;
 
             human_picturebox_enablef();
 
@@ -740,7 +739,7 @@ namespace mahjong
             #region//ask           
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer();
+                ask_rightAIPlayer();
             }
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
@@ -748,7 +747,7 @@ namespace mahjong
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer();
+                ask_leftAIPlayer();
             }
             #endregion
 
@@ -945,11 +944,11 @@ namespace mahjong
             #region//ask
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_oppositeAIPlayer();
+                ask_oppositeAIPlayer();
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer();
+                ask_leftAIPlayer();
             }
             if (humanPlayer_gameover == false && card_haveused == false)
             {
@@ -1103,7 +1102,7 @@ namespace mahjong
             #region//ask
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer();
+                ask_leftAIPlayer();
             }
             if (humanPlayer_gameover == false && card_haveused == false)
             {
@@ -1111,7 +1110,7 @@ namespace mahjong
             }
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer();
+                ask_rightAIPlayer();
             }
             #endregion
 
@@ -1250,7 +1249,7 @@ namespace mahjong
             #endregion
 
             leftAIPlayer_peng_gang();
-            ask_leftAIPlayer();
+            //ask_leftAIPlayer();
 
             current_card = "t1";//出牌
             leftAIPlayer_chupai(current_card);
@@ -1261,7 +1260,7 @@ namespace mahjong
             #region//ask
             if (humanPlayer_gameover == false && card_haveused == false)
             {
-                ask_humanPlayer();
+                //ask_humanPlayer();
             }
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
@@ -1280,11 +1279,12 @@ namespace mahjong
         #region//ask
         protected void ask_rightAIPlayer()
         {
-            if (true)//能胡
+            if (true)//能胡/碰/杠
             {
                 #region//胡
                 if (true)//胡
                 {
+                    card_haveused = true;
                     rightAIPlayer_money.Text = "胡啦";
                     rightAIPlayer_money.BackColor = Color.Red;
                     rightAIPlayer_money.Visible = true;
@@ -1330,6 +1330,7 @@ namespace mahjong
                 #region//碰//杠
                 if (true)//碰/杠
                 {
+                    card_haveused = true;
                     if (true)//选择碰
                     {
                         rightAIPlayer_peng = true;
@@ -1378,6 +1379,7 @@ namespace mahjong
                 #region//胡
                 if (true)//胡
                 {
+                    card_haveused = true;
                     oppositeAIPlayer_money.Text = "胡啦";
                     oppositeAIPlayer_money.BackColor = Color.Red;
                     oppositeAIPlayer_money.Visible = true;
@@ -1417,6 +1419,7 @@ namespace mahjong
                 #region//碰/杠
                 if (true)//碰/杠
                 {
+                    card_haveused = true;
                     if (true)//选择碰
                     {
                         oppositeAIPlayer_peng = true;
@@ -1458,23 +1461,23 @@ namespace mahjong
                 #region//胡
                 if (true)//胡
                 {
+                    card_haveused = true;
                     leftAIPlayer_money.Text = "胡啦";
                     leftAIPlayer_money.BackColor = Color.Red;
                     leftAIPlayer_money.Visible = true;
+
                     intgameover++;
                     leftAIPlayer_gameover = true;//已胡
                     if (intgameover == 3)
                     {
-                        leftAIPlayer_next();
                         humanPlayer_cancel = true;//取消human线程
                         gameover();//游戏结束
                     }
                     else
                     {
-                        if (humanPlayerdone == true)//自摸胡的
+                        if (oppositeAIPlayerdone == true)//自摸胡的
                         {
-                            leftAIPlayer_next();
-                            Thread.CurrentThread.Abort();
+                            
                         }
                         if (leftAIPlayerdone == true)//human玩家问胡的(下家）
                         {
@@ -1495,8 +1498,9 @@ namespace mahjong
                 #endregion
 
                 #region//碰/杠
-                if (true)//碰/杠
+                if (false)//碰/杠
                 {
+                    card_haveused = true;
                     if (true)//选择碰
                     {
                         leftAIPlayer_peng = true;
@@ -1572,16 +1576,19 @@ namespace mahjong
                 #region//胡
                 if (human_hu.Name == "yes")//胡
                 {
+                    card_haveused = true;
                     humanPlayer_money.Text = "胡啦";
                     sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\hu.wav");
                     sp.PlaySync();
+
                     humanPlayer_money.BackColor = Color.Red;
                     humanPlayer_money.Visible = true;
+
                     intgameover++;
                     humanPlayer_gameover = true;
 
                     #region//取消其他所有线程
-                    if (leftAIPlayerdone == true)//当前是human线程
+                    /*if (leftAIPlayerdone == true)//当前是human线程
                     {
                         //没有其他线程
                     }
@@ -1602,7 +1609,7 @@ namespace mahjong
                     {
                         leftAIPlayer_next();
                         humanPlayer_cancel = true;
-                    }
+                    }*/
                     #endregion
 
                     if (intgameover == 3)
@@ -1630,6 +1637,7 @@ namespace mahjong
                                         if (intgameover == 3)
                                         {
                                             gameover();
+                                            break;
                                         }
                                         else
                                         {
@@ -1661,6 +1669,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -1710,6 +1719,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -1773,6 +1783,7 @@ namespace mahjong
                                         if (intgameover == 3)
                                         {
                                             gameover();
+                                            break;
                                         }
                                         else
                                         {
@@ -1803,6 +1814,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -1852,6 +1864,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -1914,6 +1927,7 @@ namespace mahjong
                                         if (intgameover == 3)
                                         {
                                             gameover();
+                                            break;
                                         }
                                         else
                                         {
@@ -1945,6 +1959,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -1995,6 +2010,7 @@ namespace mahjong
                                                 if (intgameover == 3)
                                                 {
                                                     gameover();
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -2048,6 +2064,7 @@ namespace mahjong
                 #region//碰 杠
                 if (human_peng.Name == "yes" || human_gang.Name == "yes")//碰 杠
                 {
+                    card_haveused = true;
                     if (human_peng.Name == "yes")
                     {
                         sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\peng.wav");
@@ -2114,6 +2131,8 @@ namespace mahjong
         private void game_start_Click(object sender, EventArgs e)//点击start事件
         {
             game_start.Visible = false;
+            game_exit.Visible = false;
+            my_initialize();
 
             whostart();
             #region//根据谁开始初始化
@@ -2205,5 +2224,11 @@ namespace mahjong
             button.Size = new Size(button.Width - D_WIDTH, button.Height - D_HEIGHT);
         }
         #endregion
+
+        private void game_exit_Click(object sender, EventArgs e)
+        {
+            mediaplayer_backgroundmusic.Ctlcontrols.stop();
+            Application.Exit();
+        }
     }
 }
