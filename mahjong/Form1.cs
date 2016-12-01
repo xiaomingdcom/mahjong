@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Media;
-using System.Runtime.InteropServices;
-using TableCPPDLL;
 /// <summary>
-/// 加入碰杠胡过音乐
-/// 
+///提醒时间可调
 /// </summary>
 namespace mahjong
 {
@@ -406,7 +397,7 @@ namespace mahjong
             human_picturebox_enablef();
 
             //三个AIPlayer手牌只显示背面
-            Image pb=Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+            Image pb = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
             pictureBox_leftAIPlayer_card1.Image = pb;
             pictureBox_leftAIPlayer_card2.Image = pb;
             pictureBox_leftAIPlayer_card3.Image = pb;
@@ -447,23 +438,24 @@ namespace mahjong
             pictureBox_oppositeAIPlayer_card10.Image = pb;
             pictureBox_oppositeAIPlayer_card11.Image = pb;
             pictureBox_oppositeAIPlayer_card12.Image = pb;
-            pictureBox_oppositeAIPlayer_card13.Image = pb;     
+            pictureBox_oppositeAIPlayer_card13.Image = pb;
 
-            //humanPlayer手牌初始为blank
-            pictureBox_humanPlayer_card1.Name = "blank";
-            pictureBox_humanPlayer_card2.Name = "blank";
-            pictureBox_humanPlayer_card3.Name = "blank";
-            pictureBox_humanPlayer_card4.Name = "blank";
-            pictureBox_humanPlayer_card5.Name = "blank";
-            pictureBox_humanPlayer_card6.Name = "blank";
-            pictureBox_humanPlayer_card7.Name = "blank";
-            pictureBox_humanPlayer_card8.Name = "blank";
-            pictureBox_humanPlayer_card9.Name = "blank";
-            pictureBox_humanPlayer_card10.Name = "blank";
-            pictureBox_humanPlayer_card11.Name = "blank";
-            pictureBox_humanPlayer_card12.Name = "blank";
-            pictureBox_humanPlayer_card13.Name = "blank";
-            pictureBox_humanPlayer_card14.Name = "blank";
+            //humanPlayer手牌初始为cardbcak
+            pictureBox_human_move.Image = Image.FromFile(Application.StartupPath + "\\picture\\blank.jpg");
+            pictureBox_humanPlayer_card1.Image = pb;
+            pictureBox_humanPlayer_card2.Image = pb;
+            pictureBox_humanPlayer_card3.Image = pb;
+            pictureBox_humanPlayer_card4.Image = pb;
+            pictureBox_humanPlayer_card5.Image = pb;
+            pictureBox_humanPlayer_card6.Image = pb;
+            pictureBox_humanPlayer_card7.Image = pb;
+            pictureBox_humanPlayer_card8.Image = pb;
+            pictureBox_humanPlayer_card9.Image = pb;
+            pictureBox_humanPlayer_card10.Image = pb;
+            pictureBox_humanPlayer_card11.Image = pb;
+            pictureBox_humanPlayer_card12.Image = pb;
+            pictureBox_humanPlayer_card13.Image = pb;
+            pictureBox_humanPlayer_card14.Image = pb;
 
             //四位玩家已打出的牌初始化
             pb = Image.FromFile(Application.StartupPath + "\\picture\\blank.jpg");
@@ -677,7 +669,7 @@ namespace mahjong
             rightAIPlayerdone = false;
         }
 
-        protected void humanPlayer_chupai(string pai)//出牌程序
+        protected void humanPlayer_chupai()//出牌程序
         {
             card_haveused = false;//只要刚出牌，牌肯定没用过
             #region//出牌
@@ -685,65 +677,65 @@ namespace mahjong
             switch (humanPlayer_havePlayedcard_num)
             {
                 case 1:
-                    pictureBox_humanPlayer_havePlayedcard1.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard1.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 2:
-                    pictureBox_humanPlayer_havePlayedcard2.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard2.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 3:
-                    pictureBox_humanPlayer_havePlayedcard3.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard3.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 4:
-                    pictureBox_humanPlayer_havePlayedcard4.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard4.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 5:
-                    pictureBox_humanPlayer_havePlayedcard5.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard5.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 6:
-                    pictureBox_humanPlayer_havePlayedcard6.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard6.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 7:
-                    pictureBox_humanPlayer_havePlayedcard7.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard7.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 8:
-                    pictureBox_humanPlayer_havePlayedcard8.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard8.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 9:
-                    pictureBox_humanPlayer_havePlayedcard9.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard9.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 10:
-                    pictureBox_humanPlayer_havePlayedcard10.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard10.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 11:
-                    pictureBox_humanPlayer_havePlayedcard11.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard11.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 12:
-                    pictureBox_humanPlayer_havePlayedcard12.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard12.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 13:
-                    pictureBox_humanPlayer_havePlayedcard13.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard13.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 case 14:
-                    pictureBox_humanPlayer_havePlayedcard14.Name = pai;
-                    pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
+                    pictureBox_humanPlayer_havePlayedcard14.Name = current_card;
+                    pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
                     break;
                 default:
                     break;
             }
-            sp=new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\" + pai + ".wav");
+            sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\" + current_card + ".wav");
             sp.PlaySync();
             #endregion
 
@@ -758,59 +750,40 @@ namespace mahjong
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                ask_leftAIPlayer();
+                //ask_leftAIPlayer();
             }
             #endregion
 
-            humanPlayer_next();
+            humanPlayer_next();            
         }
         #endregion
-        protected void human_play(object param)
+        protected void human_play()
         {
-            #region//等待开始或结束
-            for (int i = 0; ; i++)
+            leftAIPlayer_next();     
+            if (humanPlayer_gameover == false && humanPlayer_cancel == false)
             {
-                if (leftAIPlayerdone == false)
+                if (human_peng.Name == "yes")//碰
                 {
-                    Thread.Sleep(500);
+                    human_peng.Name = "no";
+                    pictureBox_humanPlayer_card14.Name = current_card;//碰的牌先放在14                
                 }
-                else
+                if (human_gang.Name == "yes")
                 {
-                    break;
+                    human_gang.Name = "no";
+                    pictureBox_humanPlayer_card14.Name = current_card;//杠的牌先放在14
                 }
-            }
-            if (humanPlayer_gameover == true || humanPlayer_cancel == true)
-            {
-                humanPlayerdone = true;
-                leftAIPlayerdone = false;
-                humanPlayer_cancel = false;
-                Thread.CurrentThread.Abort();
-            }
-            #endregion
-
-            if (human_peng.Name == "yes")//碰
-            {
-                human_peng.Name = "no";
-                pictureBox_humanPlayer_card14.Name = current_card;//碰的牌先放在14                
-            }
-            if (human_gang.Name == "yes")
-            {
-                human_gang.Name = "no";
-                pictureBox_humanPlayer_card14.Name = current_card;//杠的牌先放在14
-            }
-            if (human_peng.Name == "no" && human_gang.Name == "no")
-            {
-                human_mopai();             
-            }
-
-            my_show();//之后要加指示那张牌是碰的/杠的
-            ask_humanPlayer();
-            if (humanPlayer_gameover == false)//没胡就开始出牌
-            {
+                if (human_peng.Name == "no" && human_gang.Name == "no")
+                {
+                    human_mopai();
+                }
+                my_show();//之后要加指示那张牌是碰的/杠的
+                ask_humanPlayer();
                 human_picturebox_enablet();
             }
-            human_hu.Name = "no";
-            Thread.CurrentThread.Abort();
+            else
+            {
+                humanPlayer_cancel = false;
+            }                      
         }
 
         #region//right
@@ -976,34 +949,13 @@ namespace mahjong
             }
         }
         #endregion
-        protected void rightAIPlayer_play(object param)
+        protected void rightAIPlayer_play()
         {
-            #region//等待开始或结束
-            Thread.Sleep(500);
-            for (int i = 0; ; i++)
+            humanPlayer_next();
+            if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)
             {
-                if (humanPlayerdone == false)//humanplayer未出牌
-                {
-                    Thread.Sleep(500);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if (rightAIPlayer_gameover == true||rightAIPlayer_cancel==true)
-            {
-                rightAIPlayer_cancel = false;
-                rightAIPlayer_next();
-                Thread.CurrentThread.Abort();
-            }
-            #endregion
-
-            rightAIPlayer_peng_gang();
-            ask_rightAIPlayer();
-
-            if (rightAIPlayer_gameover == false)
-            {
+                rightAIPlayer_peng_gang();
+                //ask_rightAIPlayer();
                 current_card = "t1";
                 rightAIPlayer_chupai(current_card);
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\" + current_card + ".wav");
@@ -1012,7 +964,7 @@ namespace mahjong
                 #region//ask
                 if (oppositeAIPlayer_gameover == false && card_haveused == false)
                 {
-                    ask_oppositeAIPlayer();
+                    //ask_oppositeAIPlayer();
                 }
                 if (leftAIPlayer_gameover == false && card_haveused == false)
                 {
@@ -1024,15 +976,11 @@ namespace mahjong
                 }
                 #endregion
             }
-            if (game_goon == true)
-            {
-                rightAIPlayer_next();
-            }
             else
             {
-                game_goon = true;
+                rightAIPlayer_cancel = false;
             }
-            Thread.CurrentThread.Abort();
+            rightAIPlayer_next();
         }
 
         #region//opposite
@@ -1198,34 +1146,14 @@ namespace mahjong
             }
         }
         #endregion
-        protected void oppositeAIPlayer_play(object param)
+        protected void oppositeAIPlayer_play()
         {
-            #region//等待开始或结束
-            Thread.Sleep(1000);
-            for (int i = 0; ; i++)
+            rightAIPlayer_next();
+            if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)
             {
-                if (rightAIPlayerdone == false)//humanplayer未出牌
-                {
-                    Thread.Sleep(500);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if (oppositeAIPlayer_gameover == true||oppositeAIPlayer_cancel==true)
-            {
-                oppositeAIPlayer_cancel = false;
-                oppositeAIPlayer_next();//下一个玩家开始
-                Thread.CurrentThread.Abort();
-            }
-            #endregion
+                oppositeAIPlayer_peng_gang();
+                //ask_oppositeAIPlayer();
 
-            oppositeAIPlayer_peng_gang();
-            ask_oppositeAIPlayer();
-
-            if (oppositeAIPlayer_gameover == false)
-            {
                 current_card = "t1";
                 oppositeAIPlayer_chupai(current_card);
 
@@ -1235,27 +1163,23 @@ namespace mahjong
                 #region//ask
                 if (leftAIPlayer_gameover == false && card_haveused == false)
                 {
-                    ask_leftAIPlayer();
+                    //ask_leftAIPlayer();
                 }
                 if (humanPlayer_gameover == false && card_haveused == false)
                 {
-                    ask_humanPlayer();
+                    //ask_humanPlayer();
                 }
                 if (rightAIPlayer_gameover == false && card_haveused == false)
                 {
-                    ask_rightAIPlayer();
+                    //ask_rightAIPlayer();
                 }
                 #endregion
             }
-            if (game_goon == true)
-            {
-                oppositeAIPlayer_next();
-            }
             else
             {
-                game_goon = true;
+                oppositeAIPlayer_cancel = false;
             }
-            Thread.CurrentThread.Abort();
+            oppositeAIPlayer_next();
         }
 
         #region//left
@@ -1408,7 +1332,7 @@ namespace mahjong
             if (leftAIPlayer_peng == true)
             {
                 leftAIPlayer_peng = false;
-                leftAIPlayer_show();             
+                leftAIPlayer_show();
             }
             if (leftAIPlayer_gang == true)
             {
@@ -1421,33 +1345,14 @@ namespace mahjong
             }
         }
         #endregion
-        protected void leftAIPlayer_play(object param)
+        protected void leftAIPlayer_play()
         {
-            #region//等待开始或结束
-            Thread.Sleep(1500);
-            for (int i = 0; ; i++)
+            oppositeAIPlayer_next();
+            if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)
             {
-                if (oppositeAIPlayerdone == false)//humanplayer未出牌
-                {
-                    Thread.Sleep(500);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if (leftAIPlayer_gameover == true || leftAIPlayer_cancel == true)
-            {
-                leftAIPlayer_cancel = false;
-                leftAIPlayer_next();
-                Thread.CurrentThread.Abort();
-            }
-            #endregion
+                leftAIPlayer_peng_gang();
+                //ask_leftAIPlayer();//leftAIPlayer可能胡
 
-            leftAIPlayer_peng_gang();
-            ask_leftAIPlayer();//leftAIPlayer可能胡
-            if (leftAIPlayer_gameover == false)
-            {
                 current_card = "t1";//出牌
                 leftAIPlayer_chupai(current_card);
 
@@ -1469,15 +1374,20 @@ namespace mahjong
                 }
                 #endregion
             }
-
-            if (game_goon == true)
-            {
-                leftAIPlayer_next();
-            }
             else
             {
-                game_goon = true;
+                leftAIPlayer_cancel = false;
             }
+            leftAIPlayer_next();
+        }
+
+        protected void Player_play()
+        {
+            humanPlayer_chupai();
+            rightAIPlayer_play();
+            oppositeAIPlayer_play();
+            leftAIPlayer_play();
+            human_play();
             Thread.CurrentThread.Abort();
         }
 
@@ -1514,20 +1424,13 @@ namespace mahjong
 
                         }
                         if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
-                        {                         
-                            Thread to = new Thread(oppositeAIPlayer_play);
-                            to.Start();
-                            game_goon = false;
-                            rightAIPlayer_next();
+                        {
+                            oppositeAIPlayer_play();
                         }
                         if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
                         {
-                            Thread to = new Thread(oppositeAIPlayer_play);
-                            to.Start();
-                            Thread tl = new Thread(leftAIPlayer_play);
-                            tl.Start();
-                            game_goon = false;
-                            rightAIPlayer_next();
+                            oppositeAIPlayer_play();
+                            leftAIPlayer_play();
                         }
                     }
                 }
@@ -1559,23 +1462,14 @@ namespace mahjong
                     }
                     if (rightAIPlayerdone == true)//当前是opposite线程
                     {
-                        humanPlayer_next();
-                        Thread tr = new Thread(rightAIPlayer_play);
-                        tr.Start();
-                        Thread to = new Thread(oppositeAIPlayer_play);
-                        to.Start();
-                        game_goon = false;
+                        rightAIPlayer_play();
+                        oppositeAIPlayer_play();;
                     }
                     if (oppositeAIPlayerdone == true)//当前是left线程
                     {
-                        humanPlayer_next();
-                        Thread tr = new Thread(rightAIPlayer_play);
-                        tr.Start();
-                        Thread to = new Thread(oppositeAIPlayer_play);
-                        to.Start();
-                        Thread tl = new Thread(leftAIPlayer_play);
-                        tl.Start();
-                        game_goon = false;
+                        rightAIPlayer_play();
+                        oppositeAIPlayer_play();
+                        leftAIPlayer_play();
                     }
                 }
                 #endregion
@@ -1607,7 +1501,7 @@ namespace mahjong
                     {
                         if (rightAIPlayerdone == true)//自摸胡的
                         {
-                            
+
                         }
                         if (leftAIPlayerdone == true)//human玩家问胡的（上上家）
                         {
@@ -1619,10 +1513,7 @@ namespace mahjong
                         }
                         if (oppositeAIPlayerdone == true)//left玩家问胡的（下家）
                         {
-                            oppositeAIPlayer_next();
-                            Thread tl = new Thread(leftAIPlayer_play);
-                            tl.Start();
-                            game_goon = false;                            
+                            leftAIPlayer_play();
                         }
                     }
                 }
@@ -1657,13 +1548,9 @@ namespace mahjong
 
                     }
                     if (oppositeAIPlayerdone == true)//当前是left线程
-                    {                     
-                        rightAIPlayer_next();
-                        Thread to = new Thread(oppositeAIPlayer_play);
-                        to.Start();
-                        Thread tl = new Thread(leftAIPlayer_play);
-                        tl.Start();
-                        game_goon = false;
+                    {   
+                        oppositeAIPlayer_play();
+                        leftAIPlayer_play();
                     }
                 }
                 #endregion
@@ -1695,7 +1582,7 @@ namespace mahjong
                     {
                         if (oppositeAIPlayerdone == true)//自摸胡的
                         {
-                            
+
                         }
                         if (leftAIPlayerdone == true)//human玩家问胡的(下家）
                         {
@@ -1733,7 +1620,7 @@ namespace mahjong
                             sp.PlaySync();
                             leftAIPlayer_gang = true;
                         }
-                    }                 
+                    }
                     //碰了
                     if (leftAIPlayerdone == true)//当前是主线程（human）
                     {
@@ -1780,7 +1667,7 @@ namespace mahjong
                     {
                         break;
                     }
-                    if (i % 100 == 0&&i>100)//一段时间不点，提醒
+                    if (i % 100 == 0 && i > 100)//一段时间不点，提醒
                     {
                         remind_play();
                     }
@@ -1809,38 +1696,13 @@ namespace mahjong
                     intgameover++;
                     humanPlayer_gameover = true;
 
-                    #region//取消其他所有线程
-                    /*if (leftAIPlayerdone == true)//当前是human线程
-                    {
-                        //没有其他线程
-                    }
-                    if (humanPlayerdone == true)//当前是right线程
-                    {
-                        rightAIPlayer_next();
-                        oppositeAIPlayer_cancel = true;
-                        leftAIPlayer_cancel = true;
-                        humanPlayer_cancel = true;
-                    }
-                    if (rightAIPlayerdone == true)//当前是opposite线程
-                    {
-                        oppositeAIPlayer_next();
-                        leftAIPlayer_cancel = true;
-                        humanPlayer_cancel = true;
-                    }
-                    if (oppositeAIPlayerdone == true)//当前是left线程
-                    {
-                        leftAIPlayer_next();
-                        humanPlayer_cancel = true;
-                    }*/
-                    #endregion
-
                     if (intgameover == 3)
                     {
                         gameover();
                     }
                     else
                     {
-                        for (i=0; ; i++)
+                        for (i = 0; ; i++)
                         {
                             #region//right回合
                             if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)//right
@@ -1865,7 +1727,7 @@ namespace mahjong
                                         {
                                             rightAIPlayer_cancel = true;//游戏未结束跳过出牌
                                         }
-                                    }                                   
+                                    }
                                 }
                                 #endregion
                                 if (rightAIPlayer_cancel == false)
@@ -1918,13 +1780,13 @@ namespace mahjong
                                                         sp.PlaySync();
                                                         oppositeAIPlayer_gang = true;
                                                     }
-                                                }                                                
+                                                }
                                             }
                                             #endregion
                                         }
                                         #endregion
                                     }
-                                    
+
                                     if (leftAIPlayer_gameover == false && card_haveused == false)
                                     {
                                         #region//right_ask_left_humandone()
@@ -2134,7 +1996,7 @@ namespace mahjong
                             #endregion
 
                             #region//left回合
-                            if (leftAIPlayer_gameover == false && leftAIPlayer_cancel==false)//left
+                            if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)//left
                             {
                                 leftAIPlayer_peng_gang();
                                 #region//left_ask_left_humandone
@@ -2279,7 +2141,7 @@ namespace mahjong
                             }
                             #endregion
                         }
-                    }             
+                    }
                 }
                 #endregion
 
@@ -2324,7 +2186,7 @@ namespace mahjong
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;//忽略跨线程错误
             my_initialize();//自定义的初始化内容   
-            mediaplayer_backgroundmusic.URL="C:\\Users\\lenovo\\Desktop\\mahjong\\sound\\backgroundmusic.wav";
+            mediaplayer_backgroundmusic.URL = Application.StartupPath + "\\sound\\backgroundmusic.wav";
             mediaplayer_backgroundmusic.Ctlcontrols.stop();//默认不播放背景音乐
             mediaplayer_backgroundmusic.settings.setMode("loop", true);
         }
@@ -2334,21 +2196,11 @@ namespace mahjong
         {
             PictureBox pb = (PictureBox)sender;
             current_card = pb.Name;
-            humanPlayer_chupai(pb.Name);
             pb.Name = "blank";
-            my_show();
             human_picturebox_enablef();
+            my_show();                                         
 
-            Thread tr = new Thread(rightAIPlayer_play);
-            tr.Start();
-
-            Thread to = new Thread(oppositeAIPlayer_play);
-            to.Start();
-
-            Thread tl = new Thread(leftAIPlayer_play);
-            tl.Start();
-
-            Thread t = new Thread(human_play);
+            Thread t = new Thread(Player_play);
             t.Start();
         }
 

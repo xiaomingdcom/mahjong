@@ -149,6 +149,7 @@
             this.leftAIPlayer_money = new System.Windows.Forms.Label();
             this.mediaplayer_backgroundmusic = new AxWMPLib.AxWindowsMediaPlayer();
             this.game_exit = new System.Windows.Forms.Button();
+            this.pictureBox_human_move = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
@@ -259,6 +260,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_human_move)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_humanPlayer_card1
@@ -1409,6 +1411,15 @@
             this.game_exit.UseVisualStyleBackColor = true;
             this.game_exit.Click += new System.EventHandler(this.game_exit_Click);
             // 
+            // pictureBox_human_move
+            // 
+            this.pictureBox_human_move.Location = new System.Drawing.Point(1079, 571);
+            this.pictureBox_human_move.Name = "pictureBox_human_move";
+            this.pictureBox_human_move.Size = new System.Drawing.Size(70, 120);
+            this.pictureBox_human_move.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_human_move.TabIndex = 121;
+            this.pictureBox_human_move.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1416,6 +1427,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 703);
+            this.Controls.Add(this.pictureBox_human_move);
             this.Controls.Add(this.game_exit);
             this.Controls.Add(this.mediaplayer_backgroundmusic);
             this.Controls.Add(this.leftAIPlayer_money);
@@ -1651,6 +1663,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_havePlayedcard13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_human_move)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1777,6 +1790,7 @@
         private System.Windows.Forms.Label leftAIPlayer_money;
         private AxWMPLib.AxWindowsMediaPlayer mediaplayer_backgroundmusic;
         private System.Windows.Forms.Button game_exit;
+        private System.Windows.Forms.PictureBox pictureBox_human_move;
     }
 }
 
