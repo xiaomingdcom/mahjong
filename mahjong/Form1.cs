@@ -3,16 +3,32 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using System.Media;
+using ManageClass;
 /// <summary>
 ///提醒时间可调
+///又能碰又能杠怎么破
+///switch超过14有错
 /// </summary>
 namespace mahjong
 {
     public partial class Form1 : Form
     {
-        #region//变量定义
+        #region//变量定义    
+        CTABLE table = new CTABLE();
+        CAI right_ai = new CAI(2);
+        CAI opposite_ai = new CAI(3);
+        CAI left_ai = new CAI(4);
         protected SoundPlayer sp;
         protected static int TIME_MAX = 100;
+
+        System.Timers.Timer timer = new System.Timers.Timer(10);
+        protected Point target_point = new Point(0, 0);//目标点
+        protected Point initial_point = new Point(0, 0);
+
+        private AutoResetEvent humanPlayer_movedone = new AutoResetEvent(false);
+        private AutoResetEvent rightAIPlayer_movedone = new AutoResetEvent(false);
+        private AutoResetEvent oppositeAIPlayer_movedone = new AutoResetEvent(false);
+        private AutoResetEvent leftAIPlayer_movedone = new AutoResetEvent(false);
 
         protected bool rightAIPlayer_peng = false;//暂定不初始化
         protected bool rightAIPlayer_gang = false;
@@ -33,7 +49,10 @@ namespace mahjong
         protected static int D_X = 2;//location.x的改变
         protected static int D_Y = 6;//location.y的改变
         protected static int D_WIDTH = 4;//width的改变
-        protected static int D_HEIGHT = 6;//height的改变 不用初始化的变量       
+        protected static int D_HEIGHT = 6;//height的改变 不用初始化的变量      
+
+        protected int D_MOVE_X = 1;
+        protected int D_MOVE_Y = 1;
 
         protected string current_card = "blank";
         protected bool humanPlayer_gameover = false;
@@ -178,27 +197,216 @@ namespace mahjong
         #endregion
 
         #region//系统函数
+        protected PictureBox humanPlayer_switch()//超过14有错
+        {
+            #region//switch
+            switch (humanPlayer_havePlayedcard_num)
+            {
+                case 1:
+                    return pictureBox_humanPlayer_havePlayedcard1;
+                case 2:
+                    return pictureBox_humanPlayer_havePlayedcard2;
+                case 3:
+                    return pictureBox_humanPlayer_havePlayedcard3;
+                case 4:
+                    return pictureBox_humanPlayer_havePlayedcard4;
+                case 5:
+                    return pictureBox_humanPlayer_havePlayedcard5;
+                case 6:
+                    return pictureBox_humanPlayer_havePlayedcard6;
+                case 7:
+                    return pictureBox_humanPlayer_havePlayedcard7;
+                case 8:
+                    return pictureBox_humanPlayer_havePlayedcard8;
+                case 9:
+                    return pictureBox_humanPlayer_havePlayedcard9;
+                case 10:
+                    return pictureBox_humanPlayer_havePlayedcard10;
+                case 11:
+                    return pictureBox_humanPlayer_havePlayedcard11;
+                case 12:
+                    return pictureBox_humanPlayer_havePlayedcard12;
+                case 13:
+                    return pictureBox_humanPlayer_havePlayedcard13;
+                case 14:
+                    return pictureBox_humanPlayer_havePlayedcard14;
+                default:
+                    return pictureBox_human_move;
+            }
+            #endregion
+        }
+
+        protected PictureBox rightAIPlayer_switch()//超过14有错
+        {
+            #region//switch
+            switch (rightAIPlayer_havePlayedcard_num)
+            {
+                case 1:
+                    return pictureBox_rightAIPlayer_havePlayedcard1;
+                case 2:
+                    return pictureBox_rightAIPlayer_havePlayedcard2;
+                case 3:
+                    return pictureBox_rightAIPlayer_havePlayedcard3;
+                case 4:
+                    return pictureBox_rightAIPlayer_havePlayedcard4;
+                case 5:
+                    return pictureBox_rightAIPlayer_havePlayedcard5;
+                case 6:
+                    return pictureBox_rightAIPlayer_havePlayedcard6;
+                case 7:
+                    return pictureBox_rightAIPlayer_havePlayedcard7;
+                case 8:
+                    return pictureBox_rightAIPlayer_havePlayedcard8;
+                case 9:
+                    return pictureBox_rightAIPlayer_havePlayedcard9;
+                case 10:
+                    return pictureBox_rightAIPlayer_havePlayedcard10;
+                case 11:
+                    return pictureBox_rightAIPlayer_havePlayedcard11;
+                case 12:
+                    return pictureBox_rightAIPlayer_havePlayedcard12;
+                case 13:
+                    return pictureBox_rightAIPlayer_havePlayedcard13;
+                case 14:
+                    return pictureBox_rightAIPlayer_havePlayedcard14;
+                default:
+                    return pictureBox_human_move;
+            }
+            #endregion
+        }
+
+        protected PictureBox oppositeAIPlayer_switch()//超过14有错
+        {
+            #region//switch
+            switch (oppositeAIPlayer_havePlayedcard_num)
+            {
+                case 1:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard1;
+                case 2:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard2;
+                case 3:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard3;
+                case 4:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard4;
+                case 5:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard5;
+                case 6:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard6;
+                case 7:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard7;
+                case 8:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard8;
+                case 9:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard9;
+                case 10:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard10;
+                case 11:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard11;
+                case 12:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard12;
+                case 13:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard13;
+                case 14:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard14;
+                default:
+                    return pictureBox_human_move;
+            }
+            #endregion
+        }
+
+        protected PictureBox leftAIPlayer_switch()//超过14有错
+        {
+            #region//switch
+            switch (leftAIPlayer_havePlayedcard_num)
+            {
+                case 1:
+                    return pictureBox_leftAIPlayer_havePlayedcard1;
+                case 2:
+                    return pictureBox_leftAIPlayer_havePlayedcard2;
+                case 3:
+                    return pictureBox_leftAIPlayer_havePlayedcard3;
+                case 4:
+                    return pictureBox_leftAIPlayer_havePlayedcard4;
+                case 5:
+                    return pictureBox_leftAIPlayer_havePlayedcard5;
+                case 6:
+                    return pictureBox_leftAIPlayer_havePlayedcard6;
+                case 7:
+                    return pictureBox_leftAIPlayer_havePlayedcard7;
+                case 8:
+                    return pictureBox_leftAIPlayer_havePlayedcard8;
+                case 9:
+                    return pictureBox_leftAIPlayer_havePlayedcard9;
+                case 10:
+                    return pictureBox_leftAIPlayer_havePlayedcard10;
+                case 11:
+                    return pictureBox_leftAIPlayer_havePlayedcard11;
+                case 12:
+                    return pictureBox_leftAIPlayer_havePlayedcard12;
+                case 13:
+                    return pictureBox_leftAIPlayer_havePlayedcard13;
+                case 14:
+                    return pictureBox_leftAIPlayer_havePlayedcard14;
+                default:
+                    return pictureBox_human_move;
+            }
+            #endregion
+        }
+
         protected void whostart()//从哪个玩家开始
         {
             humanPlayer_start = true;
         }
 
+        protected void AI_mopai()
+        {
+            right_ai.respond_table(table.Deal(1));
+            opposite_ai.respond_table(table.Deal(2));
+            left_ai.respond_table(table.Deal(3));
+        }
+
         protected void fapai()//发牌程序
         {
-            pictureBox_humanPlayer_card1.Name = "b3";
-            pictureBox_humanPlayer_card2.Name = "t2";
-            pictureBox_humanPlayer_card3.Name = "t1";
-            pictureBox_humanPlayer_card4.Name = "t4";
-            pictureBox_humanPlayer_card5.Name = "t5";
-            pictureBox_humanPlayer_card6.Name = "t6";
-            pictureBox_humanPlayer_card7.Name = "t7";
-            pictureBox_humanPlayer_card8.Name = "t8";
-            pictureBox_humanPlayer_card9.Name = "t9";
-            pictureBox_humanPlayer_card10.Name = "w1";
-            pictureBox_humanPlayer_card11.Name = "w2";
-            pictureBox_humanPlayer_card12.Name = "w3";
-            pictureBox_humanPlayer_card13.Name = "w4";
-            pictureBox_humanPlayer_card14.Name = "blank";
+            pictureBox_humanPlayer_card1.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card2.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card3.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card4.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card5.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card6.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card7.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card8.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card9.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card10.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card11.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card12.Name = table.Deal(0).Substring(1, 2);
+            AI_mopai();
+            pictureBox_humanPlayer_card13.Name = table.Deal(0).Substring(1, 2);
+            string str;
+            str = table.Deal(1);
+            str = str.Remove(3);
+            str = str.Insert(3, "o");
+            right_ai.respond_table(str);
+            str = table.Deal(2);
+            str = str.Remove(3);
+            str = str.Insert(3, "o");
+            opposite_ai.respond_table(str);
+            str = table.Deal(3);
+            str = str.Remove(3);
+            str = str.Insert(3, "o");
+            left_ai.respond_table(str);
+            pictureBox_humanPlayer_card14.Name = table.Deal(0).Substring(1, 2);//根据谁先开始不同
+            //AI_mopai();
         }
 
         protected void gameover()//游戏结束要执行的操作
@@ -207,38 +415,39 @@ namespace mahjong
             rightAIPlayer_cancel = true;
             oppositeAIPlayer_cancel = true;
             leftAIPlayer_cancel = true;
+            //table.Dispose();
 
             if (humanPlayer_gameover)
             {
-                humanPlayer_money.Text = "胡啦！money100";//赢/输多少钱
+                humanPlayer_money.Text = "胡啦！money:" + table.Result(0);//赢/输多少钱
             }
             else
             {
-                humanPlayer_money.Text = "没胡,money100";
+                humanPlayer_money.Text = "没胡,money:" + table.Result(0);
             }
             if (rightAIPlayer_gameover)
             {
-                rightAIPlayer_money.Text = "胡啦!money100";//赢/输多少钱
+                rightAIPlayer_money.Text = "胡啦!money:" + table.Result(1);//赢/输多少钱
             }
             else
             {
-                rightAIPlayer_money.Text = "没胡,money100";
+                rightAIPlayer_money.Text = "没胡,money:" + table.Result(1);
             }
             if (oppositeAIPlayer_gameover)
             {
-                oppositeAIPlayer_money.Text = "胡啦!money100";//赢/输多少钱
+                oppositeAIPlayer_money.Text = "胡啦!money:" + table.Result(2);//赢/输多少钱
             }
             else
             {
-                oppositeAIPlayer_money.Text = "没胡,money100";
+                oppositeAIPlayer_money.Text = "没胡,money:" + table.Result(2);
             }
             if (leftAIPlayer_gameover)
             {
-                leftAIPlayer_money.Text = "胡啦!money100";//赢/输多少钱
+                leftAIPlayer_money.Text = "胡啦!money:" + table.Result(3);//赢/输多少钱
             }
             else
             {
-                leftAIPlayer_money.Text = "没胡,money100";
+                leftAIPlayer_money.Text = "没胡,money:" + table.Result(3);
             }
 
             humanPlayer_money.Visible = true;
@@ -306,22 +515,65 @@ namespace mahjong
         }
 
         protected void human_picturebox_enablet()
-        {
-            pictureBox_humanPlayer_card1.Enabled = true;//start之前不可响应
-            pictureBox_humanPlayer_card2.Enabled = true;
-            pictureBox_humanPlayer_card3.Enabled = true;
-            pictureBox_humanPlayer_card4.Enabled = true;
-            pictureBox_humanPlayer_card5.Enabled = true;
-            pictureBox_humanPlayer_card6.Enabled = true;
-            pictureBox_humanPlayer_card7.Enabled = true;
-            pictureBox_humanPlayer_card8.Enabled = true;
-            pictureBox_humanPlayer_card9.Enabled = true;
-            pictureBox_humanPlayer_card10.Enabled = true;
-            pictureBox_humanPlayer_card11.Enabled = true;
-            pictureBox_humanPlayer_card12.Enabled = true;
-            pictureBox_humanPlayer_card13.Enabled = true;
-            pictureBox_humanPlayer_card14.Enabled = true;
+        {           
+            if (pictureBox_humanPlayer_card1.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card1.Enabled = true;//start之前不可响应
+            }
+            if (pictureBox_humanPlayer_card2.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card2.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card3.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card3.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card4.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card4.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card5.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card5.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card6.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card6.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card7.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card7.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card8.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card8.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card9.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card9.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card10.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card10.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card11.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card11.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card12.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card12.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card13.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card13.Enabled = true;
+            }
+            if (pictureBox_humanPlayer_card14.Name[0] != 'a')
+            {
+                pictureBox_humanPlayer_card14.Enabled = true;
+            }            
         }
+
         #endregion
 
         #region//my
@@ -636,28 +888,97 @@ namespace mahjong
                     }
                 }
             }
-
-            pictureBox_humanPlayer_card1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card1.Name + ".jpg");
-            pictureBox_humanPlayer_card2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card2.Name + ".jpg");
-            pictureBox_humanPlayer_card3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card3.Name + ".jpg");
-            pictureBox_humanPlayer_card4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card4.Name + ".jpg");
-            pictureBox_humanPlayer_card5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card5.Name + ".jpg");
-            pictureBox_humanPlayer_card6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card6.Name + ".jpg");
-            pictureBox_humanPlayer_card7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card7.Name + ".jpg");
-            pictureBox_humanPlayer_card8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card8.Name + ".jpg");
-            pictureBox_humanPlayer_card9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card9.Name + ".jpg");
-            pictureBox_humanPlayer_card10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card10.Name + ".jpg");
-            pictureBox_humanPlayer_card11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card11.Name + ".jpg");
-            pictureBox_humanPlayer_card12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card12.Name + ".jpg");
-            pictureBox_humanPlayer_card13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card13.Name + ".jpg");
-            pictureBox_humanPlayer_card14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_humanPlayer_card14.Name + ".jpg");
+            pb = pictureBox_humanPlayer_card1.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card2.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card3.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card4.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card5.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card6.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card7.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card8.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card9.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card10.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card11.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card12.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card13.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
+            pb = pictureBox_humanPlayer_card14.Name;
+            if (pb[0] == 'a')
+            {
+                pb.Remove(0, 2);
+            }
+            pictureBox_humanPlayer_card14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb + ".jpg");
         }
         #endregion
 
         #region//human
         protected void human_mopai()//摸牌程序
         {
-            current_card = "t1";
+            current_card = table.Deal(0).Substring(1, 2);
             pictureBox_humanPlayer_card14.Name = current_card;
         }
 
@@ -671,70 +992,28 @@ namespace mahjong
 
         protected void humanPlayer_chupai()//出牌程序
         {
-            card_haveused = false;//只要刚出牌，牌肯定没用过
-            #region//出牌
+
+            card_haveused = false;//只要刚出牌，牌肯定没用过    
             humanPlayer_havePlayedcard_num++;
-            switch (humanPlayer_havePlayedcard_num)
-            {
-                case 1:
-                    pictureBox_humanPlayer_havePlayedcard1.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard1.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 2:
-                    pictureBox_humanPlayer_havePlayedcard2.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard2.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 3:
-                    pictureBox_humanPlayer_havePlayedcard3.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard3.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 4:
-                    pictureBox_humanPlayer_havePlayedcard4.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard4.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 5:
-                    pictureBox_humanPlayer_havePlayedcard5.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard5.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 6:
-                    pictureBox_humanPlayer_havePlayedcard6.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard6.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 7:
-                    pictureBox_humanPlayer_havePlayedcard7.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard7.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 8:
-                    pictureBox_humanPlayer_havePlayedcard8.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard8.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 9:
-                    pictureBox_humanPlayer_havePlayedcard9.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard9.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 10:
-                    pictureBox_humanPlayer_havePlayedcard10.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard10.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 11:
-                    pictureBox_humanPlayer_havePlayedcard11.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard11.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 12:
-                    pictureBox_humanPlayer_havePlayedcard12.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard12.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 13:
-                    pictureBox_humanPlayer_havePlayedcard13.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard13.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                case 14:
-                    pictureBox_humanPlayer_havePlayedcard14.Name = current_card;
-                    pictureBox_humanPlayer_havePlayedcard14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-                    break;
-                default:
-                    break;
-            }
+            PictureBox pb = humanPlayer_switch();
+
+            pictureBox_human_move.Height = pictureBox_humanPlayer_card1.Height;
+            pictureBox_human_move.Width = pictureBox_humanPlayer_card1.Width;
+            pictureBox_human_move.Name = current_card;
+            pictureBox_human_move.Location = target_point;
+            target_point = pb.Location;
+            pictureBox_human_move.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pictureBox_human_move.Name + ".jpg");
+            pictureBox_human_move.Visible = true;
+            D_MOVE_X = (target_point.X - pictureBox_human_move.Location.X) / 10;
+            D_MOVE_Y = (target_point.Y - pictureBox_human_move.Location.Y) / 10;
+            timer.Start();
+
+            //humanPlayer_movedone.Reset();
+            humanPlayer_movedone.WaitOne();
+
+            #region//出牌
+            pb.Name = current_card;
+            pb.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
             sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\" + current_card + ".wav");
             sp.PlaySync();
             #endregion
@@ -742,123 +1021,317 @@ namespace mahjong
             #region//ask           
             if (rightAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_rightAIPlayer();
+                ask_rightAIPlayer();
             }
             if (oppositeAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_oppositeAIPlayer();
+                ask_oppositeAIPlayer();
             }
             if (leftAIPlayer_gameover == false && card_haveused == false)
             {
-                //ask_leftAIPlayer();
+                ask_leftAIPlayer();
             }
             #endregion
 
-            humanPlayer_next();            
+            humanPlayer_next();
+        }
+
+        protected void human_peng_change()
+        {
+            if (pictureBox_humanPlayer_card1.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card2.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card3.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card4.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card5.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card6.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card7.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card8.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card9.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card10.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card11.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card12.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+            if (pictureBox_humanPlayer_card13.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ap" + current_card;
+            }
+        }
+
+        protected void human_gang_change()
+        {
+            if (pictureBox_humanPlayer_card1.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card2.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card3.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card4.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card5.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card6.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card7.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card8.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card9.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card10.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card11.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card12.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+            if (pictureBox_humanPlayer_card13.Name == current_card)
+            {
+                pictureBox_humanPlayer_card1.Name = "ag" + current_card;
+            }
+        }
+
+        protected int human_samecard()
+        {
+            int i = 0;
+            if (pictureBox_humanPlayer_card1.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card2.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card3.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card4.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card5.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card6.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card7.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card8.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card9.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card10.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card11.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card12.Name == current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card13.Name == current_card)
+            {
+                i++;
+            }
+            return i;
+        }
+
+        protected int human_peng_samecard()//碰的个数
+        {
+            int i = 0;
+            if (pictureBox_humanPlayer_card1.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card2.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card3.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card4.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card5.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card6.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card7.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card8.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card9.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card10.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card11.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card12.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            if (pictureBox_humanPlayer_card13.Name == "ap" + current_card)
+            {
+                i++;
+            }
+            return i;
         }
         #endregion
         protected void human_play()
         {
-            leftAIPlayer_next();     
+            leftAIPlayer_next();
             if (humanPlayer_gameover == false && humanPlayer_cancel == false)
             {
                 if (human_peng.Name == "yes")//碰
                 {
                     human_peng.Name = "no";
-                    pictureBox_humanPlayer_card14.Name = current_card;//碰的牌先放在14                
+                    human_peng_change();
+                    pictureBox_humanPlayer_card14.Name = "ap" + current_card;//碰的牌先放在14                
                 }
                 if (human_gang.Name == "yes")
                 {
                     human_gang.Name = "no";
-                    pictureBox_humanPlayer_card14.Name = current_card;//杠的牌先放在14
+                    human_gang_change();
+                    human_mopai();
                 }
                 if (human_peng.Name == "no" && human_gang.Name == "no")
                 {
                     human_mopai();
                 }
-                my_show();//之后要加指示那张牌是碰的/杠的
-                ask_humanPlayer();
+                if (card_haveused == false)
+                {
+                    ask_humanPlayer();
+                }
+                my_show();//之后要加指示那张牌是碰的/杠的                
                 human_picturebox_enablet();
             }
             else
             {
                 humanPlayer_cancel = false;
-            }                      
+            }
         }
 
         #region//right
         protected void rightAIPlayer_mopai()
         {
-            current_card = "t1";
+            current_card = table.Deal(1);
+            current_card = right_ai.respond_table(current_card).Substring(1, 2);
         }
 
         protected void rightAIPlayer_chupai(string pai)
         {
+            rightAIPlayer_havePlayedcard_num++;
             card_haveused = false;//只要刚出牌，牌肯定没用过
+            PictureBox pb = rightAIPlayer_switch();
+
+            pictureBox_human_move.Height = pictureBox_rightAIPlayer_card1.Height;
+            pictureBox_human_move.Width = pictureBox_rightAIPlayer_card1.Width;
+            target_point = pictureBox_rightAIPlayer_card1.Location;
+            pictureBox_human_move.Name = current_card;
+            pictureBox_human_move.Location = target_point;
+            target_point = pb.Location;
+
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
-            rightAIPlayer_havePlayedcard_num++;
-            switch (rightAIPlayer_havePlayedcard_num)
-            {
-                case 1:
-                    pictureBox_rightAIPlayer_havePlayedcard1.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_rightAIPlayer_havePlayedcard2.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_rightAIPlayer_havePlayedcard3.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_rightAIPlayer_havePlayedcard4.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_rightAIPlayer_havePlayedcard5.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_rightAIPlayer_havePlayedcard6.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_rightAIPlayer_havePlayedcard7.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_rightAIPlayer_havePlayedcard8.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_rightAIPlayer_havePlayedcard9.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_rightAIPlayer_havePlayedcard10.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_rightAIPlayer_havePlayedcard11.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_rightAIPlayer_havePlayedcard12.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_rightAIPlayer_havePlayedcard13.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard13.Image = picture_ro;
-                    break;
-                case 14:
-                    pictureBox_rightAIPlayer_havePlayedcard14.Name = pai;
-                    pictureBox_rightAIPlayer_havePlayedcard14.Image = picture_ro;
-                    break;
-                default:
-                    break;
-            }
+            pictureBox_human_move.Image = picture_ro;
+            pictureBox_human_move.Visible = true;
+
+            D_MOVE_X = (target_point.X - pictureBox_human_move.Location.X) / 10;
+            D_MOVE_Y = (target_point.Y - pictureBox_human_move.Location.Y) / 10;
+            timer.Start();
+
+            rightAIPlayer_movedone.WaitOne();
+            //rightAIPlayer_movedone.Reset();
+                       
+            pb.Name = pai;
+            pb.Image = picture_ro;            
         }
 
         protected void rightAIPlayer_next()
@@ -940,6 +1413,7 @@ namespace mahjong
             }
             if (rightAIPlayer_gang == true)
             {
+                rightAIPlayer_mopai();
                 rightAIPlayer_gang = false;
                 rightAIPlayer_show();
             }
@@ -955,8 +1429,10 @@ namespace mahjong
             if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)
             {
                 rightAIPlayer_peng_gang();
-                //ask_rightAIPlayer();
-                current_card = "t1";
+                if (card_haveused == false)
+                {
+                    ask_rightAIPlayer();
+                }
                 rightAIPlayer_chupai(current_card);
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\" + current_card + ".wav");
                 sp.PlaySync();
@@ -964,7 +1440,7 @@ namespace mahjong
                 #region//ask
                 if (oppositeAIPlayer_gameover == false && card_haveused == false)
                 {
-                    //ask_oppositeAIPlayer();
+                    ask_oppositeAIPlayer();
                 }
                 if (leftAIPlayer_gameover == false && card_haveused == false)
                 {
@@ -986,76 +1462,36 @@ namespace mahjong
         #region//opposite
         protected void oppositeAIPlayer_mopai()
         {
-            current_card = "t1";
+            current_card = table.Deal(2);
+            current_card = opposite_ai.respond_table(current_card).Substring(1, 2);
         }
 
         protected void oppositeAIPlayer_chupai(string pai)
         {
+            oppositeAIPlayer_havePlayedcard_num++;
             card_haveused = false;//只要刚出牌，牌肯定没用过
+            PictureBox pb = oppositeAIPlayer_switch();
+
+            pictureBox_human_move.Height = pictureBox_oppositeAIPlayer_card1.Height;
+            pictureBox_human_move.Width = pictureBox_oppositeAIPlayer_card1.Width;
+            target_point = pictureBox_oppositeAIPlayer_card1.Location;
+            pictureBox_human_move.Name = current_card;
+            pictureBox_human_move.Location = target_point;
+            target_point = pb.Location;
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            oppositeAIPlayer_havePlayedcard_num++;
-            switch (oppositeAIPlayer_havePlayedcard_num)
-            {
-                case 1:
-                    pictureBox_oppositeAIPlayer_havePlayedcard1.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_oppositeAIPlayer_havePlayedcard2.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_oppositeAIPlayer_havePlayedcard3.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_oppositeAIPlayer_havePlayedcard4.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_oppositeAIPlayer_havePlayedcard5.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_oppositeAIPlayer_havePlayedcard6.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_oppositeAIPlayer_havePlayedcard7.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_oppositeAIPlayer_havePlayedcard8.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_oppositeAIPlayer_havePlayedcard9.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_oppositeAIPlayer_havePlayedcard10.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_oppositeAIPlayer_havePlayedcard11.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_oppositeAIPlayer_havePlayedcard12.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_oppositeAIPlayer_havePlayedcard13.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard13.Image = picture_ro;
-                    break;
-                case 14:
-                    pictureBox_oppositeAIPlayer_havePlayedcard14.Name = pai;
-                    pictureBox_oppositeAIPlayer_havePlayedcard14.Image = picture_ro;
-                    break;
-                default:
-                    break;
-            }
+            pictureBox_human_move.Image = picture_ro;
+            pictureBox_human_move.Visible = true;
+
+            D_MOVE_X = (target_point.X - pictureBox_human_move.Location.X) / 10;
+            D_MOVE_Y = (target_point.Y - pictureBox_human_move.Location.Y) / 10;
+            timer.Start();
+
+            oppositeAIPlayer_movedone.WaitOne();
+            //oppositeAIPlayer_movedone.Reset();
+                        
+            pb.Name = pai;
+            pb.Image = picture_ro;            
         }
 
         protected void oppositeAIPlayer_next()
@@ -1139,6 +1575,7 @@ namespace mahjong
             {
                 oppositeAIPlayer_gang = false;
                 oppositeAIPlayer_show();
+                oppositeAIPlayer_mopai();
             }
             if (oppositeAIPlayer_peng == false && oppositeAIPlayer_gang == false)
             {
@@ -1152,9 +1589,10 @@ namespace mahjong
             if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)
             {
                 oppositeAIPlayer_peng_gang();
-                //ask_oppositeAIPlayer();
-
-                current_card = "t1";
+                if (card_haveused == false)
+                {
+                    ask_oppositeAIPlayer();
+                }
                 oppositeAIPlayer_chupai(current_card);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\" + current_card + ".wav");
@@ -1163,15 +1601,15 @@ namespace mahjong
                 #region//ask
                 if (leftAIPlayer_gameover == false && card_haveused == false)
                 {
-                    //ask_leftAIPlayer();
+                    ask_leftAIPlayer();
                 }
                 if (humanPlayer_gameover == false && card_haveused == false)
                 {
-                    //ask_humanPlayer();
+                    ask_humanPlayer();
                 }
                 if (rightAIPlayer_gameover == false && card_haveused == false)
                 {
-                    //ask_rightAIPlayer();
+                    ask_rightAIPlayer();
                 }
                 #endregion
             }
@@ -1185,76 +1623,36 @@ namespace mahjong
         #region//left
         protected void leftAIPlayer_mopai()
         {
-            current_card = "t1";
+            current_card = table.Deal(3);
+            current_card = left_ai.respond_table(current_card).Substring(1, 2);
         }
 
         protected void leftAIPlayer_chupai(string pai)
         {
+            leftAIPlayer_havePlayedcard_num++;
             card_haveused = false;//只要刚出牌，牌肯定没用过
+            PictureBox pb = leftAIPlayer_switch();
+
+            pictureBox_human_move.Height = pictureBox_leftAIPlayer_card1.Height;
+            pictureBox_human_move.Width = pictureBox_leftAIPlayer_card1.Width;
+            target_point = pictureBox_leftAIPlayer_card1.Location;
+            pictureBox_human_move.Name = current_card;
+            pictureBox_human_move.Location = target_point;
+            target_point = pb.Location;
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pai + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            leftAIPlayer_havePlayedcard_num++;
-            switch (leftAIPlayer_havePlayedcard_num)
-            {
-                case 1:
-                    pictureBox_leftAIPlayer_havePlayedcard1.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_leftAIPlayer_havePlayedcard2.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_leftAIPlayer_havePlayedcard3.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_leftAIPlayer_havePlayedcard4.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_leftAIPlayer_havePlayedcard5.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_leftAIPlayer_havePlayedcard6.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_leftAIPlayer_havePlayedcard7.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_leftAIPlayer_havePlayedcard8.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_leftAIPlayer_havePlayedcard9.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_leftAIPlayer_havePlayedcard10.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_leftAIPlayer_havePlayedcard11.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_leftAIPlayer_havePlayedcard12.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_leftAIPlayer_havePlayedcard13.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard13.Image = picture_ro;
-                    break;
-                case 14:
-                    pictureBox_leftAIPlayer_havePlayedcard14.Name = pai;
-                    pictureBox_leftAIPlayer_havePlayedcard14.Image = picture_ro;
-                    break;
-                default:
-                    break;
-            }
+            pictureBox_human_move.Image = picture_ro;
+            pictureBox_human_move.Visible = true;
+
+            D_MOVE_X = (target_point.X - pictureBox_human_move.Location.X) / 10;
+            D_MOVE_Y = (target_point.Y - pictureBox_human_move.Location.Y) / 10;
+            timer.Start();
+
+            leftAIPlayer_movedone.WaitOne();
+            //leftAIPlayer_movedone.Reset();
+           
+            pb.Name = pai;
+            pb.Image = picture_ro;            
         }
 
         protected void leftAIPlayer_next()
@@ -1338,6 +1736,7 @@ namespace mahjong
             {
                 leftAIPlayer_gang = false;
                 leftAIPlayer_show();
+                leftAIPlayer_mopai();
             }
             if (leftAIPlayer_peng == false && leftAIPlayer_gang == false)
             {
@@ -1351,9 +1750,10 @@ namespace mahjong
             if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)
             {
                 leftAIPlayer_peng_gang();
-                //ask_leftAIPlayer();//leftAIPlayer可能胡
-
-                current_card = "t1";//出牌
+                if (card_haveused == false)
+                {
+                    ask_leftAIPlayer();//leftAIPlayer可能胡
+                }
                 leftAIPlayer_chupai(current_card);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\" + current_card + ".wav");
@@ -1381,9 +1781,11 @@ namespace mahjong
             leftAIPlayer_next();
         }
 
-        protected void Player_play()
-        {
+        #region//play and start        
+        protected void Player_Play()
+        {          
             humanPlayer_chupai();
+            my_show();
             rightAIPlayer_play();
             oppositeAIPlayer_play();
             leftAIPlayer_play();
@@ -1391,794 +1793,899 @@ namespace mahjong
             Thread.CurrentThread.Abort();
         }
 
+        protected void rightAIPlayer_gamestart()
+        {
+            rightAIPlayer_play();
+            oppositeAIPlayer_play();
+            leftAIPlayer_play();
+            human_play();
+            Thread.CurrentThread.Abort();
+        }
+
+        protected void oppositeAIPlayer_gamestart()
+        {
+            oppositeAIPlayer_play();
+            leftAIPlayer_play();
+            human_play();
+            Thread.CurrentThread.Abort();
+        }
+
+        protected void leftAIPlayer_gamestart()
+        {
+            leftAIPlayer_play();
+            human_play();
+            Thread.CurrentThread.Abort();
+        }
+
+        protected void humanPlayer_gamestart()
+        {            
+            human_play();
+            Thread.CurrentThread.Abort();
+        }
+        #endregion
+
         #region//ask
         protected void ask_rightAIPlayer()
         {
-            if (true)//能胡/碰/杠
+            string str = right_ai.respond_table(table.Realize());//告诉ai出牌，返回ai想法
+            table.Get(str);
+            string str_realize = table.Realize();
+
+            #region//胡
+            if (str_realize[3] == '2') //胡
             {
-                #region//胡
-                if (true)//胡
+                card_haveused = true;
+                rightAIPlayer_money.Text = "胡啦";
+                rightAIPlayer_money.BackColor = Color.Red;
+                rightAIPlayer_money.Visible = true;
+
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                sp.PlaySync();
+
+                intgameover++;
+                rightAIPlayer_gameover = true;//已胡
+                if (intgameover == 3)
                 {
-                    card_haveused = true;
-                    rightAIPlayer_money.Text = "胡啦";
-                    rightAIPlayer_money.BackColor = Color.Red;
-                    rightAIPlayer_money.Visible = true;
-
-                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
-                    sp.PlaySync();
-
-                    intgameover++;
-                    rightAIPlayer_gameover = true;//已胡
-                    if (intgameover == 3)
-                    {
-                        gameover();//游戏结束
-                    }
-                    else
-                    {
-                        if (humanPlayerdone == true)//自摸胡的
-                        {
-
-                        }
-                        if (leftAIPlayerdone == true)//human玩家问胡的（上家）
-                        {
-
-                        }
-                        if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
-                        {
-                            oppositeAIPlayer_play();
-                        }
-                        if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
-                        {
-                            oppositeAIPlayer_play();
-                            leftAIPlayer_play();
-                        }
-                    }
+                    gameover();//游戏结束
                 }
-                #endregion
-
-                #region//碰//杠
-                if (false)//碰/杠
+                else
                 {
-                    card_haveused = true;
-                    if (true)//选择碰
-                    {
-                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
-                        sp.PlaySync();
-                        rightAIPlayer_peng = true;
-                    }
-                    else
-                    {
-                        if (true)//选择杠
-                        {
-                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
-                            sp.PlaySync();
-                            rightAIPlayer_gang = true;
-                        }
-                    }
-
-                    if (leftAIPlayerdone == true)//当前是主线程（human）
+                    if (humanPlayerdone == true)//自摸胡的
                     {
 
                     }
-                    if (rightAIPlayerdone == true)//当前是opposite线程
+                    if (leftAIPlayerdone == true)//human玩家问胡的（上家）
                     {
-                        rightAIPlayer_play();
-                        oppositeAIPlayer_play();;
+
                     }
-                    if (oppositeAIPlayerdone == true)//当前是left线程
+                    if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
                     {
-                        rightAIPlayer_play();
+                        oppositeAIPlayer_play();
+                    }
+                    if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
+                    {
                         oppositeAIPlayer_play();
                         leftAIPlayer_play();
                     }
                 }
-                #endregion
             }
+            #endregion
+
+            #region//碰//杠
+
+            if (str_realize[3] == '4')//选择碰
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
+                sp.PlaySync();
+                rightAIPlayer_peng = true;
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+
+                }
+                if (rightAIPlayerdone == true)//当前是opposite线程
+                {
+                    rightAIPlayer_play();
+                    oppositeAIPlayer_play(); ;
+                }
+                if (oppositeAIPlayerdone == true)//当前是left线程
+                {
+                    rightAIPlayer_play();
+                    oppositeAIPlayer_play();
+                    leftAIPlayer_play();
+                }
+            }
+
+            if (str_realize[3] == '3' || str_realize[3] == '5' || str_realize[3] == '6')//选择杠
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
+                sp.PlaySync();
+                rightAIPlayer_gang = true;
+                rightAIPlayer_mopai();
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+
+                }
+                if (rightAIPlayerdone == true)//当前是opposite线程
+                {
+                    rightAIPlayer_play();
+                    oppositeAIPlayer_play(); ;
+                }
+                if (oppositeAIPlayerdone == true)//当前是left线程
+                {
+                    rightAIPlayer_play();
+                    oppositeAIPlayer_play();
+                    leftAIPlayer_play();
+                }
+            }
+
+            #endregion
         }
 
         protected void ask_oppositeAIPlayer()
         {
-            if (true)//能胡
+            string str = opposite_ai.respond_table(table.Realize());//告诉ai出牌，返回ai想法
+            table.Get(str);
+            string str_realize = table.Realize();
+
+            #region//胡
+            if (str_realize[3] == '2')//胡
             {
-                #region//胡
-                if (true)//胡
+                card_haveused = true;
+                oppositeAIPlayer_money.Text = "胡啦";
+                oppositeAIPlayer_money.BackColor = Color.Red;
+                oppositeAIPlayer_money.Visible = true;
+
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                sp.PlaySync();
+
+                intgameover++;
+                oppositeAIPlayer_gameover = true;//已胡
+                if (intgameover == 3)
                 {
-                    card_haveused = true;
-                    oppositeAIPlayer_money.Text = "胡啦";
-                    oppositeAIPlayer_money.BackColor = Color.Red;
-                    oppositeAIPlayer_money.Visible = true;
-
-                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
-                    sp.PlaySync();
-
-                    intgameover++;
-                    oppositeAIPlayer_gameover = true;//已胡
-                    if (intgameover == 3)
-                    {
-                        gameover();//游戏结束
-                    }
-                    else
-                    {
-                        if (rightAIPlayerdone == true)//自摸胡的
-                        {
-
-                        }
-                        if (leftAIPlayerdone == true)//human玩家问胡的（上上家）
-                        {
-                            rightAIPlayer_cancel = true;//rightAIPlayer出牌线程取消
-                        }
-                        if (humanPlayerdone == true)//right玩家问胡的（上家）
-                        {
-
-                        }
-                        if (oppositeAIPlayerdone == true)//left玩家问胡的（下家）
-                        {
-                            leftAIPlayer_play();
-                        }
-                    }
+                    gameover();//游戏结束
                 }
-                #endregion
-
-                #region//碰/杠
-                if (false)//碰/杠
+                else
                 {
-                    card_haveused = true;
-                    if (true)//选择碰
-                    {
-                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
-                        sp.PlaySync();
-                        oppositeAIPlayer_peng = true;
-                    }
-                    else
-                    {
-                        if (true)//选择杠
-                        {
-                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
-                            sp.PlaySync();
-                            oppositeAIPlayer_gang = true;
-                        }
-                    }
-
-                    if (leftAIPlayerdone == true)//当前是主线程（human）
-                    {
-                        rightAIPlayer_cancel = true;
-                    }
-                    if (humanPlayerdone == true)//当前是right线程
+                    if (rightAIPlayerdone == true)//自摸胡的
                     {
 
                     }
-                    if (oppositeAIPlayerdone == true)//当前是left线程
-                    {   
-                        oppositeAIPlayer_play();
+                    if (leftAIPlayerdone == true)//human玩家问胡的（上上家）
+                    {
+                        rightAIPlayer_cancel = true;//rightAIPlayer出牌线程取消
+                    }
+                    if (humanPlayerdone == true)//right玩家问胡的（上家）
+                    {
+
+                    }
+                    if (oppositeAIPlayerdone == true)//left玩家问胡的（下家）
+                    {
                         leftAIPlayer_play();
                     }
                 }
-                #endregion
             }
+            #endregion
+
+            #region//碰/杠
+
+            if (str_realize[3] == '4')//选择碰
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
+                sp.PlaySync();
+                oppositeAIPlayer_peng = true;
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+                    rightAIPlayer_cancel = true;
+                }
+                if (humanPlayerdone == true)//当前是right线程
+                {
+
+                }
+                if (oppositeAIPlayerdone == true)//当前是left线程
+                {
+                    oppositeAIPlayer_play();
+                    leftAIPlayer_play();
+                }
+            }
+
+            if (str_realize[3] == '3' || str_realize[3] == '5' || str_realize[3] == '6')//选择杠
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
+                sp.PlaySync();
+                oppositeAIPlayer_gang = true;
+                oppositeAIPlayer_mopai();
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+                    rightAIPlayer_cancel = true;
+                }
+                if (humanPlayerdone == true)//当前是right线程
+                {
+
+                }
+                if (oppositeAIPlayerdone == true)//当前是left线程
+                {
+                    oppositeAIPlayer_play();
+                    leftAIPlayer_play();
+                }
+            }
+            #endregion
         }
 
         protected void ask_leftAIPlayer()
         {
-            if (true)//能胡/碰/杠
+            string str = left_ai.respond_table(table.Realize());//告诉ai出牌，返回ai想法
+            table.Get(str);
+            string str_realize = table.Realize();
+
+            #region//胡
+            if (str_realize[3] == '2')//胡
             {
-                #region//胡
-                if (true)//胡
+                card_haveused = true;
+                leftAIPlayer_money.Text = "胡啦";
+                leftAIPlayer_money.BackColor = Color.Red;
+                leftAIPlayer_money.Visible = true;
+
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                sp.PlaySync();
+
+                intgameover++;
+                leftAIPlayer_gameover = true;//已胡
+                if (intgameover == 3)
                 {
-                    card_haveused = true;
-                    leftAIPlayer_money.Text = "胡啦";
-                    leftAIPlayer_money.BackColor = Color.Red;
-                    leftAIPlayer_money.Visible = true;
-
-                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
-                    sp.PlaySync();
-
-                    intgameover++;
-                    leftAIPlayer_gameover = true;//已胡
-                    if (intgameover == 3)
-                    {
-                        gameover();//游戏结束
-                    }
-                    else
-                    {
-                        if (oppositeAIPlayerdone == true)//自摸胡的
-                        {
-
-                        }
-                        if (leftAIPlayerdone == true)//human玩家问胡的(下家）
-                        {
-                            rightAIPlayer_cancel = true;
-                            oppositeAIPlayer_cancel = true;
-                            leftAIPlayer_cancel = true;
-                        }
-                        if (humanPlayerdone == true)//right玩家问胡的（上上家）
-                        {
-                            oppositeAIPlayer_cancel = true;//oppositeAIPlayer出牌线程取消
-                        }
-                        if (rightAIPlayerdone == true)//opposite玩家问胡的（上家）
-                        {
-
-                        }
-                    }
+                    gameover();//游戏结束
                 }
-                #endregion
-
-                #region//碰/杠
-                if (false)//碰/杠
+                else
                 {
-                    card_haveused = true;
-                    if (true)//选择碰
+                    if (oppositeAIPlayerdone == true)//自摸胡的
                     {
-                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
-                        sp.PlaySync();
-                        leftAIPlayer_peng = true;
+
                     }
-                    else
-                    {
-                        if (true)//选择杠
-                        {
-                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
-                            sp.PlaySync();
-                            leftAIPlayer_gang = true;
-                        }
-                    }
-                    //碰了
-                    if (leftAIPlayerdone == true)//当前是主线程（human）
+                    if (leftAIPlayerdone == true)//human玩家问胡的(下家）
                     {
                         rightAIPlayer_cancel = true;
                         oppositeAIPlayer_cancel = true;
-
+                        leftAIPlayer_cancel = true;
                     }
-                    if (humanPlayerdone == true)//当前是right线程
+                    if (humanPlayerdone == true)//right玩家问胡的（上上家）
                     {
-                        oppositeAIPlayer_cancel = true;
+                        oppositeAIPlayer_cancel = true;//oppositeAIPlayer出牌线程取消
                     }
-                    if (rightAIPlayerdone == true)//当前是opposite线程
+                    if (rightAIPlayerdone == true)//opposite玩家问胡的（上家）
                     {
 
                     }
                 }
-                #endregion
             }
+            #endregion
+
+            #region//碰/杠               
+            if (str_realize[3] == '4')//选择碰
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
+                sp.PlaySync();
+                leftAIPlayer_peng = true;
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+                    rightAIPlayer_cancel = true;
+                    oppositeAIPlayer_cancel = true;
+
+                }
+                if (humanPlayerdone == true)//当前是right线程
+                {
+                    oppositeAIPlayer_cancel = true;
+                }
+                if (rightAIPlayerdone == true)//当前是opposite线程
+                {
+
+                }
+            }
+
+            if (str_realize[3] == '3' || str_realize[3] == '5' || str_realize[3] == '6')//选择杠
+            {
+                card_haveused = true;
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
+                sp.PlaySync();
+                leftAIPlayer_gang = true;
+                leftAIPlayer_mopai();
+
+                if (leftAIPlayerdone == true)//当前是主线程（human）
+                {
+                    rightAIPlayer_cancel = true;
+                    oppositeAIPlayer_cancel = true;
+
+                }
+                if (humanPlayerdone == true)//当前是right线程
+                {
+                    oppositeAIPlayer_cancel = true;
+                }
+                if (rightAIPlayerdone == true)//当前是opposite线程
+                {
+
+                }
+            }
+
+            //碰了           
+            #endregion
+
         }
 
         protected void ask_humanPlayer()
         {
             int i = 0;
-            if (true)//能胡或者能杠/碰
+            int samecard = human_samecard();
+            int peng_samecard = human_peng_samecard();
+            #region//响应
+
+            if (table.IsHu(0))//能胡
             {
-                #region//响应
+                human_hu.Enabled = true;
                 human_guo.Enabled = true;
-                if (true)//能胡
+                table.Get("0" + current_card + "2");
+            }
+
+            if (leftAIPlayerdone == false && samecard == 2)//&&自己摸牌不能碰&&能碰,>=
+            {
+                human_peng.Enabled = true;
+                human_guo.Enabled = true;
+                table.Get("0" + current_card + "7");
+            }
+
+            if (samecard == 3)//能直杠或暗杠或碰
+            {
+                //human_peng.Enabled = true;
+                human_gang.Enabled = true;
+                human_guo.Enabled = true;
+                if (leftAIPlayerdone == true)//human回合,暗杠
                 {
-                    human_hu.Enabled = true;
+                    table.Get("0" + current_card + "3");
                 }
-                if (leftAIPlayerdone == false && true)//&&自己摸牌不能碰&&能碰
+                else
                 {
-                    human_peng.Enabled = true;
+                    table.Get("0" + current_card + "9");//直杠
                 }
-                if (leftAIPlayerdone == false && true)//&&自己摸的不能杠&&能杠
+            }
+            else
+            {
+                if (peng_samecard == 3)
                 {
                     human_gang.Enabled = true;
+                    human_guo.Enabled = true;
+                    table.Get("0" + current_card + "8");//弯杠
                 }
-                for (i = 0; i < TIME_MAX; i++)
+            }
+
+
+            for (i = 0; i < TIME_MAX; i++)
+            {
+                Thread.Sleep(500);
+                if (human_hu.Name == "yes" || human_guo.Name == "yes" || human_peng.Name == "yes" || human_gang.Name == "yes" || human_guo.Enabled == false)
                 {
-                    Thread.Sleep(500);
-                    if (human_hu.Name == "yes" || human_guo.Name == "yes" || human_peng.Name == "yes" || human_gang.Name == "yes")
-                    {
-                        break;
-                    }
-                    if (i % 100 == 0 && i > 100)//一段时间不点，提醒
-                    {
-                        remind_play();
-                    }
+                    break;
                 }
-                if (i == TIME_MAX)//长时间不出即为过
+                if (i % 100 == 0 && i > 100)//一段时间不点，提醒
                 {
-                    human_guo.Name = "yes";
+                    remind_play();
                 }
-                human_peng.Enabled = false;
-                human_gang.Enabled = false;
-                human_hu.Enabled = false;
-                human_guo.Enabled = false;
-                #endregion
+            }
+            if (i == TIME_MAX)//长时间不出即为过
+            {
+                human_guo.Name = "yes";
+            }
+            human_peng.Enabled = false;
+            human_gang.Enabled = false;
+            human_hu.Enabled = false;
+            human_guo.Enabled = false;
+            #endregion
 
-                #region//胡
-                if (human_hu.Name == "yes")//胡
+            #region//胡
+            if (human_hu.Name == "yes")//胡
+            {
+                table.Realize();
+                card_haveused = true;
+                humanPlayer_money.Text = "胡啦";
+                humanPlayer_money.BackColor = Color.Red;
+                humanPlayer_money.Visible = true;
+
+                sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\hu.wav");
+                sp.PlaySync();
+
+                intgameover++;
+                humanPlayer_gameover = true;
+
+                if (intgameover == 3)
                 {
-                    card_haveused = true;
-                    humanPlayer_money.Text = "胡啦";
-                    humanPlayer_money.BackColor = Color.Red;
-                    humanPlayer_money.Visible = true;
-
-                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\hu.wav");
-                    sp.PlaySync();
-
-                    intgameover++;
-                    humanPlayer_gameover = true;
-
-                    if (intgameover == 3)
+                    gameover();
+                }
+                else
+                {
+                    for (i = 0; ; i++)
                     {
-                        gameover();
-                    }
-                    else
-                    {
-                        for (i = 0; ; i++)
+                        #region//right回合
+                        if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)//right
                         {
-                            #region//right回合
-                            if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)//right
+                            rightAIPlayer_peng_gang();
+                            #region//right_ask_right_humandone()
+                            if (true)//能胡,自摸
                             {
-                                rightAIPlayer_peng_gang();
-                                #region//right_ask_right_humandone()
-                                if (true)//能胡,自摸
+                                if (true)//胡
                                 {
-                                    if (true)//胡
-                                    {
-                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
-                                        sp.PlaySync();
+                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                    sp.PlaySync();
 
-                                        rightAIPlayer_gameover = true;
-                                        intgameover++;
-                                        if (intgameover == 3)
-                                        {
-                                            gameover();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            rightAIPlayer_cancel = true;//游戏未结束跳过出牌
-                                        }
+                                    rightAIPlayer_gameover = true;
+                                    intgameover++;
+                                    if (intgameover == 3)
+                                    {
+                                        gameover();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        rightAIPlayer_cancel = true;//游戏未结束跳过出牌
                                     }
                                 }
-                                #endregion
-                                if (rightAIPlayer_cancel == false)
+                            }
+                            #endregion
+                            if (rightAIPlayer_cancel == false)
+                            {
+                                current_card = "t1";
+                                rightAIPlayer_chupai(current_card);
+
+                                #region//ask
+                                if (oppositeAIPlayer_gameover == false && card_haveused == false)
                                 {
-                                    current_card = "t1";
-                                    rightAIPlayer_chupai(current_card);
-
-                                    #region//ask
-                                    if (oppositeAIPlayer_gameover == false && card_haveused == false)
+                                    #region//right_ask_opposite_humandone()
+                                    if (true)//能胡/碰/杠
                                     {
-                                        #region//right_ask_opposite_humandone()
-                                        if (true)//能胡/碰/杠
+                                        #region//胡
+                                        if (true)//胡
                                         {
-                                            #region//胡
-                                            if (true)//胡
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+
+                                            card_haveused = true;
+                                            oppositeAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
                                             {
-                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
-                                                sp.PlaySync();
-
-                                                card_haveused = true;
-                                                oppositeAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-
-                                                }
+                                                gameover();
+                                                break;
                                             }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
+                                            else
                                             {
-                                                card_haveused = true;
-                                                if (true)//选择碰
-                                                {
-                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
-                                                    sp.PlaySync();
-                                                    oppositeAIPlayer_peng = true;
-                                                }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
-                                                        sp.PlaySync();
-                                                        oppositeAIPlayer_gang = true;
-                                                    }
-                                                }
+
                                             }
-                                            #endregion
                                         }
                                         #endregion
-                                    }
 
-                                    if (leftAIPlayer_gameover == false && card_haveused == false)
-                                    {
-                                        #region//right_ask_left_humandone()
-                                        if (true)//能胡/碰/杠
+                                        #region//碰/杠
+                                        if (true)//碰/杠
                                         {
-                                            #region//胡
-                                            if (true)//胡
+                                            card_haveused = true;
+                                            if (true)//选择碰
                                             {
-                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
                                                 sp.PlaySync();
-                                                card_haveused = true;
-                                                leftAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    oppositeAIPlayer_cancel = true;
-                                                    leftAIPlayer_cancel = true;
-                                                }
+                                                oppositeAIPlayer_peng = true;
                                             }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
+                                            else
                                             {
-                                                card_haveused = true;
-                                                if (true)//选择碰
+                                                if (true)//选择杠
                                                 {
-                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
                                                     sp.PlaySync();
-                                                    leftAIPlayer_peng = true;
+                                                    oppositeAIPlayer_gang = true;
                                                 }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
-                                                        sp.PlaySync();
-                                                        leftAIPlayer_gang = true;
-                                                    }
-                                                }
-                                                oppositeAIPlayer_cancel = true;
                                             }
-                                            #endregion
                                         }
                                         #endregion
                                     }
                                     #endregion
                                 }
-                                else
+
+                                if (leftAIPlayer_gameover == false && card_haveused == false)
                                 {
-                                    rightAIPlayer_cancel = false;
+                                    #region//right_ask_left_humandone()
+                                    if (true)//能胡/碰/杠
+                                    {
+                                        #region//胡
+                                        if (true)//胡
+                                        {
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+                                            card_haveused = true;
+                                            leftAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
+                                            {
+                                                gameover();
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                oppositeAIPlayer_cancel = true;
+                                                leftAIPlayer_cancel = true;
+                                            }
+                                        }
+                                        #endregion
+
+                                        #region//碰/杠
+                                        if (true)//碰/杠
+                                        {
+                                            card_haveused = true;
+                                            if (true)//选择碰
+                                            {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
+                                                sp.PlaySync();
+                                                leftAIPlayer_peng = true;
+                                            }
+                                            else
+                                            {
+                                                if (true)//选择杠
+                                                {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
+                                                    sp.PlaySync();
+                                                    leftAIPlayer_gang = true;
+                                                }
+                                            }
+                                            oppositeAIPlayer_cancel = true;
+                                        }
+                                        #endregion
+                                    }
+                                    #endregion
                                 }
+                                #endregion
                             }
                             else
                             {
                                 rightAIPlayer_cancel = false;
                             }
-                            #endregion
+                        }
+                        else
+                        {
+                            rightAIPlayer_cancel = false;
+                        }
+                        #endregion
 
-                            #region//opposite回合
-                            if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)//opposite
+                        #region//opposite回合
+                        if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)//opposite
+                        {
+                            oppositeAIPlayer_peng_gang();
+                            #region//opposite_ask_opposite_humandone
+                            if (true)//自摸能胡
                             {
-                                oppositeAIPlayer_peng_gang();
-                                #region//opposite_ask_opposite_humandone
-                                if (true)//自摸能胡
+                                if (true)//胡
                                 {
-                                    if (true)//胡
+                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                    sp.PlaySync();
+                                    oppositeAIPlayer_gameover = true;
+                                    intgameover++;
+                                    if (intgameover == 3)
                                     {
-                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
-                                        sp.PlaySync();
-                                        oppositeAIPlayer_gameover = true;
-                                        intgameover++;
-                                        if (intgameover == 3)
-                                        {
-                                            gameover();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            oppositeAIPlayer_cancel = true;
-                                        }
+                                        gameover();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        oppositeAIPlayer_cancel = true;
                                     }
                                 }
-                                #endregion
-                                if (oppositeAIPlayer_cancel == false)
-                                {
-                                    current_card = "t1";
-                                    oppositeAIPlayer_chupai(current_card);
+                            }
+                            #endregion
+                            if (oppositeAIPlayer_cancel == false)
+                            {
+                                current_card = "t1";
+                                oppositeAIPlayer_chupai(current_card);
 
-                                    #region//ask
-                                    if (leftAIPlayer_gameover == false && card_haveused == false)
+                                #region//ask
+                                if (leftAIPlayer_gameover == false && card_haveused == false)
+                                {
+                                    #region//opposite_ask_left_humandone
+                                    if (true)//能胡/碰/杠
                                     {
-                                        #region//opposite_ask_left_humandone
-                                        if (true)//能胡/碰/杠
+                                        #region//胡
+                                        if (true)//胡
                                         {
-                                            #region//胡
-                                            if (true)//胡
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+                                            card_haveused = true;
+                                            leftAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
+                                            {
+                                                gameover();
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                leftAIPlayer_cancel = true;
+                                            }
+                                        }
+                                        #endregion
+
+                                        #region//碰/杠
+                                        if (true)//碰/杠
+                                        {
+                                            card_haveused = true;
+                                            if (true)//选择碰
                                             {
                                                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
                                                 sp.PlaySync();
-                                                card_haveused = true;
-                                                leftAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    leftAIPlayer_cancel = true;
-                                                }
+                                                leftAIPlayer_peng = true;
                                             }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
+                                            else
                                             {
-                                                card_haveused = true;
-                                                if (true)//选择碰
+                                                if (true)//选择杠
                                                 {
                                                     sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
                                                     sp.PlaySync();
-                                                    leftAIPlayer_peng = true;
-                                                }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
-                                                        sp.PlaySync();
-                                                        leftAIPlayer_gang = true;
-                                                    }
+                                                    leftAIPlayer_gang = true;
                                                 }
                                             }
-                                            #endregion
-                                        }
-                                        #endregion
-                                    }
-
-                                    if (rightAIPlayer_gameover == false && card_haveused == false)
-                                    {
-                                        #region//opposite_ask_right_humandone
-                                        if (true)//能胡/碰/杠
-                                        {
-                                            #region//胡
-                                            if (true)//胡
-                                            {
-                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
-                                                sp.PlaySync();
-                                                card_haveused = true;
-                                                rightAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    leftAIPlayer_cancel = true;
-                                                }
-                                            }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
-                                            {
-                                                card_haveused = true;
-                                                if (true)//选择碰
-                                                {
-                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
-                                                    sp.PlaySync();
-                                                    rightAIPlayer_peng = true;
-                                                }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
-                                                        sp.PlaySync();
-                                                        rightAIPlayer_gang = true;
-                                                    }
-                                                }
-                                                leftAIPlayer_cancel = true;
-                                            }
-                                            #endregion
                                         }
                                         #endregion
                                     }
                                     #endregion
                                 }
-                                else
+
+                                if (rightAIPlayer_gameover == false && card_haveused == false)
                                 {
-                                    oppositeAIPlayer_cancel = false;
+                                    #region//opposite_ask_right_humandone
+                                    if (true)//能胡/碰/杠
+                                    {
+                                        #region//胡
+                                        if (true)//胡
+                                        {
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+                                            card_haveused = true;
+                                            rightAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
+                                            {
+                                                gameover();
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                leftAIPlayer_cancel = true;
+                                            }
+                                        }
+                                        #endregion
+
+                                        #region//碰/杠
+                                        if (true)//碰/杠
+                                        {
+                                            card_haveused = true;
+                                            if (true)//选择碰
+                                            {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
+                                                sp.PlaySync();
+                                                rightAIPlayer_peng = true;
+                                            }
+                                            else
+                                            {
+                                                if (true)//选择杠
+                                                {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
+                                                    sp.PlaySync();
+                                                    rightAIPlayer_gang = true;
+                                                }
+                                            }
+                                            leftAIPlayer_cancel = true;
+                                        }
+                                        #endregion
+                                    }
+                                    #endregion
                                 }
+                                #endregion
                             }
                             else
                             {
                                 oppositeAIPlayer_cancel = false;
                             }
-                            #endregion
+                        }
+                        else
+                        {
+                            oppositeAIPlayer_cancel = false;
+                        }
+                        #endregion
 
-                            #region//left回合
-                            if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)//left
+                        #region//left回合
+                        if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)//left
+                        {
+                            leftAIPlayer_peng_gang();
+                            #region//left_ask_left_humandone
+                            if (true)//自摸能胡
                             {
-                                leftAIPlayer_peng_gang();
-                                #region//left_ask_left_humandone
-                                if (true)//自摸能胡
+                                if (true)//胡
                                 {
-                                    if (true)//胡
+                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
+                                    sp.PlaySync();
+                                    leftAIPlayer_gameover = true;
+                                    intgameover++;
+                                    if (intgameover == 3)
                                     {
-                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\hu.wav");
-                                        sp.PlaySync();
-                                        leftAIPlayer_gameover = true;
-                                        intgameover++;
-                                        if (intgameover == 3)
-                                        {
-                                            gameover();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            leftAIPlayer_cancel = true;
-                                        }
+                                        gameover();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        leftAIPlayer_cancel = true;
                                     }
                                 }
-                                #endregion
-                                if (leftAIPlayer_cancel == false)
+                            }
+                            #endregion
+                            if (leftAIPlayer_cancel == false)
+                            {
+                                current_card = "t1";
+                                leftAIPlayer_chupai(current_card);
+
+                                #region//ask
+                                if (rightAIPlayer_gameover == false && card_haveused == false)
                                 {
-                                    current_card = "t1";
-                                    leftAIPlayer_chupai(current_card);
-
-                                    #region//ask
-                                    if (rightAIPlayer_gameover == false && card_haveused == false)
+                                    #region//left_ask_right_humandone
+                                    if (true)//能胡/碰/杠
                                     {
-                                        #region//left_ask_right_humandone
-                                        if (true)//能胡/碰/杠
+                                        #region//胡
+                                        if (true)//胡
                                         {
-                                            #region//胡
-                                            if (true)//胡
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+
+                                            card_haveused = true;
+                                            rightAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
                                             {
-                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\hu.wav");
-                                                sp.PlaySync();
-
-                                                card_haveused = true;
-                                                rightAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-
-                                                }
+                                                gameover();
+                                                break;
                                             }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
+                                            else
                                             {
-                                                card_haveused = true;
-                                                if (true)//选择碰
-                                                {
-                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
-                                                    sp.PlaySync();
-                                                    rightAIPlayer_peng = true;
-                                                }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
-                                                        sp.PlaySync();
-                                                        rightAIPlayer_gang = true;
-                                                    }
-                                                }
+
                                             }
-                                            #endregion
                                         }
                                         #endregion
-                                    }
 
-                                    if (oppositeAIPlayer_gameover == false && card_haveused == false)
-                                    {
-                                        #region//left_ask_opposite_humandone
-                                        if (true)//能胡/碰/杠
+                                        #region//碰/杠
+                                        if (true)//碰/杠
                                         {
-                                            #region//胡
-                                            if (true)//胡
+                                            card_haveused = true;
+                                            if (true)//选择碰
                                             {
-                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
                                                 sp.PlaySync();
-
-                                                card_haveused = true;
-                                                oppositeAIPlayer_gameover = true;
-                                                intgameover++;
-                                                if (intgameover == 3)
-                                                {
-                                                    gameover();
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    rightAIPlayer_cancel = true;
-                                                }
+                                                rightAIPlayer_peng = true;
                                             }
-                                            #endregion
-
-                                            #region//碰/杠
-                                            if (true)//碰/杠
+                                            else
                                             {
-                                                card_haveused = true;
-                                                if (true)//选择碰
+                                                if (true)//选择杠
                                                 {
-                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
                                                     sp.PlaySync();
-                                                    oppositeAIPlayer_peng = true;
+                                                    rightAIPlayer_gang = true;
                                                 }
-                                                else
-                                                {
-                                                    if (true)//选择杠
-                                                    {
-                                                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
-                                                        sp.PlaySync();
-                                                        oppositeAIPlayer_gang = true;
-                                                    }
-                                                }
-                                                rightAIPlayer_cancel = true;
                                             }
-                                            #endregion
                                         }
                                         #endregion
                                     }
                                     #endregion
                                 }
-                                else
+
+                                if (oppositeAIPlayer_gameover == false && card_haveused == false)
                                 {
-                                    leftAIPlayer_cancel = false;
+                                    #region//left_ask_opposite_humandone
+                                    if (true)//能胡/碰/杠
+                                    {
+                                        #region//胡
+                                        if (true)//胡
+                                        {
+                                            sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\hu.wav");
+                                            sp.PlaySync();
+
+                                            card_haveused = true;
+                                            oppositeAIPlayer_gameover = true;
+                                            intgameover++;
+                                            if (intgameover == 3)
+                                            {
+                                                gameover();
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                rightAIPlayer_cancel = true;
+                                            }
+                                        }
+                                        #endregion
+
+                                        #region//碰/杠
+                                        if (true)//碰/杠
+                                        {
+                                            card_haveused = true;
+                                            if (true)//选择碰
+                                            {
+                                                sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
+                                                sp.PlaySync();
+                                                oppositeAIPlayer_peng = true;
+                                            }
+                                            else
+                                            {
+                                                if (true)//选择杠
+                                                {
+                                                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
+                                                    sp.PlaySync();
+                                                    oppositeAIPlayer_gang = true;
+                                                }
+                                            }
+                                            rightAIPlayer_cancel = true;
+                                        }
+                                        #endregion
+                                    }
+                                    #endregion
                                 }
+                                #endregion
                             }
                             else
                             {
                                 leftAIPlayer_cancel = false;
                             }
-                            #endregion
                         }
+                        else
+                        {
+                            leftAIPlayer_cancel = false;
+                        }
+                        #endregion
                     }
                 }
-                #endregion
-
-                #region//碰 杠
-                if (human_peng.Name == "yes" || human_gang.Name == "yes")//碰 杠
-                {
-                    card_haveused = true;
-                    humanPlayer_haveshowedcard_num++;
-                    if (human_peng.Name == "yes")
-                    {
-                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\peng.wav");
-                        sp.PlaySync();
-                    }
-                    if (human_gang.Name == "yes")
-                    {
-                        sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\gang.wav");
-                        sp.PlaySync();
-                    }
-
-                    if (humanPlayerdone == true)//当前是right线程
-                    {
-                        oppositeAIPlayer_cancel = true;
-                        leftAIPlayer_cancel = true;
-                    }
-                    if (rightAIPlayerdone == true)//opposite
-                    {
-                        leftAIPlayer_cancel = true;
-                    }
-                    if (oppositeAIPlayerdone == true)//left
-                    {
-
-                    }
-                }
-                #endregion
-                human_guo.Name = "no";//不能取消
             }
+            #endregion
+
+            #region//碰 杠
+            if (human_peng.Name == "yes" || human_gang.Name == "yes")//碰 杠
+            {
+                table.Realize();//报错
+                card_haveused = true;
+                humanPlayer_haveshowedcard_num++;
+                if (human_peng.Name == "yes")
+                {
+                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\peng.wav");
+                    sp.PlaySync();
+                }
+                if (human_gang.Name == "yes")
+                {
+                    sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\gang.wav");
+                    sp.PlaySync();
+                }
+
+                if (humanPlayerdone == true)//当前是right线程
+                {
+                    oppositeAIPlayer_cancel = true;
+                    leftAIPlayer_cancel = true;
+                }
+                if (rightAIPlayerdone == true)//opposite
+                {
+                    leftAIPlayer_cancel = true;
+                }
+                if (oppositeAIPlayerdone == true)//left
+                {
+
+                }
+            }
+            #endregion
+            human_guo.Name = "no";//不能取消
         }
+
         #endregion
 
         public Form1()//初始化
@@ -2189,6 +2696,10 @@ namespace mahjong
             mediaplayer_backgroundmusic.URL = Application.StartupPath + "\\sound\\backgroundmusic.wav";
             mediaplayer_backgroundmusic.Ctlcontrols.stop();//默认不播放背景音乐
             mediaplayer_backgroundmusic.settings.setMode("loop", true);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Tick);
+            timer.AutoReset = true;
+            initial_point = pictureBox_human_move.Location;
+            pictureBox_human_move.BringToFront();
         }
 
         #region//click
@@ -2196,11 +2707,13 @@ namespace mahjong
         {
             PictureBox pb = (PictureBox)sender;
             current_card = pb.Name;
+            target_point = pb.Location;
+            table.Get("1" + current_card + "1");//告诉table出牌
             pb.Name = "blank";
             human_picturebox_enablef();
-            my_show();                                         
+            pb.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + pb.Name + ".jpg");
 
-            Thread t = new Thread(Player_play);
+            Thread t = new Thread(Player_Play);
             t.Start();
         }
 
@@ -2208,60 +2721,44 @@ namespace mahjong
         {
             game_start.Visible = false;
             game_exit.Visible = false;
-            my_initialize();
+            my_initialize();            
 
             whostart();
+            fapai();
+            my_show();
+            Thread.Sleep(500);
+
             #region//根据谁开始初始化
             if (rightAIPlayer_start == true)
             {
-                humanPlayer_next();
-
-                Thread tr = new Thread(rightAIPlayer_play);
+                Thread tr = new Thread(leftAIPlayer_gamestart);
                 tr.Start();
-
-                Thread to = new Thread(oppositeAIPlayer_play);
-                to.Start();
-
-                Thread tl = new Thread(leftAIPlayer_play);
-                tl.Start();
             }
             else
             {
                 if (oppositeAIPlayer_start == true)
                 {
-                    rightAIPlayer_next();
-
-                    Thread to = new Thread(oppositeAIPlayer_play);
+                    Thread to = new Thread(oppositeAIPlayer_gamestart);
                     to.Start();
-
-                    Thread tl = new Thread(leftAIPlayer_play);
-                    tl.Start();
                 }
                 else
                 {
                     if (leftAIPlayer_start == true)
                     {
-                        oppositeAIPlayer_next();
-
-                        Thread tl = new Thread(leftAIPlayer_play);
+                        Thread tl = new Thread(leftAIPlayer_gamestart);
                         tl.Start();
                     }
                     else
                     {
                         if (humanPlayer_start == true)
                         {
-                            leftAIPlayer_next();
+                            Thread t = new Thread(humanPlayer_gamestart);
+                            t.Start();
                         }
                     }
                 }
             }
-            #endregion
-            fapai();
-            my_show();
-            Thread.Sleep(500);
-
-            Thread t = new Thread(human_play);
-            t.Start();
+            #endregion            
         }
 
         private void human_ask_Click(object sender, EventArgs e)//判断是碰杠胡过
@@ -2306,5 +2803,50 @@ namespace mahjong
             button.Size = new Size(button.Width - D_WIDTH, button.Height - D_HEIGHT);
         }
         #endregion
+
+        private void timer_Tick(object sender, EventArgs e)//动画效果
+        {
+            System.Timers.Timer timer = (System.Timers.Timer)sender;
+            timer.Stop();//开始的时候计时停止，防止出错
+
+            pictureBox_human_move.Location = new Point(pictureBox_human_move.Location.X + D_MOVE_X, pictureBox_human_move.Location.Y + D_MOVE_Y);
+            if (Math.Abs(pictureBox_human_move.Location.X - target_point.X) < 10)
+            {
+                pictureBox_human_move.Visible = false;
+                pictureBox_human_move.Location = initial_point;
+                timer.Stop();
+
+                if (leftAIPlayerdone == true)
+                {
+                    humanPlayer_movedone.Set();
+                }
+                else
+                {
+                    if (humanPlayerdone == true)
+                    {
+                        rightAIPlayer_movedone.Set();
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)
+                        {
+                            oppositeAIPlayer_movedone.Set();
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)
+                            {
+                                leftAIPlayer_movedone.Set();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                timer.Start();
+            }
+        }
+        
     }
 }
