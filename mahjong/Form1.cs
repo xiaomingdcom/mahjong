@@ -1008,7 +1008,6 @@ namespace mahjong
             D_MOVE_Y = (target_point.Y - pictureBox_human_move.Location.Y) / 10;
             timer.Start();
 
-            //humanPlayer_movedone.Reset();
             humanPlayer_movedone.WaitOne();
 
             #region//出牌
@@ -1328,7 +1327,6 @@ namespace mahjong
             timer.Start();
 
             rightAIPlayer_movedone.WaitOne();
-            //rightAIPlayer_movedone.Reset();
                        
             pb.Name = pai;
             pb.Image = picture_ro;            
@@ -1488,7 +1486,6 @@ namespace mahjong
             timer.Start();
 
             oppositeAIPlayer_movedone.WaitOne();
-            //oppositeAIPlayer_movedone.Reset();
                         
             pb.Name = pai;
             pb.Image = picture_ro;            
@@ -1649,7 +1646,6 @@ namespace mahjong
             timer.Start();
 
             leftAIPlayer_movedone.WaitOne();
-            //leftAIPlayer_movedone.Reset();
            
             pb.Name = pai;
             pb.Image = picture_ro;            
