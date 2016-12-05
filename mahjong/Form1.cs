@@ -197,6 +197,16 @@ namespace mahjong
         #endregion
 
         #region//系统函数
+        /*protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }*/
+
         protected PictureBox humanPlayer_switch()//超过14有错
         {
             #region//switch
@@ -275,6 +285,41 @@ namespace mahjong
             #endregion
         }
 
+        protected PictureBox rightAIPlayer_haveshowedcard_switch()
+        {
+            switch (rightAIPlayer_haveshowedcard_num)
+            {
+                case 1:
+                    return pictureBox_rightAIPlayer_card1;
+                case 2:
+                    return pictureBox_rightAIPlayer_card2;
+                case 3:
+                    return pictureBox_rightAIPlayer_card3;
+                case 4:
+                    return pictureBox_rightAIPlayer_card4;
+                case 5:
+                    return pictureBox_rightAIPlayer_card5;
+                case 6:
+                    return pictureBox_rightAIPlayer_card6;
+                case 7:
+                    return pictureBox_rightAIPlayer_card7;
+                case 8:
+                    return pictureBox_rightAIPlayer_card8;
+                case 9:
+                    return pictureBox_oppositeAIPlayer_card9;
+                case 10:
+                    return pictureBox_rightAIPlayer_card10;
+                case 11:
+                    return pictureBox_rightAIPlayer_card11;
+                case 12:
+                    return pictureBox_rightAIPlayer_card12;
+                case 13:
+                    return pictureBox_rightAIPlayer_card13;
+                default:
+                    return pictureBox_human_move;
+            }
+        }
+
         protected PictureBox oppositeAIPlayer_switch()//超过14有错
         {
             #region//switch
@@ -314,6 +359,41 @@ namespace mahjong
             #endregion
         }
 
+        protected PictureBox oppositeAIPlayer_haveshowedcard_switch()
+        {
+            switch (oppositeAIPlayer_haveshowedcard_num)
+            {
+                case 1:
+                    return pictureBox_oppositeAIPlayer_card1;
+                case 2:
+                    return pictureBox_oppositeAIPlayer_card2;
+                case 3:
+                    return pictureBox_oppositeAIPlayer_card3;
+                case 4:
+                    return pictureBox_oppositeAIPlayer_card4;
+                case 5:
+                    return pictureBox_oppositeAIPlayer_card5;
+                case 6:
+                    return pictureBox_oppositeAIPlayer_card6;
+                case 7:
+                    return pictureBox_oppositeAIPlayer_card7;
+                case 8:
+                    return pictureBox_oppositeAIPlayer_card8;
+                case 9:
+                    return pictureBox_oppositeAIPlayer_card9;
+                case 10:
+                    return pictureBox_oppositeAIPlayer_card10;
+                case 11:
+                    return pictureBox_oppositeAIPlayer_card11;
+                case 12:
+                    return pictureBox_oppositeAIPlayer_card12;
+                case 13:
+                    return pictureBox_oppositeAIPlayer_card13;
+                default:
+                    return pictureBox_human_move;
+            }
+        }
+
         protected PictureBox leftAIPlayer_switch()//超过14有错
         {
             #region//switch
@@ -351,6 +431,41 @@ namespace mahjong
                     return pictureBox_human_move;
             }
             #endregion
+        }
+
+        protected PictureBox leftAIPlayer_haveshowedcard_switch()
+        {
+            switch (leftAIPlayer_haveshowedcard_num)
+            {
+                case 1:
+                    return pictureBox_leftAIPlayer_card1;
+                case 2:
+                    return pictureBox_leftAIPlayer_card2;
+                case 3:
+                    return pictureBox_leftAIPlayer_card3;
+                case 4:
+                    return pictureBox_leftAIPlayer_card4;
+                case 5:
+                    return pictureBox_leftAIPlayer_card5;
+                case 6:
+                    return pictureBox_leftAIPlayer_card6;
+                case 7:
+                    return pictureBox_leftAIPlayer_card7;
+                case 8:
+                    return pictureBox_leftAIPlayer_card8;
+                case 9:
+                    return pictureBox_leftAIPlayer_card9;
+                case 10:
+                    return pictureBox_leftAIPlayer_card10;
+                case 11:
+                    return pictureBox_leftAIPlayer_card11;
+                case 12:
+                    return pictureBox_leftAIPlayer_card12;
+                case 13:
+                    return pictureBox_leftAIPlayer_card13;
+                default:
+                    return pictureBox_human_move;
+            }
         }
 
         protected void whostart()//从哪个玩家开始
@@ -515,7 +630,7 @@ namespace mahjong
         }
 
         protected void human_picturebox_enablet()
-        {           
+        {
             if (pictureBox_humanPlayer_card1.Name[0] != 'a')
             {
                 pictureBox_humanPlayer_card1.Enabled = true;//start之前不可响应
@@ -571,9 +686,8 @@ namespace mahjong
             if (pictureBox_humanPlayer_card14.Name[0] != 'a')
             {
                 pictureBox_humanPlayer_card14.Enabled = true;
-            }            
+            }
         }
-
         #endregion
 
         #region//my
@@ -649,50 +763,50 @@ namespace mahjong
             human_picturebox_enablef();
 
             //三个AIPlayer手牌只显示背面
-            Image pb = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
-            pictureBox_leftAIPlayer_card1.Image = pb;
-            pictureBox_leftAIPlayer_card2.Image = pb;
-            pictureBox_leftAIPlayer_card3.Image = pb;
-            pictureBox_leftAIPlayer_card4.Image = pb;
-            pictureBox_leftAIPlayer_card5.Image = pb;
-            pictureBox_leftAIPlayer_card6.Image = pb;
-            pictureBox_leftAIPlayer_card7.Image = pb;
-            pictureBox_leftAIPlayer_card8.Image = pb;
-            pictureBox_leftAIPlayer_card9.Image = pb;
-            pictureBox_leftAIPlayer_card10.Image = pb;
-            pictureBox_leftAIPlayer_card11.Image = pb;
-            pictureBox_leftAIPlayer_card12.Image = pb;
-            pictureBox_leftAIPlayer_card13.Image = pb;
+            pictureBox_leftAIPlayer_card1.Visible = false;
+            pictureBox_leftAIPlayer_card2.Visible = false;
+            pictureBox_leftAIPlayer_card3.Visible = false;
+            pictureBox_leftAIPlayer_card4.Visible = false;
+            pictureBox_leftAIPlayer_card5.Visible = false;
+            pictureBox_leftAIPlayer_card6.Visible = false;
+            pictureBox_leftAIPlayer_card7.Visible = false;
+            pictureBox_leftAIPlayer_card8.Visible = false;
+            pictureBox_leftAIPlayer_card9.Visible = false;
+            pictureBox_leftAIPlayer_card10.Visible = false;
+            pictureBox_leftAIPlayer_card11.Visible = false;
+            pictureBox_leftAIPlayer_card12.Visible = false;
+            pictureBox_leftAIPlayer_card13.Visible = false;
 
-            pictureBox_rightAIPlayer_card1.Image = pb;
-            pictureBox_rightAIPlayer_card2.Image = pb;
-            pictureBox_rightAIPlayer_card3.Image = pb;
-            pictureBox_rightAIPlayer_card4.Image = pb;
-            pictureBox_rightAIPlayer_card5.Image = pb;
-            pictureBox_rightAIPlayer_card6.Image = pb;
-            pictureBox_rightAIPlayer_card7.Image = pb;
-            pictureBox_rightAIPlayer_card8.Image = pb;
-            pictureBox_rightAIPlayer_card9.Image = pb;
-            pictureBox_rightAIPlayer_card10.Image = pb;
-            pictureBox_rightAIPlayer_card11.Image = pb;
-            pictureBox_rightAIPlayer_card12.Image = pb;
-            pictureBox_rightAIPlayer_card13.Image = pb;
+            pictureBox_rightAIPlayer_card1.Visible = false;
+            pictureBox_rightAIPlayer_card2.Visible = false;
+            pictureBox_rightAIPlayer_card3.Visible = false;
+            pictureBox_rightAIPlayer_card4.Visible = false;
+            pictureBox_rightAIPlayer_card5.Visible = false;
+            pictureBox_rightAIPlayer_card6.Visible = false;
+            pictureBox_rightAIPlayer_card7.Visible = false;
+            pictureBox_rightAIPlayer_card8.Visible = false;
+            pictureBox_rightAIPlayer_card9.Visible = false;
+            pictureBox_rightAIPlayer_card10.Visible = false;
+            pictureBox_rightAIPlayer_card11.Visible = false;
+            pictureBox_rightAIPlayer_card12.Visible = false;
+            pictureBox_rightAIPlayer_card13.Visible = false;
 
-            pictureBox_oppositeAIPlayer_card1.Image = pb;
-            pictureBox_oppositeAIPlayer_card2.Image = pb;
-            pictureBox_oppositeAIPlayer_card3.Image = pb;
-            pictureBox_oppositeAIPlayer_card4.Image = pb;
-            pictureBox_oppositeAIPlayer_card5.Image = pb;
-            pictureBox_oppositeAIPlayer_card6.Image = pb;
-            pictureBox_oppositeAIPlayer_card7.Image = pb;
-            pictureBox_oppositeAIPlayer_card8.Image = pb;
-            pictureBox_oppositeAIPlayer_card9.Image = pb;
-            pictureBox_oppositeAIPlayer_card10.Image = pb;
-            pictureBox_oppositeAIPlayer_card11.Image = pb;
-            pictureBox_oppositeAIPlayer_card12.Image = pb;
-            pictureBox_oppositeAIPlayer_card13.Image = pb;
+            pictureBox_oppositeAIPlayer_card1.Visible = false;
+            pictureBox_oppositeAIPlayer_card2.Visible = false;
+            pictureBox_oppositeAIPlayer_card3.Visible = false;
+            pictureBox_oppositeAIPlayer_card4.Visible = false;
+            pictureBox_oppositeAIPlayer_card5.Visible = false;
+            pictureBox_oppositeAIPlayer_card6.Visible = false;
+            pictureBox_oppositeAIPlayer_card7.Visible = false; ;
+            pictureBox_oppositeAIPlayer_card8.Visible = false;
+            pictureBox_oppositeAIPlayer_card9.Visible = false;
+            pictureBox_oppositeAIPlayer_card10.Visible = false;
+            pictureBox_oppositeAIPlayer_card11.Visible = false;
+            pictureBox_oppositeAIPlayer_card12.Visible = false;
+            pictureBox_oppositeAIPlayer_card13.Visible = false;
 
             //humanPlayer手牌初始为cardbcak
+            Image pb = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
             pictureBox_human_move.Image = Image.FromFile(Application.StartupPath + "\\picture\\blank.jpg");
             pictureBox_humanPlayer_card1.Image = pb;
             pictureBox_humanPlayer_card2.Image = pb;
@@ -710,66 +824,65 @@ namespace mahjong
             pictureBox_humanPlayer_card14.Image = pb;
 
             //四位玩家已打出的牌初始化
-            pb = Image.FromFile(Application.StartupPath + "\\picture\\blank.jpg");
-            pictureBox_humanPlayer_havePlayedcard1.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard2.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard3.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard4.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard5.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard6.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard7.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard8.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard9.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard10.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard11.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard12.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard13.Image = pb;
-            pictureBox_humanPlayer_havePlayedcard14.Image = pb;
+            pictureBox_humanPlayer_havePlayedcard1.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard2.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard3.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard4.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard5.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard6.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard7.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard8.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard9.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard10.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard11.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard12.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard13.Visible = false;
+            pictureBox_humanPlayer_havePlayedcard14.Visible = false;
 
-            pictureBox_rightAIPlayer_havePlayedcard1.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard2.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard3.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard4.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard5.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard6.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard7.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard8.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard9.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard10.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard11.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard12.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard13.Image = pb;
-            pictureBox_rightAIPlayer_havePlayedcard14.Image = pb;
+            pictureBox_rightAIPlayer_havePlayedcard1.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard2.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard3.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard4.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard5.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard6.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard7.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard8.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard9.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard10.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard11.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard12.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard13.Visible = false;
+            pictureBox_rightAIPlayer_havePlayedcard14.Visible = false;
 
-            pictureBox_oppositeAIPlayer_havePlayedcard1.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard2.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard3.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard4.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard5.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard6.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard7.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard8.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard9.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard10.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard11.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard12.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard13.Image = pb;
-            pictureBox_oppositeAIPlayer_havePlayedcard14.Image = pb;
+            pictureBox_oppositeAIPlayer_havePlayedcard1.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard2.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard3.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard4.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard5.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard6.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard7.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard8.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard9.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard10.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard11.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard12.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard13.Visible = false;
+            pictureBox_oppositeAIPlayer_havePlayedcard14.Visible = false;
 
-            pictureBox_leftAIPlayer_havePlayedcard1.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard2.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard3.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard4.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard5.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard6.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard7.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard8.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard9.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard10.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard11.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard12.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard13.Image = pb;
-            pictureBox_leftAIPlayer_havePlayedcard14.Image = pb;
+            pictureBox_leftAIPlayer_havePlayedcard1.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard2.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard3.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard4.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard5.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard6.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard7.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard8.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard9.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard10.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard11.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard12.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard13.Visible = false;
+            pictureBox_leftAIPlayer_havePlayedcard14.Visible = false;
         }
 
         protected void my_show()//整理手牌并显示图片
@@ -1013,6 +1126,7 @@ namespace mahjong
             #region//出牌
             pb.Name = current_card;
             pb.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+            pb.Visible = true;
             sp = new SoundPlayer(Application.StartupPath + "\\sound\\humanPlayer\\" + current_card + ".wav");
             sp.PlaySync();
             #endregion
@@ -1327,9 +1441,10 @@ namespace mahjong
             timer.Start();
 
             rightAIPlayer_movedone.WaitOne();
-                       
+
             pb.Name = pai;
-            pb.Image = picture_ro;            
+            pb.Image = picture_ro;
+            pb.Visible = true;
         }
 
         protected void rightAIPlayer_next()
@@ -1345,61 +1460,10 @@ namespace mahjong
             rightAIPlayer_haveshowedcard_num++;
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            switch (rightAIPlayer_haveshowedcard_num)
-            {
-                case 1:
-                    pictureBox_rightAIPlayer_card1.Name = current_card;
-                    pictureBox_rightAIPlayer_card1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_rightAIPlayer_card2.Name = current_card;
-                    pictureBox_rightAIPlayer_card2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_rightAIPlayer_card3.Name = current_card;
-                    pictureBox_rightAIPlayer_card3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_rightAIPlayer_card4.Name = current_card;
-                    pictureBox_rightAIPlayer_card4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_rightAIPlayer_card5.Name = current_card;
-                    pictureBox_rightAIPlayer_card5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_rightAIPlayer_card6.Name = current_card;
-                    pictureBox_rightAIPlayer_card6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_rightAIPlayer_card7.Name = current_card;
-                    pictureBox_rightAIPlayer_card7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_rightAIPlayer_card8.Name = current_card;
-                    pictureBox_rightAIPlayer_card8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_oppositeAIPlayer_card9.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_rightAIPlayer_card10.Name = current_card;
-                    pictureBox_rightAIPlayer_card10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_rightAIPlayer_card11.Name = current_card;
-                    pictureBox_rightAIPlayer_card11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_rightAIPlayer_card12.Name = current_card;
-                    pictureBox_rightAIPlayer_card12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_rightAIPlayer_card13.Name = current_card;
-                    pictureBox_rightAIPlayer_card13.Image = picture_ro;
-                    break;
-            }
+            PictureBox pb = rightAIPlayer_haveshowedcard_switch();
+            pb.Name = current_card;
+            pb.Image = picture_ro;
+            pb.Visible = true;
         }
 
         protected void rightAIPlayer_peng_gang()//根据right是碰还是杠执行的操作
@@ -1486,9 +1550,10 @@ namespace mahjong
             timer.Start();
 
             oppositeAIPlayer_movedone.WaitOne();
-                        
+
             pb.Name = pai;
-            pb.Image = picture_ro;            
+            pb.Image = picture_ro;
+            pb.Visible = true;
         }
 
         protected void oppositeAIPlayer_next()
@@ -1504,61 +1569,10 @@ namespace mahjong
             oppositeAIPlayer_haveshowedcard_num++;
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            switch (oppositeAIPlayer_haveshowedcard_num)
-            {
-                case 1:
-                    pictureBox_oppositeAIPlayer_card1.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_oppositeAIPlayer_card2.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_oppositeAIPlayer_card3.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_oppositeAIPlayer_card4.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_oppositeAIPlayer_card5.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_oppositeAIPlayer_card6.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_oppositeAIPlayer_card7.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_oppositeAIPlayer_card8.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_oppositeAIPlayer_card9.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_oppositeAIPlayer_card10.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_oppositeAIPlayer_card11.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_oppositeAIPlayer_card12.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_oppositeAIPlayer_card13.Name = current_card;
-                    pictureBox_oppositeAIPlayer_card13.Image = picture_ro;
-                    break;
-            }
+            PictureBox pb = rightAIPlayer_haveshowedcard_switch();
+            pb.Name = current_card;
+            pb.Image = picture_ro;
+            pb.Visible = true;          
         }
 
         protected void oppositeAIPlayer_peng_gang()
@@ -1646,9 +1660,10 @@ namespace mahjong
             timer.Start();
 
             leftAIPlayer_movedone.WaitOne();
-           
+
             pb.Name = pai;
-            pb.Image = picture_ro;            
+            pb.Image = picture_ro;
+            pb.Visible = true;
         }
 
         protected void leftAIPlayer_next()
@@ -1664,61 +1679,10 @@ namespace mahjong
             leftAIPlayer_haveshowedcard_num++;
             Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
             picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            switch (leftAIPlayer_haveshowedcard_num)
-            {
-                case 1:
-                    pictureBox_leftAIPlayer_card1.Name = current_card;
-                    pictureBox_leftAIPlayer_card1.Image = picture_ro;
-                    break;
-                case 2:
-                    pictureBox_leftAIPlayer_card2.Name = current_card;
-                    pictureBox_leftAIPlayer_card2.Image = picture_ro;
-                    break;
-                case 3:
-                    pictureBox_leftAIPlayer_card3.Name = current_card;
-                    pictureBox_leftAIPlayer_card3.Image = picture_ro;
-                    break;
-                case 4:
-                    pictureBox_leftAIPlayer_card4.Name = current_card;
-                    pictureBox_leftAIPlayer_card4.Image = picture_ro;
-                    break;
-                case 5:
-                    pictureBox_leftAIPlayer_card5.Name = current_card;
-                    pictureBox_leftAIPlayer_card5.Image = picture_ro;
-                    break;
-                case 6:
-                    pictureBox_leftAIPlayer_card6.Name = current_card;
-                    pictureBox_leftAIPlayer_card6.Image = picture_ro;
-                    break;
-                case 7:
-                    pictureBox_leftAIPlayer_card7.Name = current_card;
-                    pictureBox_leftAIPlayer_card7.Image = picture_ro;
-                    break;
-                case 8:
-                    pictureBox_leftAIPlayer_card8.Name = current_card;
-                    pictureBox_leftAIPlayer_card8.Image = picture_ro;
-                    break;
-                case 9:
-                    pictureBox_leftAIPlayer_card9.Name = current_card;
-                    pictureBox_leftAIPlayer_card9.Image = picture_ro;
-                    break;
-                case 10:
-                    pictureBox_leftAIPlayer_card10.Name = current_card;
-                    pictureBox_leftAIPlayer_card10.Image = picture_ro;
-                    break;
-                case 11:
-                    pictureBox_leftAIPlayer_card11.Name = current_card;
-                    pictureBox_leftAIPlayer_card11.Image = picture_ro;
-                    break;
-                case 12:
-                    pictureBox_leftAIPlayer_card12.Name = current_card;
-                    pictureBox_leftAIPlayer_card12.Image = picture_ro;
-                    break;
-                case 13:
-                    pictureBox_leftAIPlayer_card13.Name = current_card;
-                    pictureBox_leftAIPlayer_card13.Image = picture_ro;
-                    break;
-            }
+            PictureBox pb = rightAIPlayer_haveshowedcard_switch();
+            pb.Name = current_card;
+            pb.Image = picture_ro;
+            pb.Visible = true;
         }
 
         protected void leftAIPlayer_peng_gang()
@@ -1779,7 +1743,7 @@ namespace mahjong
 
         #region//play and start        
         protected void Player_Play()
-        {          
+        {
             humanPlayer_chupai();
             my_show();
             rightAIPlayer_play();
@@ -1814,7 +1778,7 @@ namespace mahjong
         }
 
         protected void humanPlayer_gamestart()
-        {            
+        {
             human_play();
             Thread.CurrentThread.Abort();
         }
@@ -2686,6 +2650,9 @@ namespace mahjong
 
         public Form1()//初始化
         {
+            //this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+            //this.UpdateStyles();
+
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;//忽略跨线程错误
             my_initialize();//自定义的初始化内容   
@@ -2717,7 +2684,7 @@ namespace mahjong
         {
             game_start.Visible = false;
             game_exit.Visible = false;
-            my_initialize();            
+            my_initialize();
 
             whostart();
             fapai();
@@ -2843,6 +2810,6 @@ namespace mahjong
                 timer.Start();
             }
         }
-        
+
     }
 }
