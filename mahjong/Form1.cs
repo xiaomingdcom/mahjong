@@ -22,7 +22,6 @@ namespace mahjong
         CAI left_ai = new CAI(4);
 
         protected bool God_perspective = true;//上帝视角
-
         protected string table_realize;
         protected string AI_want_realize;
 
@@ -66,6 +65,7 @@ namespace mahjong
         protected bool oppositeAIPlayer_gameover = false;
         protected bool leftAIPlayer_gameover = false;
         protected int intgameover = 0;//gameover=3时游戏结束，三个人胡了
+        protected int all_haveplayer_card = 0;
 
         protected bool humanPlayerdone = false;
         protected bool rightAIPlayerdone = false;
@@ -97,8 +97,64 @@ namespace mahjong
         #endregion
 
         #region//系统函数
+        protected PictureBox humanPlayer_havePlayedcard_switch(int num)
+        {
+            #region//switch
+            switch (num)
+            {
+                case 1:
+                    return pictureBox_humanPlayer_havePlayedcard1;
+                case 2:
+                    return pictureBox_humanPlayer_havePlayedcard2;
+                case 3:
+                    return pictureBox_humanPlayer_havePlayedcard3;
+                case 4:
+                    return pictureBox_humanPlayer_havePlayedcard4;
+                case 5:
+                    return pictureBox_humanPlayer_havePlayedcard5;
+                case 6:
+                    return pictureBox_humanPlayer_havePlayedcard6;
+                case 7:
+                    return pictureBox_humanPlayer_havePlayedcard7;
+                case 8:
+                    return pictureBox_humanPlayer_havePlayedcard8;
+                case 9:
+                    return pictureBox_humanPlayer_havePlayedcard9;
+                case 10:
+                    return pictureBox_humanPlayer_havePlayedcard10;
+                case 11:
+                    return pictureBox_humanPlayer_havePlayedcard11;
+                case 12:
+                    return pictureBox_humanPlayer_havePlayedcard12;
+                case 13:
+                    return pictureBox_humanPlayer_havePlayedcard13;
+                case 14:
+                    return pictureBox_humanPlayer_havePlayedcard14;
+                case 15:
+                    return pictureBox_humanPlayer_havePlayedcard15;
+                case 16:
+                    return pictureBox_humanPlayer_havePlayedcard16;
+                case 17:
+                    return pictureBox_humanPlayer_havePlayedcard17;
+                case 18:
+                    return pictureBox_humanPlayer_havePlayedcard18;
+                case 19:
+                    return pictureBox_humanPlayer_havePlayedcard19;
+                case 20:
+                    return pictureBox_humanPlayer_havePlayedcard20;
+                case 21:
+                    return pictureBox_humanPlayer_havePlayedcard21;
+                case 22:
+                    return pictureBox_humanPlayer_havePlayedcard22;
+                case 23:
+                    return pictureBox_humanPlayer_havePlayedcard23;
+                default:
+                    return pictureBox_humanPlayer_havePlayedcard24;
+            }
+            #endregion
+        }
 
-        protected PictureBox humanPlayer_card_switch(int num)//超过14有错
+        protected PictureBox humanPlayer_card_switch(int num)
         {
             #region//switch
             switch (num)
@@ -135,46 +191,7 @@ namespace mahjong
             #endregion
         }
 
-        protected PictureBox humanPlayer_havePlayedcard_switch(int num)
-        {
-            #region//switch
-            switch (num)
-            {
-                case 1:
-                    return pictureBox_humanPlayer_havePlayedcard1;
-                case 2:
-                    return pictureBox_humanPlayer_havePlayedcard2;
-                case 3:
-                    return pictureBox_humanPlayer_havePlayedcard3;
-                case 4:
-                    return pictureBox_humanPlayer_havePlayedcard4;
-                case 5:
-                    return pictureBox_humanPlayer_havePlayedcard5;
-                case 6:
-                    return pictureBox_humanPlayer_havePlayedcard6;
-                case 7:
-                    return pictureBox_humanPlayer_havePlayedcard7;
-                case 8:
-                    return pictureBox_humanPlayer_havePlayedcard8;
-                case 9:
-                    return pictureBox_humanPlayer_havePlayedcard9;
-                case 10:
-                    return pictureBox_humanPlayer_havePlayedcard10;
-                case 11:
-                    return pictureBox_humanPlayer_havePlayedcard11;
-                case 12:
-                    return pictureBox_humanPlayer_havePlayedcard12;
-                case 13:
-                    return pictureBox_humanPlayer_havePlayedcard13;
-                case 14:
-                    return pictureBox_humanPlayer_havePlayedcard14;
-                default:
-                    return pictureBox_human_move;
-            }
-            #endregion
-        }
-
-        protected PictureBox rightAIPlayer_havePlayedcard_switch(int num)//超过14有错
+        protected PictureBox rightAIPlayer_havePlayedcard_switch(int num)//超过24逗显示在24里面
         {
             #region//switch
             switch (num)
@@ -205,8 +222,28 @@ namespace mahjong
                     return pictureBox_rightAIPlayer_havePlayedcard12;
                 case 13:
                     return pictureBox_rightAIPlayer_havePlayedcard13;
-                default:
+                case 14:
                     return pictureBox_rightAIPlayer_havePlayedcard14;
+                case 15:
+                    return pictureBox_rightAIPlayer_havePlayedcard15;
+                case 16:
+                    return pictureBox_rightAIPlayer_havePlayedcard16;
+                case 17:
+                    return pictureBox_rightAIPlayer_havePlayedcard17;
+                case 18:
+                    return pictureBox_rightAIPlayer_havePlayedcard18;
+                case 19:
+                    return pictureBox_rightAIPlayer_havePlayedcard19;
+                case 20:
+                    return pictureBox_rightAIPlayer_havePlayedcard20;
+                case 21:
+                    return pictureBox_rightAIPlayer_havePlayedcard21;
+                case 22:
+                    return pictureBox_rightAIPlayer_havePlayedcard22;
+                case 23:
+                    return pictureBox_rightAIPlayer_havePlayedcard23;
+                default:
+                    return pictureBox_rightAIPlayer_havePlayedcard24;
             }
             #endregion
         }
@@ -246,7 +283,7 @@ namespace mahjong
             }
         }
 
-        protected PictureBox oppositeAIPlayer_havePlayedcard_switch(int num)//超过14有错
+        protected PictureBox oppositeAIPlayer_havePlayedcard_switch(int num)
         {
             #region//switch
             switch (num)
@@ -277,8 +314,28 @@ namespace mahjong
                     return pictureBox_oppositeAIPlayer_havePlayedcard12;
                 case 13:
                     return pictureBox_oppositeAIPlayer_havePlayedcard13;
-                default:
+                case 14:
                     return pictureBox_oppositeAIPlayer_havePlayedcard14;
+                case 15:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard15;
+                case 16:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard16;
+                case 17:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard17;
+                case 18:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard18;
+                case 19:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard19;
+                case 20:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard20;
+                case 21:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard21;
+                case 22:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard22;
+                case 23:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard23;
+                default:
+                    return pictureBox_oppositeAIPlayer_havePlayedcard24;
             }
             #endregion
         }
@@ -318,7 +375,7 @@ namespace mahjong
             }
         }
 
-        protected PictureBox leftAIPlayer_havePlayedcard_switch(int num)//超过14有错
+        protected PictureBox leftAIPlayer_havePlayedcard_switch(int num)
         {
             #region//switch
             switch (num)
@@ -349,8 +406,28 @@ namespace mahjong
                     return pictureBox_leftAIPlayer_havePlayedcard12;
                 case 13:
                     return pictureBox_leftAIPlayer_havePlayedcard13;
-                default:
+                case 14:
                     return pictureBox_leftAIPlayer_havePlayedcard14;
+                case 15:
+                    return pictureBox_leftAIPlayer_havePlayedcard15;
+                case 16:
+                    return pictureBox_leftAIPlayer_havePlayedcard16;
+                case 17:
+                    return pictureBox_leftAIPlayer_havePlayedcard17;
+                case 18:
+                    return pictureBox_leftAIPlayer_havePlayedcard18;
+                case 19:
+                    return pictureBox_leftAIPlayer_havePlayedcard19;
+                case 20:
+                    return pictureBox_leftAIPlayer_havePlayedcard20;
+                case 21:
+                    return pictureBox_leftAIPlayer_havePlayedcard21;
+                case 22:
+                    return pictureBox_leftAIPlayer_havePlayedcard22;
+                case 23:
+                    return pictureBox_leftAIPlayer_havePlayedcard23;
+                default:
+                    return pictureBox_leftAIPlayer_havePlayedcard24;
             }
             #endregion
         }
@@ -464,6 +541,7 @@ namespace mahjong
             oppositeAIPlayer_show();
             leftAIPlayer_show();
             my_show();
+            all_haveplayer_card = 52;
         }
 
         protected void gameover()//游戏结束要执行的操作
@@ -472,6 +550,7 @@ namespace mahjong
             rightAIPlayer_cancel = true;
             oppositeAIPlayer_cancel = true;
             leftAIPlayer_cancel = true;
+            card_haveused = true;
             //table.Dispose();
 
             if (humanPlayer_gameover)
@@ -659,6 +738,7 @@ namespace mahjong
             current_card = "blank";
 
             //出过得牌数置零
+            all_haveplayer_card = 0;
             humanPlayer_havePlayedcard_num = 0;
             leftAIPlayer_havePlayedcard_num = 0;
             rightAIPlayer_havePlayedcard_num = 0;
@@ -918,10 +998,18 @@ namespace mahjong
         #region//human
         protected void human_mopai()//摸牌程序
         {
-            current_card = table.Deal(1).Substring(1, 2);
-            table_realize = table.Realize();
-            pictureBox_humanPlayer_card14.Name = current_card;
-            pictureBox_humanPlayer_card14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+            if (all_haveplayer_card < 108)
+            {
+                all_haveplayer_card++;
+                current_card = table.Deal(1).Substring(1, 2);
+                table_realize = table.Realize();
+                pictureBox_humanPlayer_card14.Name = current_card;
+                pictureBox_humanPlayer_card14.Image = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+            }
+            else
+            {
+                gameover();
+            }
         }
 
         protected void humanPlayer_next()
@@ -1164,12 +1252,20 @@ namespace mahjong
         #region//right
         protected void rightAIPlayer_mopai()
         {
-            current_card = table.Deal(2).Substring(1, 2);
-            table_realize = table.Realize();//摸的牌
-            pictureBox_rightAIPlayer_card14.Name = current_card;
-            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-            picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
-            pictureBox_rightAIPlayer_card14.Image = picture_ro;
+            if (all_haveplayer_card < 108)
+            {
+                all_haveplayer_card++; 
+                current_card = table.Deal(2).Substring(1, 2);
+                table_realize = table.Realize();//摸的牌
+                pictureBox_rightAIPlayer_card14.Name = current_card;
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
+                pictureBox_rightAIPlayer_card14.Image = picture_ro;
+            }
+            else
+            {
+                gameover();
+            }
         }
 
         protected void rightAIPlayer_chupai()
@@ -1358,12 +1454,20 @@ namespace mahjong
         #region//opposite
         protected void oppositeAIPlayer_mopai()
         {
-            current_card = table.Deal(3).Substring(1, 2);
-            table_realize = table.Realize();
-            pictureBox_oppositeAIPlayer_card14.Name = current_card;
-            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-            picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
-            pictureBox_oppositeAIPlayer_card14.Image = picture_ro;
+            if (all_haveplayer_card < 108)
+            {
+                all_haveplayer_card++;
+                current_card = table.Deal(3).Substring(1, 2);
+                table_realize = table.Realize();
+                pictureBox_oppositeAIPlayer_card14.Name = current_card;
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
+                pictureBox_oppositeAIPlayer_card14.Image = picture_ro;
+            }
+            else
+            {
+                gameover();
+            }
         }
 
         protected void oppositeAIPlayer_chupai()
@@ -1548,12 +1652,20 @@ namespace mahjong
         #region//left
         protected void leftAIPlayer_mopai()
         {
-            current_card = table.Deal(4).Substring(1, 2);
-            table_realize = table.Realize();
-            pictureBox_leftAIPlayer_card14.Name = current_card;
-            Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
-            picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
-            pictureBox_leftAIPlayer_card14.Image = picture_ro;
+            if (all_haveplayer_card < 108)
+            {
+                all_haveplayer_card++;
+                current_card = table.Deal(4).Substring(1, 2);
+                table_realize = table.Realize();
+                pictureBox_leftAIPlayer_card14.Name = current_card;
+                Image picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + current_card + ".jpg");
+                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
+                pictureBox_leftAIPlayer_card14.Image = picture_ro;
+            }
+            else
+            {
+                gameover();
+            }
         }
 
         protected void leftAIPlayer_chupai()
