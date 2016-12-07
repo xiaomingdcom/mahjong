@@ -2303,69 +2303,6 @@ namespace mahjong
         }
         #endregion
 
-        protected void get_background()
-        {
-            #region//背景
-            Image pb = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
-            pictureBox_humanPlayer_card14.Visible = false;
-            pictureBox_human_move.Visible = false;
-            pictureBox_humanPlayer_card1.Image = pb;
-            pictureBox_humanPlayer_card2.Image = pb;
-            pictureBox_humanPlayer_card3.Image = pb;
-            pictureBox_humanPlayer_card4.Image = pb;
-            pictureBox_humanPlayer_card5.Image = pb;
-            pictureBox_humanPlayer_card6.Image = pb;
-            pictureBox_humanPlayer_card7.Image = pb;
-            pictureBox_humanPlayer_card8.Image = pb;
-            pictureBox_humanPlayer_card9.Image = pb;
-            pictureBox_humanPlayer_card10.Image = pb;
-            pictureBox_humanPlayer_card11.Image = pb;
-            pictureBox_humanPlayer_card12.Image = pb;
-            pictureBox_humanPlayer_card13.Image = pb;
-
-            pictureBox_leftAIPlayer_card1.Image = pb;
-            pictureBox_leftAIPlayer_card2.Image = pb;
-            pictureBox_leftAIPlayer_card3.Image = pb;
-            pictureBox_leftAIPlayer_card4.Image = pb;
-            pictureBox_leftAIPlayer_card5.Image = pb;
-            pictureBox_leftAIPlayer_card6.Image = pb;
-            pictureBox_leftAIPlayer_card7.Image = pb;
-            pictureBox_leftAIPlayer_card8.Image = pb;
-            pictureBox_leftAIPlayer_card9.Image = pb;
-            pictureBox_leftAIPlayer_card10.Image = pb;
-            pictureBox_leftAIPlayer_card11.Image = pb;
-            pictureBox_leftAIPlayer_card12.Image = pb;
-            pictureBox_leftAIPlayer_card13.Image = pb;
-
-            pictureBox_rightAIPlayer_card1.Image = pb;
-            pictureBox_rightAIPlayer_card2.Image = pb;
-            pictureBox_rightAIPlayer_card3.Image = pb;
-            pictureBox_rightAIPlayer_card4.Image = pb;
-            pictureBox_rightAIPlayer_card5.Image = pb;
-            pictureBox_rightAIPlayer_card6.Image = pb;
-            pictureBox_rightAIPlayer_card7.Image = pb;
-            pictureBox_rightAIPlayer_card8.Image = pb;
-            pictureBox_rightAIPlayer_card9.Image = pb;
-            pictureBox_rightAIPlayer_card10.Image = pb;
-            pictureBox_rightAIPlayer_card11.Image = pb;
-            pictureBox_rightAIPlayer_card12.Image = pb;
-            pictureBox_rightAIPlayer_card13.Image = pb;
-
-            pictureBox_oppositeAIPlayer_card1.Image = pb;
-            pictureBox_oppositeAIPlayer_card2.Image = pb;
-            pictureBox_oppositeAIPlayer_card3.Image = pb;
-            pictureBox_oppositeAIPlayer_card4.Image = pb;
-            pictureBox_oppositeAIPlayer_card5.Image = pb;
-            pictureBox_oppositeAIPlayer_card6.Image = pb;
-            pictureBox_oppositeAIPlayer_card7.Image = pb;
-            pictureBox_oppositeAIPlayer_card8.Image = pb;
-            pictureBox_oppositeAIPlayer_card9.Image = pb;
-            pictureBox_oppositeAIPlayer_card10.Image = pb;
-            pictureBox_oppositeAIPlayer_card11.Image = pb;
-            pictureBox_oppositeAIPlayer_card12.Image = pb;
-            pictureBox_oppositeAIPlayer_card13.Image = pb;
-            #endregion
-        }
         public Form1()//初始化
         {
             //this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
