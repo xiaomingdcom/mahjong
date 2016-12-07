@@ -150,6 +150,9 @@
             this.game_exit = new System.Windows.Forms.Button();
             this.pictureBox_human_move = new System.Windows.Forms.PictureBox();
             this.pictureBox_humanPlayer_card1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_rightAIPlayer_card14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_oppositeAIPlayer_card14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_leftAIPlayer_card14 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card6)).BeginInit();
@@ -261,11 +264,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_human_move)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_rightAIPlayer_card14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_card14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_leftAIPlayer_card14)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_humanPlayer_card7
             // 
-            this.pictureBox_humanPlayer_card7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card7.Location = new System.Drawing.Point(492, 571);
             this.pictureBox_humanPlayer_card7.Name = "pictureBox_humanPlayer_card7";
             this.pictureBox_humanPlayer_card7.Size = new System.Drawing.Size(70, 120);
@@ -278,7 +286,9 @@
             // 
             // pictureBox_humanPlayer_card8
             // 
-            this.pictureBox_humanPlayer_card8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card8.Location = new System.Drawing.Point(567, 571);
             this.pictureBox_humanPlayer_card8.Name = "pictureBox_humanPlayer_card8";
             this.pictureBox_humanPlayer_card8.Size = new System.Drawing.Size(70, 120);
@@ -291,7 +301,9 @@
             // 
             // pictureBox_humanPlayer_card6
             // 
-            this.pictureBox_humanPlayer_card6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card6.Location = new System.Drawing.Point(416, 571);
             this.pictureBox_humanPlayer_card6.Name = "pictureBox_humanPlayer_card6";
             this.pictureBox_humanPlayer_card6.Size = new System.Drawing.Size(70, 120);
@@ -304,7 +316,9 @@
             // 
             // pictureBox_humanPlayer_card5
             // 
-            this.pictureBox_humanPlayer_card5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card5.Location = new System.Drawing.Point(340, 571);
             this.pictureBox_humanPlayer_card5.Name = "pictureBox_humanPlayer_card5";
             this.pictureBox_humanPlayer_card5.Size = new System.Drawing.Size(70, 120);
@@ -317,7 +331,9 @@
             // 
             // pictureBox_humanPlayer_card13
             // 
-            this.pictureBox_humanPlayer_card13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card13.Location = new System.Drawing.Point(947, 571);
             this.pictureBox_humanPlayer_card13.Name = "pictureBox_humanPlayer_card13";
             this.pictureBox_humanPlayer_card13.Size = new System.Drawing.Size(70, 120);
@@ -330,7 +346,9 @@
             // 
             // pictureBox_humanPlayer_card14
             // 
-            this.pictureBox_humanPlayer_card14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card14.Location = new System.Drawing.Point(1024, 571);
             this.pictureBox_humanPlayer_card14.Name = "pictureBox_humanPlayer_card14";
             this.pictureBox_humanPlayer_card14.Size = new System.Drawing.Size(70, 120);
@@ -343,7 +361,9 @@
             // 
             // pictureBox_humanPlayer_card12
             // 
-            this.pictureBox_humanPlayer_card12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card12.Location = new System.Drawing.Point(871, 571);
             this.pictureBox_humanPlayer_card12.Name = "pictureBox_humanPlayer_card12";
             this.pictureBox_humanPlayer_card12.Size = new System.Drawing.Size(70, 120);
@@ -356,7 +376,9 @@
             // 
             // pictureBox_humanPlayer_card11
             // 
-            this.pictureBox_humanPlayer_card11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card11.Location = new System.Drawing.Point(795, 571);
             this.pictureBox_humanPlayer_card11.Name = "pictureBox_humanPlayer_card11";
             this.pictureBox_humanPlayer_card11.Size = new System.Drawing.Size(70, 120);
@@ -369,7 +391,9 @@
             // 
             // pictureBox_humanPlayer_card9
             // 
-            this.pictureBox_humanPlayer_card9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card9.Location = new System.Drawing.Point(643, 571);
             this.pictureBox_humanPlayer_card9.Name = "pictureBox_humanPlayer_card9";
             this.pictureBox_humanPlayer_card9.Size = new System.Drawing.Size(70, 120);
@@ -382,7 +406,9 @@
             // 
             // pictureBox_humanPlayer_card2
             // 
-            this.pictureBox_humanPlayer_card2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card2.Location = new System.Drawing.Point(112, 571);
             this.pictureBox_humanPlayer_card2.Name = "pictureBox_humanPlayer_card2";
             this.pictureBox_humanPlayer_card2.Size = new System.Drawing.Size(70, 120);
@@ -395,7 +421,9 @@
             // 
             // pictureBox_humanPlayer_card3
             // 
-            this.pictureBox_humanPlayer_card3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card3.Location = new System.Drawing.Point(188, 571);
             this.pictureBox_humanPlayer_card3.Name = "pictureBox_humanPlayer_card3";
             this.pictureBox_humanPlayer_card3.Size = new System.Drawing.Size(70, 120);
@@ -408,7 +436,9 @@
             // 
             // pictureBox_humanPlayer_card4
             // 
-            this.pictureBox_humanPlayer_card4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card4.Location = new System.Drawing.Point(264, 571);
             this.pictureBox_humanPlayer_card4.Name = "pictureBox_humanPlayer_card4";
             this.pictureBox_humanPlayer_card4.Size = new System.Drawing.Size(70, 120);
@@ -421,7 +451,9 @@
             // 
             // pictureBox_humanPlayer_card10
             // 
-            this.pictureBox_humanPlayer_card10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card10.Location = new System.Drawing.Point(719, 571);
             this.pictureBox_humanPlayer_card10.Name = "pictureBox_humanPlayer_card10";
             this.pictureBox_humanPlayer_card10.Size = new System.Drawing.Size(70, 120);
@@ -440,7 +472,6 @@
             this.pictureBox_leftAIPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card13.TabIndex = 15;
             this.pictureBox_leftAIPlayer_card13.TabStop = false;
-            this.pictureBox_leftAIPlayer_card13.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card12
             // 
@@ -450,7 +481,6 @@
             this.pictureBox_leftAIPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card12.TabIndex = 16;
             this.pictureBox_leftAIPlayer_card12.TabStop = false;
-            this.pictureBox_leftAIPlayer_card12.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card11
             // 
@@ -460,7 +490,6 @@
             this.pictureBox_leftAIPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card11.TabIndex = 17;
             this.pictureBox_leftAIPlayer_card11.TabStop = false;
-            this.pictureBox_leftAIPlayer_card11.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card10
             // 
@@ -470,7 +499,6 @@
             this.pictureBox_leftAIPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card10.TabIndex = 18;
             this.pictureBox_leftAIPlayer_card10.TabStop = false;
-            this.pictureBox_leftAIPlayer_card10.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card9
             // 
@@ -480,7 +508,6 @@
             this.pictureBox_leftAIPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card9.TabIndex = 19;
             this.pictureBox_leftAIPlayer_card9.TabStop = false;
-            this.pictureBox_leftAIPlayer_card9.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card8
             // 
@@ -490,7 +517,6 @@
             this.pictureBox_leftAIPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card8.TabIndex = 20;
             this.pictureBox_leftAIPlayer_card8.TabStop = false;
-            this.pictureBox_leftAIPlayer_card8.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card7
             // 
@@ -500,7 +526,6 @@
             this.pictureBox_leftAIPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card7.TabIndex = 21;
             this.pictureBox_leftAIPlayer_card7.TabStop = false;
-            this.pictureBox_leftAIPlayer_card7.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card6
             // 
@@ -510,7 +535,6 @@
             this.pictureBox_leftAIPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card6.TabIndex = 22;
             this.pictureBox_leftAIPlayer_card6.TabStop = false;
-            this.pictureBox_leftAIPlayer_card6.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card3
             // 
@@ -520,7 +544,6 @@
             this.pictureBox_leftAIPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card3.TabIndex = 24;
             this.pictureBox_leftAIPlayer_card3.TabStop = false;
-            this.pictureBox_leftAIPlayer_card3.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card5
             // 
@@ -530,7 +553,6 @@
             this.pictureBox_leftAIPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card5.TabIndex = 25;
             this.pictureBox_leftAIPlayer_card5.TabStop = false;
-            this.pictureBox_leftAIPlayer_card5.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card4
             // 
@@ -540,7 +562,6 @@
             this.pictureBox_leftAIPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card4.TabIndex = 26;
             this.pictureBox_leftAIPlayer_card4.TabStop = false;
-            this.pictureBox_leftAIPlayer_card4.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card2
             // 
@@ -550,7 +571,6 @@
             this.pictureBox_leftAIPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card2.TabIndex = 27;
             this.pictureBox_leftAIPlayer_card2.TabStop = false;
-            this.pictureBox_leftAIPlayer_card2.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card2
             // 
@@ -560,7 +580,6 @@
             this.pictureBox_rightAIPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card2.TabIndex = 39;
             this.pictureBox_rightAIPlayer_card2.TabStop = false;
-            this.pictureBox_rightAIPlayer_card2.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card4
             // 
@@ -570,7 +589,6 @@
             this.pictureBox_rightAIPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card4.TabIndex = 38;
             this.pictureBox_rightAIPlayer_card4.TabStop = false;
-            this.pictureBox_rightAIPlayer_card4.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card5
             // 
@@ -580,7 +598,6 @@
             this.pictureBox_rightAIPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card5.TabIndex = 37;
             this.pictureBox_rightAIPlayer_card5.TabStop = false;
-            this.pictureBox_rightAIPlayer_card5.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card3
             // 
@@ -590,7 +607,6 @@
             this.pictureBox_rightAIPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card3.TabIndex = 36;
             this.pictureBox_rightAIPlayer_card3.TabStop = false;
-            this.pictureBox_rightAIPlayer_card3.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card6
             // 
@@ -600,7 +616,6 @@
             this.pictureBox_rightAIPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card6.TabIndex = 35;
             this.pictureBox_rightAIPlayer_card6.TabStop = false;
-            this.pictureBox_rightAIPlayer_card6.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card7
             // 
@@ -610,7 +625,6 @@
             this.pictureBox_rightAIPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card7.TabIndex = 34;
             this.pictureBox_rightAIPlayer_card7.TabStop = false;
-            this.pictureBox_rightAIPlayer_card7.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card8
             // 
@@ -620,7 +634,6 @@
             this.pictureBox_rightAIPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card8.TabIndex = 33;
             this.pictureBox_rightAIPlayer_card8.TabStop = false;
-            this.pictureBox_rightAIPlayer_card8.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card9
             // 
@@ -630,7 +643,6 @@
             this.pictureBox_rightAIPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card9.TabIndex = 32;
             this.pictureBox_rightAIPlayer_card9.TabStop = false;
-            this.pictureBox_rightAIPlayer_card9.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card10
             // 
@@ -640,7 +652,6 @@
             this.pictureBox_rightAIPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card10.TabIndex = 31;
             this.pictureBox_rightAIPlayer_card10.TabStop = false;
-            this.pictureBox_rightAIPlayer_card10.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card11
             // 
@@ -650,7 +661,6 @@
             this.pictureBox_rightAIPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card11.TabIndex = 30;
             this.pictureBox_rightAIPlayer_card11.TabStop = false;
-            this.pictureBox_rightAIPlayer_card11.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card12
             // 
@@ -660,7 +670,6 @@
             this.pictureBox_rightAIPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card12.TabIndex = 29;
             this.pictureBox_rightAIPlayer_card12.TabStop = false;
-            this.pictureBox_rightAIPlayer_card12.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card13
             // 
@@ -670,7 +679,6 @@
             this.pictureBox_rightAIPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card13.TabIndex = 28;
             this.pictureBox_rightAIPlayer_card13.TabStop = false;
-            this.pictureBox_rightAIPlayer_card13.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card1
             // 
@@ -681,7 +689,6 @@
             this.pictureBox_oppositeAIPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card1.TabIndex = 40;
             this.pictureBox_oppositeAIPlayer_card1.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card1.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card2
             // 
@@ -691,7 +698,6 @@
             this.pictureBox_oppositeAIPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card2.TabIndex = 41;
             this.pictureBox_oppositeAIPlayer_card2.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card2.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card3
             // 
@@ -701,7 +707,6 @@
             this.pictureBox_oppositeAIPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card3.TabIndex = 42;
             this.pictureBox_oppositeAIPlayer_card3.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card3.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card4
             // 
@@ -711,7 +716,6 @@
             this.pictureBox_oppositeAIPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card4.TabIndex = 43;
             this.pictureBox_oppositeAIPlayer_card4.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card4.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card11
             // 
@@ -721,7 +725,6 @@
             this.pictureBox_oppositeAIPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card11.TabIndex = 44;
             this.pictureBox_oppositeAIPlayer_card11.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card11.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card5
             // 
@@ -731,7 +734,6 @@
             this.pictureBox_oppositeAIPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card5.TabIndex = 45;
             this.pictureBox_oppositeAIPlayer_card5.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card5.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card6
             // 
@@ -741,7 +743,6 @@
             this.pictureBox_oppositeAIPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card6.TabIndex = 46;
             this.pictureBox_oppositeAIPlayer_card6.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card6.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card7
             // 
@@ -751,7 +752,6 @@
             this.pictureBox_oppositeAIPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card7.TabIndex = 47;
             this.pictureBox_oppositeAIPlayer_card7.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card7.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card8
             // 
@@ -761,7 +761,6 @@
             this.pictureBox_oppositeAIPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card8.TabIndex = 48;
             this.pictureBox_oppositeAIPlayer_card8.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card8.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card9
             // 
@@ -771,7 +770,6 @@
             this.pictureBox_oppositeAIPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card9.TabIndex = 49;
             this.pictureBox_oppositeAIPlayer_card9.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card9.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card12
             // 
@@ -781,7 +779,6 @@
             this.pictureBox_oppositeAIPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card12.TabIndex = 50;
             this.pictureBox_oppositeAIPlayer_card12.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card12.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card13
             // 
@@ -791,7 +788,6 @@
             this.pictureBox_oppositeAIPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card13.TabIndex = 51;
             this.pictureBox_oppositeAIPlayer_card13.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card13.Visible = false;
             // 
             // pictureBox_oppositeAIPlayer_card10
             // 
@@ -801,7 +797,6 @@
             this.pictureBox_oppositeAIPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_oppositeAIPlayer_card10.TabIndex = 52;
             this.pictureBox_oppositeAIPlayer_card10.TabStop = false;
-            this.pictureBox_oppositeAIPlayer_card10.Visible = false;
             // 
             // pictureBox_leftAIPlayer_card1
             // 
@@ -812,7 +807,6 @@
             this.pictureBox_leftAIPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_leftAIPlayer_card1.TabIndex = 53;
             this.pictureBox_leftAIPlayer_card1.TabStop = false;
-            this.pictureBox_leftAIPlayer_card1.Visible = false;
             // 
             // pictureBox_rightAIPlayer_card1
             // 
@@ -822,7 +816,6 @@
             this.pictureBox_rightAIPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_rightAIPlayer_card1.TabIndex = 54;
             this.pictureBox_rightAIPlayer_card1.TabStop = false;
-            this.pictureBox_rightAIPlayer_card1.Visible = false;
             // 
             // pictureBox_humanPlayer_havePlayedcard2
             // 
@@ -1499,6 +1492,7 @@
             this.mediaplayer_backgroundmusic.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaplayer_backgroundmusic.OcxState")));
             this.mediaplayer_backgroundmusic.Size = new System.Drawing.Size(36, 42);
             this.mediaplayer_backgroundmusic.TabIndex = 117;
+            this.mediaplayer_backgroundmusic.Visible = false;
             // 
             // game_exit
             // 
@@ -1512,7 +1506,9 @@
             // 
             // pictureBox_human_move
             // 
-            this.pictureBox_human_move.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_human_move.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_human_move.Location = new System.Drawing.Point(1100, 571);
             this.pictureBox_human_move.Name = "pictureBox_human_move";
             this.pictureBox_human_move.Size = new System.Drawing.Size(70, 120);
@@ -1522,7 +1518,9 @@
             // 
             // pictureBox_humanPlayer_card1
             // 
-            this.pictureBox_humanPlayer_card1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox_humanPlayer_card1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_humanPlayer_card1.Location = new System.Drawing.Point(37, 571);
             this.pictureBox_humanPlayer_card1.Name = "pictureBox_humanPlayer_card1";
             this.pictureBox_humanPlayer_card1.Size = new System.Drawing.Size(70, 120);
@@ -1533,13 +1531,42 @@
             this.pictureBox_humanPlayer_card1.MouseEnter += new System.EventHandler(this.human_picturebox_MouseEnter);
             this.pictureBox_humanPlayer_card1.MouseLeave += new System.EventHandler(this.human_picturebox_MouseLeave);
             // 
+            // pictureBox_rightAIPlayer_card14
+            // 
+            this.pictureBox_rightAIPlayer_card14.Location = new System.Drawing.Point(1066, 515);
+            this.pictureBox_rightAIPlayer_card14.Name = "pictureBox_rightAIPlayer_card14";
+            this.pictureBox_rightAIPlayer_card14.Size = new System.Drawing.Size(50, 30);
+            this.pictureBox_rightAIPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_rightAIPlayer_card14.TabIndex = 123;
+            this.pictureBox_rightAIPlayer_card14.TabStop = false;
+            // 
+            // pictureBox_oppositeAIPlayer_card14
+            // 
+            this.pictureBox_oppositeAIPlayer_card14.Location = new System.Drawing.Point(810, 47);
+            this.pictureBox_oppositeAIPlayer_card14.Name = "pictureBox_oppositeAIPlayer_card14";
+            this.pictureBox_oppositeAIPlayer_card14.Size = new System.Drawing.Size(30, 50);
+            this.pictureBox_oppositeAIPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_oppositeAIPlayer_card14.TabIndex = 125;
+            this.pictureBox_oppositeAIPlayer_card14.TabStop = false;
+            // 
+            // pictureBox_leftAIPlayer_card14
+            // 
+            this.pictureBox_leftAIPlayer_card14.Location = new System.Drawing.Point(57, 515);
+            this.pictureBox_leftAIPlayer_card14.Name = "pictureBox_leftAIPlayer_card14";
+            this.pictureBox_leftAIPlayer_card14.Size = new System.Drawing.Size(50, 30);
+            this.pictureBox_leftAIPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_leftAIPlayer_card14.TabIndex = 127;
+            this.pictureBox_leftAIPlayer_card14.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 703);
+            this.Controls.Add(this.pictureBox_leftAIPlayer_card14);
+            this.Controls.Add(this.pictureBox_oppositeAIPlayer_card14);
+            this.Controls.Add(this.pictureBox_rightAIPlayer_card14);
             this.Controls.Add(this.pictureBox_humanPlayer_card1);
             this.Controls.Add(this.pictureBox_human_move);
             this.Controls.Add(this.game_exit);
@@ -1778,6 +1805,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.mediaplayer_backgroundmusic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_human_move)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_humanPlayer_card1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_rightAIPlayer_card14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oppositeAIPlayer_card14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_leftAIPlayer_card14)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1904,6 +1934,9 @@
         private System.Windows.Forms.Button game_exit;
         private System.Windows.Forms.PictureBox pictureBox_human_move;
         private System.Windows.Forms.PictureBox pictureBox_humanPlayer_card1;
+        private System.Windows.Forms.PictureBox pictureBox_rightAIPlayer_card14;
+        private System.Windows.Forms.PictureBox pictureBox_oppositeAIPlayer_card14;
+        private System.Windows.Forms.PictureBox pictureBox_leftAIPlayer_card14;
     }
 }
 
