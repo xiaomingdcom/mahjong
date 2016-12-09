@@ -136,6 +136,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="majiangAI.cpp" />
+    <Content Include="majiangAI.h" />
+    <Content Include="ManageClass.cpp" />
+    <Content Include="ManageClass.h" />
+    <Content Include="resource.h" />
+    <Content Include="Stdafx.cpp" />
+    <Content Include="Stdafx.h" />
+    <Content Include="Table.cpp" />
+    <Content Include="Table.h" />
     <Content Include="tubiao.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
