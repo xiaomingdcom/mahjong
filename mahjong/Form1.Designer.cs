@@ -616,7 +616,7 @@
             // 
             // pictureBox_rightAIPlayer_card2
             // 
-            this.pictureBox_rightAIPlayer_card2.Location = new System.Drawing.Point(1190, 85);
+            this.pictureBox_rightAIPlayer_card2.Location = new System.Drawing.Point(1190, 481);
             this.pictureBox_rightAIPlayer_card2.Name = "pictureBox_rightAIPlayer_card2";
             this.pictureBox_rightAIPlayer_card2.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -625,7 +625,7 @@
             // 
             // pictureBox_rightAIPlayer_card4
             // 
-            this.pictureBox_rightAIPlayer_card4.Location = new System.Drawing.Point(1190, 157);
+            this.pictureBox_rightAIPlayer_card4.Location = new System.Drawing.Point(1190, 409);
             this.pictureBox_rightAIPlayer_card4.Name = "pictureBox_rightAIPlayer_card4";
             this.pictureBox_rightAIPlayer_card4.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -634,7 +634,7 @@
             // 
             // pictureBox_rightAIPlayer_card5
             // 
-            this.pictureBox_rightAIPlayer_card5.Location = new System.Drawing.Point(1190, 193);
+            this.pictureBox_rightAIPlayer_card5.Location = new System.Drawing.Point(1190, 373);
             this.pictureBox_rightAIPlayer_card5.Name = "pictureBox_rightAIPlayer_card5";
             this.pictureBox_rightAIPlayer_card5.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -643,7 +643,7 @@
             // 
             // pictureBox_rightAIPlayer_card3
             // 
-            this.pictureBox_rightAIPlayer_card3.Location = new System.Drawing.Point(1190, 121);
+            this.pictureBox_rightAIPlayer_card3.Location = new System.Drawing.Point(1190, 445);
             this.pictureBox_rightAIPlayer_card3.Name = "pictureBox_rightAIPlayer_card3";
             this.pictureBox_rightAIPlayer_card3.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -652,7 +652,7 @@
             // 
             // pictureBox_rightAIPlayer_card6
             // 
-            this.pictureBox_rightAIPlayer_card6.Location = new System.Drawing.Point(1190, 229);
+            this.pictureBox_rightAIPlayer_card6.Location = new System.Drawing.Point(1190, 337);
             this.pictureBox_rightAIPlayer_card6.Name = "pictureBox_rightAIPlayer_card6";
             this.pictureBox_rightAIPlayer_card6.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -661,7 +661,7 @@
             // 
             // pictureBox_rightAIPlayer_card7
             // 
-            this.pictureBox_rightAIPlayer_card7.Location = new System.Drawing.Point(1190, 265);
+            this.pictureBox_rightAIPlayer_card7.Location = new System.Drawing.Point(1190, 301);
             this.pictureBox_rightAIPlayer_card7.Name = "pictureBox_rightAIPlayer_card7";
             this.pictureBox_rightAIPlayer_card7.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -670,7 +670,7 @@
             // 
             // pictureBox_rightAIPlayer_card8
             // 
-            this.pictureBox_rightAIPlayer_card8.Location = new System.Drawing.Point(1190, 301);
+            this.pictureBox_rightAIPlayer_card8.Location = new System.Drawing.Point(1190, 265);
             this.pictureBox_rightAIPlayer_card8.Name = "pictureBox_rightAIPlayer_card8";
             this.pictureBox_rightAIPlayer_card8.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -679,7 +679,7 @@
             // 
             // pictureBox_rightAIPlayer_card9
             // 
-            this.pictureBox_rightAIPlayer_card9.Location = new System.Drawing.Point(1190, 337);
+            this.pictureBox_rightAIPlayer_card9.Location = new System.Drawing.Point(1190, 229);
             this.pictureBox_rightAIPlayer_card9.Name = "pictureBox_rightAIPlayer_card9";
             this.pictureBox_rightAIPlayer_card9.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -688,7 +688,7 @@
             // 
             // pictureBox_rightAIPlayer_card10
             // 
-            this.pictureBox_rightAIPlayer_card10.Location = new System.Drawing.Point(1190, 373);
+            this.pictureBox_rightAIPlayer_card10.Location = new System.Drawing.Point(1190, 193);
             this.pictureBox_rightAIPlayer_card10.Name = "pictureBox_rightAIPlayer_card10";
             this.pictureBox_rightAIPlayer_card10.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -697,7 +697,7 @@
             // 
             // pictureBox_rightAIPlayer_card11
             // 
-            this.pictureBox_rightAIPlayer_card11.Location = new System.Drawing.Point(1190, 409);
+            this.pictureBox_rightAIPlayer_card11.Location = new System.Drawing.Point(1190, 157);
             this.pictureBox_rightAIPlayer_card11.Name = "pictureBox_rightAIPlayer_card11";
             this.pictureBox_rightAIPlayer_card11.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -706,7 +706,7 @@
             // 
             // pictureBox_rightAIPlayer_card12
             // 
-            this.pictureBox_rightAIPlayer_card12.Location = new System.Drawing.Point(1190, 445);
+            this.pictureBox_rightAIPlayer_card12.Location = new System.Drawing.Point(1190, 121);
             this.pictureBox_rightAIPlayer_card12.Name = "pictureBox_rightAIPlayer_card12";
             this.pictureBox_rightAIPlayer_card12.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -715,7 +715,7 @@
             // 
             // pictureBox_rightAIPlayer_card13
             // 
-            this.pictureBox_rightAIPlayer_card13.Location = new System.Drawing.Point(1190, 481);
+            this.pictureBox_rightAIPlayer_card13.Location = new System.Drawing.Point(1190, 85);
             this.pictureBox_rightAIPlayer_card13.Name = "pictureBox_rightAIPlayer_card13";
             this.pictureBox_rightAIPlayer_card13.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -725,7 +725,7 @@
             // pictureBox_oppositeAIPlayer_card1
             // 
             this.pictureBox_oppositeAIPlayer_card1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox_oppositeAIPlayer_card1.Location = new System.Drawing.Point(409, 48);
+            this.pictureBox_oppositeAIPlayer_card1.Location = new System.Drawing.Point(877, 47);
             this.pictureBox_oppositeAIPlayer_card1.Name = "pictureBox_oppositeAIPlayer_card1";
             this.pictureBox_oppositeAIPlayer_card1.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -734,7 +734,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card2
             // 
-            this.pictureBox_oppositeAIPlayer_card2.Location = new System.Drawing.Point(445, 48);
+            this.pictureBox_oppositeAIPlayer_card2.Location = new System.Drawing.Point(841, 47);
             this.pictureBox_oppositeAIPlayer_card2.Name = "pictureBox_oppositeAIPlayer_card2";
             this.pictureBox_oppositeAIPlayer_card2.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -743,7 +743,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card3
             // 
-            this.pictureBox_oppositeAIPlayer_card3.Location = new System.Drawing.Point(481, 48);
+            this.pictureBox_oppositeAIPlayer_card3.Location = new System.Drawing.Point(805, 47);
             this.pictureBox_oppositeAIPlayer_card3.Name = "pictureBox_oppositeAIPlayer_card3";
             this.pictureBox_oppositeAIPlayer_card3.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -752,7 +752,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card4
             // 
-            this.pictureBox_oppositeAIPlayer_card4.Location = new System.Drawing.Point(517, 48);
+            this.pictureBox_oppositeAIPlayer_card4.Location = new System.Drawing.Point(769, 48);
             this.pictureBox_oppositeAIPlayer_card4.Name = "pictureBox_oppositeAIPlayer_card4";
             this.pictureBox_oppositeAIPlayer_card4.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -761,7 +761,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card11
             // 
-            this.pictureBox_oppositeAIPlayer_card11.Location = new System.Drawing.Point(769, 48);
+            this.pictureBox_oppositeAIPlayer_card11.Location = new System.Drawing.Point(517, 47);
             this.pictureBox_oppositeAIPlayer_card11.Name = "pictureBox_oppositeAIPlayer_card11";
             this.pictureBox_oppositeAIPlayer_card11.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -770,7 +770,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card5
             // 
-            this.pictureBox_oppositeAIPlayer_card5.Location = new System.Drawing.Point(553, 48);
+            this.pictureBox_oppositeAIPlayer_card5.Location = new System.Drawing.Point(733, 47);
             this.pictureBox_oppositeAIPlayer_card5.Name = "pictureBox_oppositeAIPlayer_card5";
             this.pictureBox_oppositeAIPlayer_card5.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -779,7 +779,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card6
             // 
-            this.pictureBox_oppositeAIPlayer_card6.Location = new System.Drawing.Point(589, 48);
+            this.pictureBox_oppositeAIPlayer_card6.Location = new System.Drawing.Point(697, 47);
             this.pictureBox_oppositeAIPlayer_card6.Name = "pictureBox_oppositeAIPlayer_card6";
             this.pictureBox_oppositeAIPlayer_card6.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -788,7 +788,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card7
             // 
-            this.pictureBox_oppositeAIPlayer_card7.Location = new System.Drawing.Point(625, 48);
+            this.pictureBox_oppositeAIPlayer_card7.Location = new System.Drawing.Point(661, 47);
             this.pictureBox_oppositeAIPlayer_card7.Name = "pictureBox_oppositeAIPlayer_card7";
             this.pictureBox_oppositeAIPlayer_card7.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -797,7 +797,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card8
             // 
-            this.pictureBox_oppositeAIPlayer_card8.Location = new System.Drawing.Point(661, 48);
+            this.pictureBox_oppositeAIPlayer_card8.Location = new System.Drawing.Point(625, 47);
             this.pictureBox_oppositeAIPlayer_card8.Name = "pictureBox_oppositeAIPlayer_card8";
             this.pictureBox_oppositeAIPlayer_card8.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -806,7 +806,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card9
             // 
-            this.pictureBox_oppositeAIPlayer_card9.Location = new System.Drawing.Point(697, 48);
+            this.pictureBox_oppositeAIPlayer_card9.Location = new System.Drawing.Point(589, 47);
             this.pictureBox_oppositeAIPlayer_card9.Name = "pictureBox_oppositeAIPlayer_card9";
             this.pictureBox_oppositeAIPlayer_card9.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -815,7 +815,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card12
             // 
-            this.pictureBox_oppositeAIPlayer_card12.Location = new System.Drawing.Point(805, 48);
+            this.pictureBox_oppositeAIPlayer_card12.Location = new System.Drawing.Point(481, 47);
             this.pictureBox_oppositeAIPlayer_card12.Name = "pictureBox_oppositeAIPlayer_card12";
             this.pictureBox_oppositeAIPlayer_card12.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -824,7 +824,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card13
             // 
-            this.pictureBox_oppositeAIPlayer_card13.Location = new System.Drawing.Point(841, 48);
+            this.pictureBox_oppositeAIPlayer_card13.Location = new System.Drawing.Point(445, 47);
             this.pictureBox_oppositeAIPlayer_card13.Name = "pictureBox_oppositeAIPlayer_card13";
             this.pictureBox_oppositeAIPlayer_card13.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -833,7 +833,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card10
             // 
-            this.pictureBox_oppositeAIPlayer_card10.Location = new System.Drawing.Point(733, 48);
+            this.pictureBox_oppositeAIPlayer_card10.Location = new System.Drawing.Point(553, 48);
             this.pictureBox_oppositeAIPlayer_card10.Name = "pictureBox_oppositeAIPlayer_card10";
             this.pictureBox_oppositeAIPlayer_card10.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -852,7 +852,7 @@
             // 
             // pictureBox_rightAIPlayer_card1
             // 
-            this.pictureBox_rightAIPlayer_card1.Location = new System.Drawing.Point(1190, 49);
+            this.pictureBox_rightAIPlayer_card1.Location = new System.Drawing.Point(1190, 517);
             this.pictureBox_rightAIPlayer_card1.Name = "pictureBox_rightAIPlayer_card1";
             this.pictureBox_rightAIPlayer_card1.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1559,7 +1559,7 @@
             // 
             // pictureBox_rightAIPlayer_card14
             // 
-            this.pictureBox_rightAIPlayer_card14.Location = new System.Drawing.Point(1190, 517);
+            this.pictureBox_rightAIPlayer_card14.Location = new System.Drawing.Point(1190, 49);
             this.pictureBox_rightAIPlayer_card14.Name = "pictureBox_rightAIPlayer_card14";
             this.pictureBox_rightAIPlayer_card14.Size = new System.Drawing.Size(50, 30);
             this.pictureBox_rightAIPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1568,7 +1568,7 @@
             // 
             // pictureBox_oppositeAIPlayer_card14
             // 
-            this.pictureBox_oppositeAIPlayer_card14.Location = new System.Drawing.Point(877, 48);
+            this.pictureBox_oppositeAIPlayer_card14.Location = new System.Drawing.Point(409, 47);
             this.pictureBox_oppositeAIPlayer_card14.Name = "pictureBox_oppositeAIPlayer_card14";
             this.pictureBox_oppositeAIPlayer_card14.Size = new System.Drawing.Size(30, 50);
             this.pictureBox_oppositeAIPlayer_card14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

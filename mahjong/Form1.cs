@@ -594,6 +594,12 @@ namespace mahjong
             rightAIPlayer_gameover = true;
             oppositeAIPlayer_gameover = true;
             leftAIPlayer_gameover = true;
+
+            humanPlayer_cancel = true;
+            rightAIPlayer_cancel = true;
+            oppositeAIPlayer_cancel = true;
+            leftAIPlayer_cancel = true;
+
             card_haveused = true;
 
             if (true)//如果赢
@@ -987,18 +993,19 @@ namespace mahjong
             my_show();
             #endregion
 
+            bool card_used = false;
             #region//ask           
-            if (rightAIPlayer_gameover == false && card_haveused == false)
+            if (rightAIPlayer_gameover == false && card_used == false)
             {
-                ask_rightAIPlayer();
+                card_used = ask_rightAIPlayer();
             }
-            if (oppositeAIPlayer_gameover == false && card_haveused == false)
+            if (oppositeAIPlayer_gameover == false && card_used == false)
             {
-                ask_oppositeAIPlayer();
+                card_used = ask_oppositeAIPlayer();
             }
-            if (leftAIPlayer_gameover == false && card_haveused == false)
+            if (leftAIPlayer_gameover == false && card_used == false)
             {
-                ask_leftAIPlayer();
+                card_used = ask_leftAIPlayer();
             }
             #endregion
 
@@ -1267,15 +1274,15 @@ namespace mahjong
                 if (human_peng.Name == "no" && human_gang.Name == "no")
                 {
                     human_mopai();
+                    ask_humanPlayer();
                 }
                 human_peng.Name = "no";
                 human_gang.Name = "no";
-                if (card_haveused == false)
-                {
-                    ask_humanPlayer();
-                }
                 //
-                human_picturebox_enablet();
+                if (humanPlayer_gameover == false)
+                {
+                    human_picturebox_enablet();
+                }
             }
             else
             {
@@ -1549,33 +1556,31 @@ namespace mahjong
         #endregion
         protected void rightAIPlayer_play()
         {
+            bool card_used = false;
             humanPlayer_next();
             if (rightAIPlayer_gameover == false && rightAIPlayer_cancel == false)
             {
                 rightAIPlayer_peng_gang();
+                ask_rightAIPlayer();
 
-                if (card_haveused == false)
-                {
-                    ask_rightAIPlayer();
-                }
-                if (card_haveused == false)
+                if (rightAIPlayer_gameover == false)
                 {
                     rightAIPlayer_chupai();
                     sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\" + current_card + ".wav");
                     sp.PlaySync();
 
                     #region//ask
-                    if (oppositeAIPlayer_gameover == false && card_haveused == false)
+                    if (oppositeAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_oppositeAIPlayer();
+                        card_used = ask_oppositeAIPlayer();
                     }
-                    if (leftAIPlayer_gameover == false && card_haveused == false)
+                    if (leftAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_leftAIPlayer();
+                        card_used = ask_leftAIPlayer();
                     }
-                    if (humanPlayer_gameover == false && card_haveused == false)
+                    if (humanPlayer_gameover == false && card_used == false)
                     {
-                        ask_humanPlayer();
+                        card_used = ask_humanPlayer();
                     }
                     #endregion
                 }
@@ -1850,16 +1855,13 @@ namespace mahjong
         #endregion
         protected void oppositeAIPlayer_play()
         {
+            bool card_used = false;
             rightAIPlayer_next();
             if (oppositeAIPlayer_gameover == false && oppositeAIPlayer_cancel == false)
             {
                 oppositeAIPlayer_peng_gang();
-
-                if (card_haveused == false)
-                {
-                    ask_oppositeAIPlayer();
-                }
-                if (card_haveused == false)
+                ask_oppositeAIPlayer();
+                if (oppositeAIPlayer_gameover == false)
                 {
                     oppositeAIPlayer_chupai();
 
@@ -1867,17 +1869,17 @@ namespace mahjong
                     sp.PlaySync();
 
                     #region//ask
-                    if (leftAIPlayer_gameover == false && card_haveused == false)
+                    if (leftAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_leftAIPlayer();
+                        card_used = ask_leftAIPlayer();
                     }
-                    if (humanPlayer_gameover == false && card_haveused == false)
+                    if (humanPlayer_gameover == false && card_used == false)
                     {
-                        ask_humanPlayer();
+                        card_used = ask_humanPlayer();
                     }
-                    if (rightAIPlayer_gameover == false && card_haveused == false)
+                    if (rightAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_rightAIPlayer();
+                        card_used = ask_rightAIPlayer();
                     }
                     #endregion
                 }
@@ -2152,16 +2154,14 @@ namespace mahjong
         #endregion
         protected void leftAIPlayer_play()
         {
+            bool card_used = false;
             oppositeAIPlayer_next();
 
             if (leftAIPlayer_gameover == false && leftAIPlayer_cancel == false)
             {
                 leftAIPlayer_peng_gang();
-                if (card_haveused == false)
-                {
-                    ask_leftAIPlayer();//leftAIPlayer可能胡
-                }
-                if (card_haveused == false)
+                ask_leftAIPlayer();//leftAIPlayer可能胡
+                if (leftAIPlayer_gameover == false)
                 {
                     leftAIPlayer_chupai();
 
@@ -2169,17 +2169,17 @@ namespace mahjong
                     sp.PlaySync();
 
                     #region//ask
-                    if (humanPlayer_gameover == false && card_haveused == false)
+                    if (humanPlayer_gameover == false && card_used == false)
                     {
-                        ask_humanPlayer();
+                        card_used = ask_humanPlayer();
                     }
-                    if (rightAIPlayer_gameover == false && card_haveused == false)
+                    if (rightAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_rightAIPlayer();
+                        card_used = ask_rightAIPlayer();
                     }
-                    if (oppositeAIPlayer_gameover == false && card_haveused == false)
+                    if (oppositeAIPlayer_gameover == false && card_used == false)
                     {
-                        ask_oppositeAIPlayer();
+                        card_used = ask_oppositeAIPlayer();
                     }
                     #endregion
                 }
@@ -2234,7 +2234,7 @@ namespace mahjong
         #endregion
 
         #region//ask
-        protected void ask_rightAIPlayer()
+        protected bool ask_rightAIPlayer()
         {
             AI_want_realize = right_ai.respond_table(table_realize);//告诉ai出牌，返回ai想法
 
@@ -2252,18 +2252,28 @@ namespace mahjong
                 {
 
                 }
-                if (leftAIPlayerdone == true)//human玩家问胡的（上家）
+                else
                 {
-                    humanPlayer_num_sub();
+                    if (leftAIPlayerdone == true)//human玩家问胡的（上家）
+                    {
+                        humanPlayer_num_sub();
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
+                        {
+                            oppositeAIPlayer_num_sub();
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
+                            {
+                                leftAIPlayer_num_sub();
+                            }
+                        }
+                    }
                 }
-                if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
-                {
-                    oppositeAIPlayer_num_sub();
-                }
-                if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
-                {
-                    leftAIPlayer_num_sub();
-                }
+                
 
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
@@ -2287,20 +2297,31 @@ namespace mahjong
                     {
 
                     }
-                    if (leftAIPlayerdone == true)//human玩家问胡的（上家）
+                    else
                     {
+                        if (leftAIPlayerdone == true)//human玩家问胡的（上家）
+                        {
 
-                    }
-                    if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
-                    {
-                        oppositeAIPlayer_play();
-                    }
-                    if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
-                    {
-                        oppositeAIPlayer_play();
-                        leftAIPlayer_play();
+                        }
+                        else
+                        {
+                            if (rightAIPlayerdone == true)//opposite玩家问胡的（下家）
+                            {
+                                oppositeAIPlayer_play();
+                            }
+                            else
+                            {
+                                if (oppositeAIPlayerdone == true)//left玩家问胡的（下下家）
+                                {
+                                    oppositeAIPlayer_play();
+                                    leftAIPlayer_play();
+                                }
+                            }
+                        }
+                        
                     }
                 }
+                return true;
             }
             #endregion
 
@@ -2311,7 +2332,6 @@ namespace mahjong
                 pictureBox_rightAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                right_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2322,21 +2342,28 @@ namespace mahjong
                 {
                     humanPlayer_num_sub();
                 }
-                if (rightAIPlayerdone == true)//当前是opposite线程
+                else
                 {
-                    oppositeAIPlayer_num_sub();
+                    if (rightAIPlayerdone == true)//当前是opposite线程
+                    {
+                        oppositeAIPlayer_num_sub();
 
-                    rightAIPlayer_play();
-                    oppositeAIPlayer_play(); ;
-                }
-                if (oppositeAIPlayerdone == true)//当前是left线程
-                {
-                    leftAIPlayer_num_sub();
+                        rightAIPlayer_play();
+                        oppositeAIPlayer_play();
+                    }
+                    else
+                    {
+                        if (oppositeAIPlayerdone == true)//当前是left线程
+                        {
+                            leftAIPlayer_num_sub();
 
-                    rightAIPlayer_play();
-                    oppositeAIPlayer_play();
-                    leftAIPlayer_play();
+                            rightAIPlayer_play();
+                            oppositeAIPlayer_play();
+                            leftAIPlayer_play();
+                        }
+                    }
                 }
+                return true;
             }
 
             if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
@@ -2344,7 +2371,6 @@ namespace mahjong
                 card_haveused = true;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                right_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2354,31 +2380,41 @@ namespace mahjong
                 {
                     humanPlayer_num_sub();
                 }
-                if (humanPlayerdone == true)//right回合
+                else
                 {
-                    rightAIPlayer_play();
-                }
-                if (rightAIPlayerdone == true)//当前是opposite线程
-                {
-                    oppositeAIPlayer_num_sub();
+                    if (humanPlayerdone == true)//right回合
+                    {
+                        rightAIPlayer_play();
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//当前是opposite线程
+                        {
+                            oppositeAIPlayer_num_sub();
 
-                    rightAIPlayer_play();
-                    oppositeAIPlayer_play(); ;
-                }
-                if (oppositeAIPlayerdone == true)//当前是left线程
-                {
-                    leftAIPlayer_num_sub();
+                            rightAIPlayer_play();
+                            oppositeAIPlayer_play();
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)//当前是left线程
+                            {
+                                leftAIPlayer_num_sub();
 
-                    rightAIPlayer_play();
-                    oppositeAIPlayer_play();
-                    leftAIPlayer_play();
+                                rightAIPlayer_play();
+                                oppositeAIPlayer_play();
+                                leftAIPlayer_play();
+                            }
+                        }
+                    }
                 }
+                return true;
             }
-
             #endregion
+            return false;
         }
 
-        protected void ask_oppositeAIPlayer()
+        protected bool ask_oppositeAIPlayer()
         {
             AI_want_realize = opposite_ai.respond_table(table_realize);//告诉ai出牌，返回ai想法
 
@@ -2396,18 +2432,28 @@ namespace mahjong
                 {
                     rightAIPlayer_num_sub();
                 }
-                if (leftAIPlayerdone == true)//human玩家问胡的
+                else
                 {
-                    humanPlayer_num_sub();
-                }
-                if (rightAIPlayerdone == true)//opposite玩家问胡的
-                {
+                    if (leftAIPlayerdone == true)//human玩家问胡的
+                    {
+                        humanPlayer_num_sub();
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//opposite玩家问胡的
+                        {
 
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)//left玩家问胡的
+                            {
+                                leftAIPlayer_num_sub();
+                            }
+                        }
+                    }
                 }
-                if (oppositeAIPlayerdone == true)//left玩家问胡的
-                {
-                    leftAIPlayer_num_sub();
-                }
+                
 
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
@@ -2431,19 +2477,29 @@ namespace mahjong
                     {
 
                     }
-                    if (leftAIPlayerdone == true)//human玩家问胡的（上上家）
+                    else
                     {
-                        rightAIPlayer_cancel = true;//rightAIPlayer出牌线程取消
-                    }
-                    if (humanPlayerdone == true)//right玩家问胡的（上家）
-                    {
+                        if (leftAIPlayerdone == true)//human玩家问胡的（上上家）
+                        {
+                            rightAIPlayer_cancel = true;//rightAIPlayer出牌线程取消
+                        }
+                        else
+                        {
+                            if (humanPlayerdone == true)//right玩家问胡的（上家）
+                            {
 
-                    }
-                    if (oppositeAIPlayerdone == true)//left玩家问胡的（下家）
-                    {
-                        leftAIPlayer_play();
+                            }
+                            else
+                            {
+                                if (oppositeAIPlayerdone == true)//left玩家问胡的（下家）
+                                {
+                                    leftAIPlayer_play();
+                                }
+                            }
+                        }
                     }
                 }
+                return true;
             }
             #endregion
 
@@ -2454,7 +2510,6 @@ namespace mahjong
                 pictureBox_oppositeAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                opposite_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2465,17 +2520,24 @@ namespace mahjong
                     humanPlayer_num_sub();
                     rightAIPlayer_cancel = true;
                 }
-                if (humanPlayerdone == true)//当前是right线程
+                else
                 {
-                    rightAIPlayer_num_sub();
-                }
-                if (oppositeAIPlayerdone == true)//当前是left线程
-                {
-                    leftAIPlayer_num_sub();
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        rightAIPlayer_num_sub();
+                    }
+                    else
+                    {
+                        if (oppositeAIPlayerdone == true)//当前是left线程
+                        {
+                            leftAIPlayer_num_sub();
 
-                    oppositeAIPlayer_play();
-                    leftAIPlayer_play();
+                            oppositeAIPlayer_play();
+                            leftAIPlayer_play();
+                        }
+                    }
                 }
+                return true;
             }
 
             if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
@@ -2483,7 +2545,6 @@ namespace mahjong
                 card_haveused = true;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                opposite_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2495,26 +2556,38 @@ namespace mahjong
                     humanPlayer_num_sub();
                     rightAIPlayer_cancel = true;
                 }
-                if (humanPlayerdone == true)//当前是right线程
+                else
                 {
-                    rightAIPlayer_num_sub();
-                }
-                if (oppositeAIPlayerdone == true)//当前是left线程
-                {
-                    leftAIPlayer_num_sub();
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        rightAIPlayer_num_sub();
+                    }
+                    else
+                    {
+                        if (oppositeAIPlayerdone == true)//当前是left线程
+                        {
+                            leftAIPlayer_num_sub();
 
-                    oppositeAIPlayer_play();
-                    leftAIPlayer_play();
+                            oppositeAIPlayer_play();
+                            leftAIPlayer_play();
+                        }
+                        else
+                        {
+                            if (rightAIPlayerdone == true)//opposite回合
+                            {
+                                //自摸的直接出牌
+                            }
+                        }
+                    }
                 }
-                if (rightAIPlayerdone == true)//opposite回合
-                {
-                    oppositeAIPlayer_play();
-                }
+                
+                return true;
             }
             #endregion
+            return false;
         }
 
-        protected void ask_leftAIPlayer()
+        protected bool ask_leftAIPlayer()
         {
             AI_want_realize = left_ai.respond_table(table_realize);//告诉ai出牌，返回ai想法
 
@@ -2532,17 +2605,26 @@ namespace mahjong
                 {
                     rightAIPlayer_num_sub();
                 }
-                if (leftAIPlayerdone == true)//human玩家问胡的
+                else
                 {
-                    humanPlayer_num_sub();
-                }
-                if (rightAIPlayerdone == true)//opposite玩家问胡的
-                {
-                    oppositeAIPlayer_num_sub();
-                }
-                if (oppositeAIPlayerdone == true)//left玩家问胡的
-                {
+                    if (leftAIPlayerdone == true)//human玩家问胡的
+                    {
+                        humanPlayer_num_sub();
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//opposite玩家问胡的
+                        {
+                            oppositeAIPlayer_num_sub();
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)//left玩家问胡的
+                            {
 
+                            }
+                        }
+                    }
                 }
 
                 table.Get(AI_want_realize);
@@ -2567,21 +2649,31 @@ namespace mahjong
                     {
 
                     }
-                    if (leftAIPlayerdone == true)//human玩家问胡的(下家）
+                    else
                     {
-                        rightAIPlayer_cancel = true;
-                        oppositeAIPlayer_cancel = true;
-                        leftAIPlayer_cancel = true;
-                    }
-                    if (humanPlayerdone == true)//right玩家问胡的（上上家）
-                    {
-                        oppositeAIPlayer_cancel = true;//oppositeAIPlayer出牌线程取消
-                    }
-                    if (rightAIPlayerdone == true)//opposite玩家问胡的（上家）
-                    {
+                        if (leftAIPlayerdone == true)//human玩家问胡的(下家）
+                        {
+                            rightAIPlayer_cancel = true;
+                            oppositeAIPlayer_cancel = true;
+                            leftAIPlayer_cancel = true;
+                        }
+                        else
+                        {
+                            if (humanPlayerdone == true)//right玩家问胡的（上上家）
+                            {
+                                oppositeAIPlayer_cancel = true;//oppositeAIPlayer出牌线程取消
+                            }
+                            else
+                            {
+                                if (rightAIPlayerdone == true)//opposite玩家问胡的（上家）
+                                {
 
+                                }
+                            }
+                        }
                     }
                 }
+                return true;
             }
             #endregion
 
@@ -2592,7 +2684,6 @@ namespace mahjong
                 pictureBox_leftAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2603,17 +2694,23 @@ namespace mahjong
                     humanPlayer_num_sub();
                     rightAIPlayer_cancel = true;
                     oppositeAIPlayer_cancel = true;
-
                 }
-                if (humanPlayerdone == true)//当前是right线程
+                else
                 {
-                    rightAIPlayer_num_sub();
-                    oppositeAIPlayer_cancel = true;
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        rightAIPlayer_num_sub();
+                        oppositeAIPlayer_cancel = true;
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//当前是opposite线程
+                        {
+                            oppositeAIPlayer_num_sub();
+                        }
+                    }
                 }
-                if (rightAIPlayerdone == true)//当前是opposite线程
-                {
-                    oppositeAIPlayer_num_sub();
-                }
+                return true;
             }
 
             if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
@@ -2621,7 +2718,6 @@ namespace mahjong
                 card_haveused = true;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
-                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2633,29 +2729,38 @@ namespace mahjong
                     humanPlayer_num_sub();
                     rightAIPlayer_cancel = true;
                     oppositeAIPlayer_cancel = true;
-
                 }
-                if (humanPlayerdone == true)//当前是right线程
+                else
                 {
-                    rightAIPlayer_num_sub();
+                    if (humanPlayerdone == true)//当前是right线程
+                    {
+                        rightAIPlayer_num_sub();
 
-                    oppositeAIPlayer_cancel = true;
-                }
-                if (rightAIPlayerdone == true)//当前是opposite线程
-                {
-                    oppositeAIPlayer_num_sub();
-                }
-                if (oppositeAIPlayerdone == true)//left回合
-                {
+                        oppositeAIPlayer_cancel = true;
+                    }
+                    else
+                    {
+                        if (rightAIPlayerdone == true)//当前是opposite线程
+                        {
+                            oppositeAIPlayer_num_sub();
+                        }
+                        else
+                        {
+                            if (oppositeAIPlayerdone == true)//left回合
+                            {
 
+                            }
+                        }
+                    }
                 }
+                return true;
             }
             //碰了           
             #endregion
-
+            return false;
         }
 
-        protected void ask_humanPlayer()
+        protected bool ask_humanPlayer()
         {
             int i = 0;
             int samecard = human_samecard();
@@ -2716,7 +2821,6 @@ namespace mahjong
             #region//胡
             if (human_hu.Name == "yes")//胡
             {
-                card_haveused = true;
                 pictureBox_humanPlayer_card14.Name = current_card;
                 my_show();
 
@@ -2785,19 +2889,28 @@ namespace mahjong
                     oppositeAIPlayer_cancel = true;
                     leftAIPlayer_cancel = true;
                 }
-                if (rightAIPlayerdone == true)//opposite
+                else
                 {
-                    oppositeAIPlayer_num_sub();
+                    if (rightAIPlayerdone == true)//opposite
+                    {
+                        oppositeAIPlayer_num_sub();
 
-                    leftAIPlayer_cancel = true;
-                }
-                if (oppositeAIPlayerdone == true)//left
-                {
-                    leftAIPlayer_num_sub();
-                }
-                if (leftAIPlayerdone == true)//human回合
-                {
-                    human_play();
+                        leftAIPlayer_cancel = true;
+                    }
+                    else
+                    {
+                        if (oppositeAIPlayerdone == true)//left
+                        {
+                            leftAIPlayer_num_sub();
+                        }
+                        else
+                        {
+                            if (leftAIPlayerdone == true)//human回合
+                            {
+                                human_play();
+                            }
+                        }
+                    }
                 }
             }
 
@@ -2836,19 +2949,28 @@ namespace mahjong
                     oppositeAIPlayer_cancel = true;
                     leftAIPlayer_cancel = true;
                 }
-                if (rightAIPlayerdone == true)//opposite
+                else
                 {
-                    oppositeAIPlayer_num_sub();
+                    if (rightAIPlayerdone == true)//opposite
+                    {
+                        oppositeAIPlayer_num_sub();
 
-                    leftAIPlayer_cancel = true;
-                }
-                if (oppositeAIPlayerdone == true)//left
-                {
-                    leftAIPlayer_num_sub();
-                }
-                if (leftAIPlayerdone == true)//human回合
-                {
-                    human_play();
+                        leftAIPlayer_cancel = true;
+                    }
+                    else
+                    {
+                        if (oppositeAIPlayerdone == true)//left
+                        {
+                            leftAIPlayer_num_sub();
+                        }
+                        else
+                        {
+                            if (leftAIPlayerdone == true)//human回合
+                            {
+                                human_play();
+                            }
+                        }
+                    }
                 }
             }
             #endregion
@@ -2859,7 +2981,14 @@ namespace mahjong
                 sp.PlaySync();
             }
             human_guo.Name = "no";//不能取消
-
+            if (human_peng.Name == "yes" || human_gang.Name == "yes" || human_hu.Name == "yes")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 
