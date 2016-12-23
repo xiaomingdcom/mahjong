@@ -70,6 +70,9 @@ namespace mahjong
         /// <summary>
         /// 下面是要初始化的
         /// </summary>
+
+        protected bool boolgameover = false;
+
         protected bool humanPlayer_gameover = false;
         protected bool rightAIPlayer_gameover = false;
         protected bool oppositeAIPlayer_gameover = false;
@@ -480,7 +483,23 @@ namespace mahjong
 
         protected void whostart()//从哪个玩家开始
         {
-            humanPlayer_start = true;
+            Random ran = new Random();
+            int r = ran.Next(1, 5);
+            switch (r)
+            {
+                case 1:
+                    humanPlayer_start = true;
+                    break;
+                case 2:
+                    rightAIPlayer_start = true;
+                    break;
+                case 3:
+                    oppositeAIPlayer_start = true;
+                    break;
+                default:
+                    leftAIPlayer_start = true;
+                    break;
+            }
         }
 
         protected void fapai()//发牌程序
@@ -541,6 +560,8 @@ namespace mahjong
 
         protected void gameover()//游戏结束要执行的操作
         {
+            boolgameover = true;
+
             God_perspective = true;//显示各个玩家的手牌
             rightAIPlayer_show();
             oppositeAIPlayer_show();
@@ -549,35 +570,35 @@ namespace mahjong
 
             if (humanPlayer_gameover)
             {
-                humanPlayer_money.Text = "胡啦！money:" + table.Result(0);//赢/输多少钱
+                humanPlayer_money.Text = "胡啦！倍率:" + table.Result(1);//赢/输多少钱
             }
             else
             {
-                humanPlayer_money.Text = "没胡,money:" + table.Result(0);
+                humanPlayer_money.Text = "没胡,/(ㄒoㄒ)/~~";
             }
             if (rightAIPlayer_gameover)
             {
-                rightAIPlayer_money.Text = "胡啦!money:" + table.Result(1);//赢/输多少钱
+                rightAIPlayer_money.Text = "胡啦! 倍率:" + table.Result(2);//赢/输多少钱
             }
             else
             {
-                rightAIPlayer_money.Text = "没胡,money:" + table.Result(1);
+                rightAIPlayer_money.Text = "没胡,(′⌒`)";
             }
             if (oppositeAIPlayer_gameover)
             {
-                oppositeAIPlayer_money.Text = "胡啦!money:" + table.Result(2);//赢/输多少钱
+                oppositeAIPlayer_money.Text = "胡啦!倍率:" + table.Result(3);//赢/输多少钱
             }
             else
             {
-                oppositeAIPlayer_money.Text = "没胡,money:" + table.Result(2);
+                oppositeAIPlayer_money.Text = "没胡￣へ￣";
             }
             if (leftAIPlayer_gameover)
             {
-                leftAIPlayer_money.Text = "胡啦!money:" + table.Result(3);//赢/输多少钱
+                leftAIPlayer_money.Text = "胡啦!倍率:" + table.Result(4);//赢/输多少钱
             }
             else
             {
-                leftAIPlayer_money.Text = "没胡,money:" + table.Result(3);
+                leftAIPlayer_money.Text = "没胡(T_T)";
             }
 
             humanPlayer_money.Visible = true;
@@ -742,6 +763,7 @@ namespace mahjong
             current_card = "blank";
 
             //出过得牌数置零
+            boolgameover = false;
             all_haveplayed_card = 0;
             humanPlayer_havePlayedcard_num = 0;
             leftAIPlayer_havePlayedcard_num = 0;
@@ -1472,7 +1494,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
@@ -1480,6 +1502,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -1740,7 +1765,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
@@ -1748,6 +1773,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -1780,7 +1808,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
@@ -1788,6 +1816,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate180FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -2047,7 +2078,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
@@ -2055,6 +2086,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -2087,7 +2121,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
@@ -2095,6 +2129,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate90FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -2394,7 +2431,7 @@ namespace mahjong
                 return true;
             }
 
-            if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
+            if ((AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9') && all_haveplayed_card < 108)//选择杠
             {
                 card_haveused = true;
                 pictureBox_rightAIPlayer_card14.Name = "blank";
@@ -2577,7 +2614,7 @@ namespace mahjong
                 return true;
             }
 
-            if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
+            if ((AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9') && all_haveplayed_card < 108)//选择杠
             {
                 card_haveused = true;
                 pictureBox_oppositeAIPlayer_card14.Name = "blank";
@@ -2758,7 +2795,7 @@ namespace mahjong
                 return true;
             }
 
-            if (AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9')//选择杠
+            if ((AI_want_realize[3] == '3' || AI_want_realize[3] == '8' || AI_want_realize[3] == '9') && all_haveplayed_card < 108)//选择杠
             {
                 card_haveused = true;
                 pictureBox_leftAIPlayer_card14.Name = "blank";
@@ -2827,17 +2864,20 @@ namespace mahjong
                 human_guo.Enabled = true;
             }
 
-            if (samecard == 3)//能直杠或暗杠或碰
+            if (samecard == 3 && leftAIPlayerdone == false)//能直杠或暗杠或碰
             {
-                if (leftAIPlayerdone == false)
-                {
-                    human_peng.Enabled = true;
-                }
+                human_peng.Enabled = true;
+                human_guo.Enabled = true;
+            }
+
+
+            if ((samecard == 3) && all_haveplayed_card < 108)//能直杠或暗杠或碰
+            {
                 human_gang.Enabled = true;
                 human_guo.Enabled = true;
             }
 
-            if ((peng_samecard == 3 || humanPlayer_havefoursamecard_true() > 0) && leftAIPlayerdone == true)
+            if (((peng_samecard == 3 || humanPlayer_havefoursamecard_true() > 0) && leftAIPlayerdone == true) && all_haveplayed_card < 108)
             {
                 human_gang.Enabled = true;
                 human_guo.Enabled = true;
@@ -2920,16 +2960,16 @@ namespace mahjong
                     for (i = 0; ; i++)
                     {
                         rightAIPlayer_play();
-                        if (all_haveplayed_card >= 108)
+                        if (all_haveplayed_card >= 108 && boolgameover == false)
                         {
                             gameover();
                         }
-                        if(intgameover==3 || all_haveplayed_card >= 108)
+                        if (intgameover == 3 || all_haveplayed_card >= 108)
                         {
                             break;
                         }
                         oppositeAIPlayer_play();
-                        if (all_haveplayed_card >= 108)
+                        if (all_haveplayed_card >= 108 && boolgameover == false)
                         {
                             gameover();
                         }
@@ -2938,7 +2978,7 @@ namespace mahjong
                             break;
                         }
                         leftAIPlayer_play();
-                        if (all_haveplayed_card >= 108)
+                        if (all_haveplayed_card >= 108 && boolgameover == false)
                         {
                             gameover();
                         }
@@ -2947,7 +2987,7 @@ namespace mahjong
                             break;
                         }
                         human_play();
-                        if (all_haveplayed_card >= 108)
+                        if (all_haveplayed_card >= 108 && boolgameover == false)
                         {
                             gameover();
                         }
