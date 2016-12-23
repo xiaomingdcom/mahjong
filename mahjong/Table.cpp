@@ -12,34 +12,47 @@ int remain(int hand_brick_now[])
 	}
 	return num;
 }
-bool hupai(int hand_brick_more[])
+bool hupai(int hand_brick[30], int &m_jiang_num)
 {
-	if (remain(hand_brick_more) == 0) return true;
-	for (int i = 1; i <= 29; i++)
+	int hand_brick_temp[30];
+	int i;
+	memcpy(hand_brick_temp, hand_brick, 120);
+	if (remain(hand_brick_temp) == 0)
 	{
-		if (hand_brick_more[i] >= 3)
+		if (m_jiang_num == 1 || m_jiang_num == 7)
 		{
-			hand_brick_more[i] = hand_brick_more[i] - 3;
-			if (hupai(hand_brick_more)) return true;
-			hand_brick_more[i] = hand_brick_more[i] + 3;
+			m_jiang_num = 0;
+			return true;
 		}
-		if (hand_brick_more[i] >= 2)
+		return false;
+	}
+	for (i = 1; i <= 29; i++)
+	{
+		if (hand_brick_temp[i] >= 3)
 		{
-			hand_brick_more[i] = hand_brick_more[i] - 2;
-			if (hupai(hand_brick_more)) return true;
-			hand_brick_more[i] = hand_brick_more[i] + 2;
+			hand_brick_temp[i] = hand_brick_temp[i] - 3;
+			if (hupai(hand_brick_temp, m_jiang_num)) return true;
+			hand_brick_temp[i] = hand_brick_temp[i] + 3;
+		}
+		if (hand_brick_temp[i] >= 2)
+		{
+			m_jiang_num += 1;
+			hand_brick_temp[i] = hand_brick_temp[i] - 2;
+			if (hupai(hand_brick_temp, m_jiang_num)) return true;
+			m_jiang_num -= 1;
+			hand_brick_temp[i] = hand_brick_temp[i] + 2;
 		}
 		if (i <= 27)
 		{
-			if (hand_brick_more[i] * hand_brick_more[i + 1] * hand_brick_more[i + 2] > 0)
+			if (hand_brick_temp[i] * hand_brick_temp[i + 1] * hand_brick_temp[i + 2] > 0)
 			{
-				hand_brick_more[i] -= 1;
-				hand_brick_more[i + 1] -= 1;
-				hand_brick_more[i + 2] -= 1;
-				if (hupai(hand_brick_more)) return true;
-				hand_brick_more[i] += 1;
-				hand_brick_more[i + 1] += 1;
-				hand_brick_more[i + 2] += 1;
+				hand_brick_temp[i] -= 1;
+				hand_brick_temp[i + 1] -= 1;
+				hand_brick_temp[i + 2] -= 1;
+				if (hupai(hand_brick_temp, m_jiang_num)) return true;
+				hand_brick_temp[i] += 1;
+				hand_brick_temp[i + 1] += 1;
+				hand_brick_temp[i + 2] += 1;
 			}
 		}
 	}
@@ -53,136 +66,135 @@ int ConvertPai(string _Pai)
 }
 Table::Table()
 {
-	/*bool Pai[108] = { false };
-	srand(unsigned(time(0)));
-	int Tmp;
-	string TmpChar(2, 0);
-	for (int i = 0; i < 108;)
+	if (true)
 	{
-		Tmp = rand() % 108;
-		//Tmp = i;
-		if (!Pai[Tmp])
+		bool Pai[108] = { false };
+		srand(unsigned(time(0)));
+		int Tmp;
+		string TmpChar(2, 0);
+		for (int i = 0; i < 108;)
 		{
-			i++;
-			Pai[Tmp] = true;
-			switch (Tmp / 36)
+			Tmp = rand() % 108;
+			//Tmp = i;
+			if (!Pai[Tmp])
 			{
-			case 0:
-				TmpChar[0] = 'b';
-				TmpChar[1] = Tmp / 4 + 1 + '0';
-				break;
-			case 1:
-				TmpChar[0] = 't';
-				TmpChar[1] = (Tmp - 36) / 4 + 1 + '0';
-				break;
-			default:
-				TmpChar[0] = 'w';
-				TmpChar[1] = (Tmp - 72) / 4 + 1 + '0';
-				break;
+				i++;
+				Pai[Tmp] = true;
+				switch (Tmp / 36)
+				{
+				case 0:
+					TmpChar[0] = 'b';
+					TmpChar[1] = Tmp / 4 + 1 + '0';
+					break;
+				case 1:
+					TmpChar[0] = 't';
+					TmpChar[1] = (Tmp - 36) / 4 + 1 + '0';
+					break;
+				default:
+					TmpChar[0] = 'w';
+					TmpChar[1] = (Tmp - 72) / 4 + 1 + '0';
+					break;
+				}
+				m_Mahjong_Init.push_back(TmpChar);
 			}
-			m_Mahjong_Init.push_back(TmpChar);
 		}
-	}*/
-	m_Mahjong_Init.push_back("w1");//1
-	m_Mahjong_Init.push_back("w1");
-	m_Mahjong_Init.push_back("w1");
-	m_Mahjong_Init.push_back("w1");
+	}
+	else {
+		m_Mahjong_Init.push_back("b2");//1
+		m_Mahjong_Init.push_back("w1");
+		m_Mahjong_Init.push_back("w1");
+		m_Mahjong_Init.push_back("w1");
 
-	m_Mahjong_Init.push_back("w2");//2
-	m_Mahjong_Init.push_back("w2");
-	m_Mahjong_Init.push_back("w2");
-	m_Mahjong_Init.push_back("w2");
+		m_Mahjong_Init.push_back("b2");//2
+		m_Mahjong_Init.push_back("w2");
+		m_Mahjong_Init.push_back("w2");
+		m_Mahjong_Init.push_back("w2");
 
-	m_Mahjong_Init.push_back("w3");//3
-	m_Mahjong_Init.push_back("w3");
-	m_Mahjong_Init.push_back("w3");
-	m_Mahjong_Init.push_back("w3");
+		m_Mahjong_Init.push_back("b6");//3
+		m_Mahjong_Init.push_back("w3");
+		m_Mahjong_Init.push_back("w3");
+		m_Mahjong_Init.push_back("w3");
 
-	m_Mahjong_Init.push_back("w4");//4
-	m_Mahjong_Init.push_back("w4");
-	m_Mahjong_Init.push_back("w4");
-	m_Mahjong_Init.push_back("w4");
+		m_Mahjong_Init.push_back("b6");//4
+		m_Mahjong_Init.push_back("w4");
+		m_Mahjong_Init.push_back("w4");
+		m_Mahjong_Init.push_back("w4");
 
-	m_Mahjong_Init.push_back("w5");//5
-	m_Mahjong_Init.push_back("w5");
-	m_Mahjong_Init.push_back("w5");
-	m_Mahjong_Init.push_back("w5");
+		m_Mahjong_Init.push_back("t4");//5
+		m_Mahjong_Init.push_back("w5");
+		m_Mahjong_Init.push_back("w5");
+		m_Mahjong_Init.push_back("w5");
 
-	m_Mahjong_Init.push_back("w6");//6
-	m_Mahjong_Init.push_back("w6");
-	m_Mahjong_Init.push_back("w6");
-	m_Mahjong_Init.push_back("w6");
+		m_Mahjong_Init.push_back("t4");//6
+		m_Mahjong_Init.push_back("w6");
+		m_Mahjong_Init.push_back("w6");
+		m_Mahjong_Init.push_back("w6");
 
-	m_Mahjong_Init.push_back("w7");//7
-	m_Mahjong_Init.push_back("w7");
-	m_Mahjong_Init.push_back("w7");
-	m_Mahjong_Init.push_back("w7");
+		m_Mahjong_Init.push_back("t5");//7
+		m_Mahjong_Init.push_back("w7");
+		m_Mahjong_Init.push_back("w7");
+		m_Mahjong_Init.push_back("w7");
 
-	m_Mahjong_Init.push_back("b8");//8
-	m_Mahjong_Init.push_back("b8");
-	m_Mahjong_Init.push_back("b8");
-	m_Mahjong_Init.push_back("b8");
+		m_Mahjong_Init.push_back("t5");//8
+		m_Mahjong_Init.push_back("t9");
+		m_Mahjong_Init.push_back("b8");
+		m_Mahjong_Init.push_back("b8");
 
-	m_Mahjong_Init.push_back("b9");//9
-	m_Mahjong_Init.push_back("b9");
-	m_Mahjong_Init.push_back("b9");
-	m_Mahjong_Init.push_back("b9");
+		m_Mahjong_Init.push_back("t6");//9
+		m_Mahjong_Init.push_back("t9");
+		m_Mahjong_Init.push_back("b9");
+		m_Mahjong_Init.push_back("b9");
 
-	m_Mahjong_Init.push_back("b1");//10
-	m_Mahjong_Init.push_back("b1");
-	m_Mahjong_Init.push_back("b1");
-	m_Mahjong_Init.push_back("b1");
+		m_Mahjong_Init.push_back("t7");//10
+		m_Mahjong_Init.push_back("t9");
+		m_Mahjong_Init.push_back("b1");
+		m_Mahjong_Init.push_back("b1");
 
-	m_Mahjong_Init.push_back("b2");//11
-	m_Mahjong_Init.push_back("b2");
-	m_Mahjong_Init.push_back("b2");
-	m_Mahjong_Init.push_back("b2");
+		m_Mahjong_Init.push_back("t8");//11
+		m_Mahjong_Init.push_back("t2");
+		m_Mahjong_Init.push_back("t2");
+		m_Mahjong_Init.push_back("t2");
 
-	m_Mahjong_Init.push_back("t1");//12
-	m_Mahjong_Init.push_back("b3");
-	m_Mahjong_Init.push_back("b3");
-	m_Mahjong_Init.push_back("b3");
+		m_Mahjong_Init.push_back("t9");//12
+		m_Mahjong_Init.push_back("b2");
+		m_Mahjong_Init.push_back("b3");
+		m_Mahjong_Init.push_back("b3");
 
-	m_Mahjong_Init.push_back("t1");//13
-	m_Mahjong_Init.push_back("t1");
-	m_Mahjong_Init.push_back("b4");
-	m_Mahjong_Init.push_back("b4");
+		m_Mahjong_Init.push_back("w1");//13
+		m_Mahjong_Init.push_back("w2");
+		m_Mahjong_Init.push_back("b4");
+		m_Mahjong_Init.push_back("b4");
 
-	m_Mahjong_Init.push_back("t1");//14
-	m_Mahjong_Init.push_back("b5");
-	m_Mahjong_Init.push_back("b5");
-	m_Mahjong_Init.push_back("b5");
+		m_Mahjong_Init.push_back("b2");//14
+		m_Mahjong_Init.push_back("t4");
+		m_Mahjong_Init.push_back("b5");
+		m_Mahjong_Init.push_back("t3");
 
-	m_Mahjong_Init.push_back("b6");//15
-	m_Mahjong_Init.push_back("b6");
-	m_Mahjong_Init.push_back("b6");
-	m_Mahjong_Init.push_back("b6");
+		m_Mahjong_Init.push_back("b6");//15
+		m_Mahjong_Init.push_back("b4");
+		m_Mahjong_Init.push_back("b6");
+		m_Mahjong_Init.push_back("b6");
 
-	m_Mahjong_Init.push_back("b7");//16
-	m_Mahjong_Init.push_back("b7");
-	m_Mahjong_Init.push_back("b7");
-	m_Mahjong_Init.push_back("b7");
+		m_Mahjong_Init.push_back("b7");//16
+		m_Mahjong_Init.push_back("b7");
+		m_Mahjong_Init.push_back("b7");
+		m_Mahjong_Init.push_back("b7");
 
-	m_Mahjong_Init.push_back("t8");//17
-	m_Mahjong_Init.push_back("t8");
-	m_Mahjong_Init.push_back("t8");
-	m_Mahjong_Init.push_back("t8");
+		m_Mahjong_Init.push_back("t8");//17
+		m_Mahjong_Init.push_back("t8");
+		m_Mahjong_Init.push_back("t8");
+		m_Mahjong_Init.push_back("t8");
+	}
 }
-Table::~Table()
-{
-}
+Table::~Table() {}
 string Table::Deal(int who)
 {
 	string Output;
 	Output = m_Mahjong_Init[m_HasHandout];
+	int tmp_ipai = ConvertPai(Output);
 	m_Player[who - 1].m_LastDeal = Output;
 	m_Player[who - 1].m_Pai.push_back(Output);
-	if (Output[0] == 'b')
-		m_Player[who - 1].m_iPai[Output[1] - '0'] += 1;
-	if (Output[0] == 't')
-		m_Player[who - 1].m_iPai[Output[1] - '0' + 10] += 1;
-	if (Output[0] == 'w')
-		m_Player[who - 1].m_iPai[Output[1] - '0' + 20] += 1;
+	m_Player[who - 1].m_iPai[tmp_ipai]++;
 	Output = '0' + Output + '0';
 	m_HasHandout++;
 	m_Player[who - 1].m_ZiMo = 1;
@@ -203,6 +215,7 @@ string Table::Get(string behavior)
 			return false;
 		tmp_PaiDui.pai = tmp_pai;
 		tmp_PaiDui.who = who;
+		m_PaiDui.push_back(tmp_PaiDui);
 		m_Player[who - 1].m_iPai[tmp_ipai]--;
 		vector<string>::iterator it;
 		for (it = m_Player[who - 1].m_Pai.begin(); it != m_Player[who - 1].m_Pai.end(); it++)
@@ -224,7 +237,7 @@ string Table::Get(string behavior)
 	if (behavior[3] == '2')//胡牌
 	{
 		if (!IsHu(behavior[0] - '0' - 1, tmp_pai))
-			return false;
+			return "000g";
 		m_output = behavior[0] + tmp_pai + '2';
 		return m_output;
 	}
@@ -247,6 +260,21 @@ string Table::Get(string behavior)
 				Push = Push + i;
 			}
 		m_Player[who - 1].m_HasGang.push_back(tmp_pai + behavior[0] + '0');
+		m_Player[who - 1].m_iPai[tmp_ipai] -= 4;
+		vector<string>::iterator it;
+		int j = 0;
+		for (it = m_Player[who - 1].m_Pai.begin(); it != m_Player[who - 1].m_Pai.end();)
+		{
+			if (*it == tmp_pai)
+			{
+				it = m_Player[who - 1].m_Pai.erase(it);
+				j++;
+				if (j == 4)
+					break;
+			}
+			else
+				it++;
+		}
 		m_Player[who - 1].m_ZiMo = 0;
 		m_Hua++;
 		m_boolHua = true;
@@ -273,7 +301,7 @@ string Table::Get(string behavior)
 	}
 	if (behavior[3] == '9')//想直杠
 	{
-		if (m_PaiDui[m_PaiDui.size()-1].pai != tmp_pai)
+		if (m_PaiDui[m_PaiDui.size() - 1].pai != tmp_pai)
 			return false;
 		if (m_Player[who - 1].m_iPai[tmp_ipai] < 3)
 			return false;
@@ -286,10 +314,26 @@ string Table::Realize()
 {
 	int who = m_output[0] - '0';
 	string tmp_pai = m_output.substr(1, 2);
+	int tmp_ipai = ConvertPai(tmp_pai);
 	if (m_output[3] == '7')
 	{
 		m_output[3] = '4';
 		m_Player[who - 1].m_HasPeng.push_back(tmp_pai);
+		m_Player[who - 1].m_iPai[tmp_ipai] -= 2;
+		vector<string>::iterator it;
+		int j = 0;
+		for (it = m_Player[who - 1].m_Pai.begin(); it != m_Player[who - 1].m_Pai.end();)
+		{
+			if (*it == tmp_pai)
+			{
+				it = m_Player[who - 1].m_Pai.erase(it);
+				j++;
+				if (j == 2)
+					break;
+			}
+			else
+				it++;
+		}
 		m_Hua = 0;
 		m_Player[who - 1].m_ZiMo = 0;
 		return m_output;
@@ -305,6 +349,21 @@ string Table::Realize()
 				Push = Push + i;
 			}
 		m_Player[who - 1].m_HasGang.push_back(Push);
+		m_Player[who - 1].m_iPai[tmp_ipai] -= 1;
+		vector<string>::iterator it;
+		int j = 0;
+		for (it = m_Player[who - 1].m_Pai.begin(); it != m_Player[who - 1].m_Pai.end();)
+		{
+			if (*it == tmp_pai)
+			{
+				it = m_Player[who - 1].m_Pai.erase(it);
+				j++;
+				if (j == 3)
+					break;
+			}
+			else
+				it++;
+		}
 		m_Player[who - 1].m_ZiMo = 0;
 		m_Hua++;
 		m_boolHua = true;
@@ -313,8 +372,23 @@ string Table::Realize()
 	if (m_output[3] == '9')
 	{
 		char cwho;
-		cwho = m_PaiDui[m_PaiDui.size()-1].who + '0';
+		cwho = m_PaiDui[m_PaiDui.size() - 1].who + '0';
 		m_Player[who - 1].m_HasGang.push_back(tmp_pai + cwho + '1');
+		m_Player[who - 1].m_iPai[tmp_ipai] -= 3;
+		vector<string>::iterator it;
+		int j = 0;
+		for (it = m_Player[who - 1].m_Pai.begin(); it != m_Player[who - 1].m_Pai.end();)
+		{
+			if (*it == tmp_pai)
+			{
+				it = m_Player[who - 1].m_Pai.erase(it);
+				j++;
+				if (j == 3)
+					break;
+			}
+			else
+				it++;
+		}
 		m_Player[who - 1].m_ZiMo = 0;
 		m_Hua++;
 		m_boolHua = true;
@@ -326,59 +400,64 @@ string Table::Realize()
 bool Table::HumanIsHu(int who, string pai_)
 {
 	int sum_Dui = 0;
-	bool hu = true;
 	int iPai = ConvertPai(pai_);
 	if (m_Player[who - 1].m_ZiMo == 0)
 	{
 		m_Player[who - 1].m_iPai[iPai]++;
 		m_Player[who - 1].m_Pai.push_back(pai_);
 	}
-	if (0 == IsHuaZhu(who))
-		hu = false;
-	for (int i = 1; i < 30; i++)
+	if (0 == IsHuaZhu(who - 1))
 	{
-		if (m_Player[who - 1].m_iPai[i] == 2)
-			sum_Dui++;
-		if (m_Player[who - 1].m_iPai[i] == 4)
-			sum_Dui += 2;
+		if (m_Player[who - 1].m_ZiMo == 0)
+		{
+			m_Player[who - 1].m_iPai[iPai]--;
+			m_Player[who - 1].m_Pai.pop_back();
+		}
+		return false;
 	}
-	if (sum_Dui != 1 || sum_Dui != 7)
-		hu = false;
-	if (!hupai(m_Player[who - 1].m_iPai))
-		hu = false;
-	if (m_Player[who - 1].m_ZiMo == 0 && hu == false)
+	int m_jiang_num = 0;
+	if (!hupai(m_Player[who - 1].m_iPai, m_jiang_num))
+	{
+		if (m_Player[who - 1].m_ZiMo == 0)
+		{
+			m_Player[who - 1].m_iPai[iPai]--;
+			m_Player[who - 1].m_Pai.pop_back();
+		}
+		return false;
+	}
+	if (m_Player[who - 1].m_ZiMo == 0)
 	{
 		m_Player[who - 1].m_iPai[iPai]--;
 		m_Player[who - 1].m_Pai.pop_back();
 	}
-	return hu;
+	return true;
 }
 bool Table::IsHu(int who, string pai_)
 {
 	int sum_Dui = 0;
 	int iPai = ConvertPai(pai_);
-	if (m_Player[who - 1].m_ZiMo == 0)
+	if (m_Player[who].m_ZiMo == 0)
 	{
-		m_Player[who - 1].m_iPai[iPai]++;
-		m_Player[who - 1].m_Pai.push_back(pai_);
+		m_Player[who].m_iPai[iPai]++;
+		m_Player[who].m_Pai.push_back(pai_);
 	}
 	if (0 == IsHuaZhu(who))
 		return false;
 	for (int i = 1; i < 30; i++)
 	{
-		if (m_Player[who - 1].m_iPai[i] == 2)
+		if (m_Player[who].m_iPai[i] == 2)
 			sum_Dui++;
-		if (m_Player[who - 1].m_iPai[i] == 4)
+		if (m_Player[who].m_iPai[i] == 4)
 			sum_Dui += 2;
 	}
-	if (sum_Dui != 1 || sum_Dui != 7)
-		return false;
-	if (!hupai(m_Player[who - 1].m_iPai))
+	int m_jiang_num = 0;
+	if (!hupai(m_Player[who].m_iPai, m_jiang_num))
 		return false;
 	int rate = 1;
 	rate *= IsQing(who)*IsBigPeng(who)*IsQiDui(who)*NumGang(who)*(int)pow(2, m_Hua);
-	rate += m_Player[who - 1].m_ZiMo;
-	m_Player[who - 1].m_Money += rate*m_Di;
+	rate += m_Player[who].m_ZiMo;
+	m_Player[who].m_Money += rate*m_Di;
+	return true;
 	//for (int i = 0; i < m_Player[who-1].m_HasGang.size(); i++)
 	//{
 		//if (m_Player[who-1].m_HasGang[i][3] == ')
@@ -399,31 +478,31 @@ void Table::Restart()
 int Table::IsHuaZhu(int who)
 {
 	int iB = 0, iT = 0, iW = 0;
-	for (unsigned int i = 0; i < m_Player[who - 1].m_Pai.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_Pai.size(); i++)
 	{
-		if (m_Player[who - 1].m_Pai[i][0] == 'b')
+		if (m_Player[who].m_Pai[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_Pai[i][0] == 't')
+		if (m_Player[who].m_Pai[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_Pai[i][0] == 'w')
+		if (m_Player[who].m_Pai[i][0] == 'w')
 			iW = 1;
 	}
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasPeng.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_HasPeng.size(); i++)
 	{
-		if (m_Player[who - 1].m_HasPeng[i][0] == 'b')
+		if (m_Player[who].m_HasPeng[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_HasPeng[i][0] == 't')
+		if (m_Player[who].m_HasPeng[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_HasPeng[i][0] == 'w')
+		if (m_Player[who].m_HasPeng[i][0] == 'w')
 			iW = 1;
 	}
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasGang.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_HasGang.size(); i++)
 	{
-		if (m_Player[who - 1].m_HasGang[i][0] == 'b')
+		if (m_Player[who].m_HasGang[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_HasGang[i][0] == 't')
+		if (m_Player[who].m_HasGang[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_HasGang[i][0] == 'w')
+		if (m_Player[who].m_HasGang[i][0] == 'w')
 			iW = 1;
 	}
 	if (iB + iT + iW == 3)
@@ -434,31 +513,31 @@ int Table::IsHuaZhu(int who)
 int Table::IsQing(int who)
 {
 	int iB = 0, iT = 0, iW = 0;
-	for (unsigned int i = 0; i < m_Player[who - 1].m_Pai.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_Pai.size(); i++)
 	{
-		if (m_Player[who - 1].m_Pai[i][0] == 'b')
+		if (m_Player[who].m_Pai[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_Pai[i][0] == 't')
+		if (m_Player[who].m_Pai[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_Pai[i][0] == 'w')
+		if (m_Player[who].m_Pai[i][0] == 'w')
 			iW = 1;
 	}
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasPeng.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_HasPeng.size(); i++)
 	{
-		if (m_Player[who - 1].m_HasPeng[i][0] == 'b')
+		if (m_Player[who].m_HasPeng[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_HasPeng[i][0] == 't')
+		if (m_Player[who].m_HasPeng[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_HasPeng[i][0] == 'w')
+		if (m_Player[who].m_HasPeng[i][0] == 'w')
 			iW = 1;
 	}
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasGang.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_HasGang.size(); i++)
 	{
-		if (m_Player[who - 1].m_HasGang[i][0] == 'b')
+		if (m_Player[who].m_HasGang[i][0] == 'b')
 			iB = 1;
-		if (m_Player[who - 1].m_HasGang[i][0] == 't')
+		if (m_Player[who].m_HasGang[i][0] == 't')
 			iT = 1;
-		if (m_Player[who - 1].m_HasGang[i][0] == 'w')
+		if (m_Player[who].m_HasGang[i][0] == 'w')
 			iW = 1;
 	}
 	if (iB + iT + iW == 1)
@@ -468,13 +547,13 @@ int Table::IsQing(int who)
 }
 int Table::IsBigPeng(int who)
 {
-	if (m_Player[who - 1].m_HasPeng.size() + m_Player[who - 1].m_HasGang.size() == 4)
+	if (m_Player[who].m_HasPeng.size() + m_Player[who].m_HasGang.size() == 4)
 		return 4;
-	if (m_Player[who - 1].m_HasPeng.size() + m_Player[who - 1].m_HasGang.size() == 3)
+	if (m_Player[who].m_HasPeng.size() + m_Player[who].m_HasGang.size() == 3)
 	{
 		for (int i = 1; i < 30; i++)
 		{
-			if (m_Player[who - 1].m_iPai[i] == 3)
+			if (m_Player[who].m_iPai[i] == 3)
 				return 2;
 		}
 	}
@@ -482,11 +561,11 @@ int Table::IsBigPeng(int who)
 }
 int Table::IsDaiYao(int who)//待完成
 {
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasPeng.size(); i++)
-		if (m_Player[who - 1].m_HasPeng[i][2] != 1 || m_Player[who - 1].m_HasPeng[i][2] != 9)
+	for (unsigned int i = 0; i < m_Player[who].m_HasPeng.size(); i++)
+		if (m_Player[who].m_HasPeng[i][2] != 1 || m_Player[who].m_HasPeng[i][2] != 9)
 			return 1;
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasGang.size(); i++)
-		if (m_Player[who - 1].m_HasGang[i][2] != 1 || m_Player[who - 1].m_HasGang[i][2] != 9)
+	for (unsigned int i = 0; i < m_Player[who].m_HasGang.size(); i++)
+		if (m_Player[who].m_HasGang[i][2] != 1 || m_Player[who].m_HasGang[i][2] != 9)
 			return 1;
 }
 int Table::IsQiDui(int who)
@@ -495,9 +574,9 @@ int Table::IsQiDui(int who)
 	int Rate_Long = 1;
 	for (int i = 1; i < 30; i++)
 	{
-		if (m_Player[who - 1].m_iPai[i] == 2)
+		if (m_Player[who].m_iPai[i] == 2)
 			sum_Dui++;
-		if (m_Player[who - 1].m_iPai[i] == 4)
+		if (m_Player[who].m_iPai[i] == 4)
 		{
 			sum_Dui += 2;
 			Rate_Long *= 4;
@@ -511,17 +590,17 @@ int Table::IsQiDui(int who)
 int Table::NumGang(int who)
 {
 	int num = 0;
-	num = m_Player[who - 1].m_HasGang.size();
+	num = m_Player[who].m_HasGang.size();
 	for (int i = 1; i <= 29; i++)
 	{
-		if (4 == m_Player[who - 1].m_iPai[i])
+		if (4 == m_Player[who].m_iPai[i])
 			num++;
 	}
 	int ihua;
-	for (unsigned int i = 0; i < m_Player[who - 1].m_HasPeng.size(); i++)
+	for (unsigned int i = 0; i < m_Player[who].m_HasPeng.size(); i++)
 	{
-		ihua = ConvertPai(m_Player[who - 1].m_HasPeng[i]);
-		if (m_Player[who - 1].m_iPai[ihua] == 1)
+		ihua = ConvertPai(m_Player[who].m_HasPeng[i]);
+		if (m_Player[who].m_iPai[ihua] == 1)
 			num++;
 	}
 	int result = 1;
