@@ -1429,7 +1429,7 @@ namespace mahjong
                                 picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
                                 pb1.Image = picture_ro;
                             }
-                            else
+                            if (peng_first == 2)
                             {
                                 picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\" + pb_name + ".jpg");
                                 picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
@@ -1437,6 +1437,9 @@ namespace mahjong
                             }
                             if (peng_first == 3)
                             {
+                                picture_ro = Image.FromFile(Application.StartupPath + "\\picture\\cardback.jpg");
+                                picture_ro.RotateFlip(RotateFlipType.Rotate270FlipNone);//旋转
+                                pb1.Image = picture_ro;
                                 peng_first = 0;
                             }
                         }
@@ -2297,6 +2300,9 @@ namespace mahjong
 
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 rightAIPlayer_money.Text = "胡啦";
                 rightAIPlayer_money.BackColor = Color.Red;
@@ -2352,6 +2358,8 @@ namespace mahjong
                 pictureBox_rightAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2392,6 +2400,9 @@ namespace mahjong
                 pictureBox_rightAIPlayer_card14.Name = "blank";
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\rightAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2478,6 +2489,9 @@ namespace mahjong
 
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 oppositeAIPlayer_money.Text = "胡啦";
                 oppositeAIPlayer_money.BackColor = Color.Red;
@@ -2531,6 +2545,8 @@ namespace mahjong
                 pictureBox_oppositeAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2567,6 +2583,9 @@ namespace mahjong
                 pictureBox_oppositeAIPlayer_card14.Name = "blank";
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\oppositeAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2650,6 +2669,9 @@ namespace mahjong
 
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 leftAIPlayer_money.Text = "胡啦";
                 leftAIPlayer_money.BackColor = Color.Red;
@@ -2705,6 +2727,8 @@ namespace mahjong
                 pictureBox_leftAIPlayer_card14.Name = current_card;
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\peng.wav");
                 sp.PlaySync();
@@ -2740,6 +2764,9 @@ namespace mahjong
                 pictureBox_leftAIPlayer_card14.Name = "blank";
                 table.Get(AI_want_realize);
                 table_realize = table.Realize();
+                right_ai.respond_table(table_realize);
+                opposite_ai.respond_table(table_realize);
+                left_ai.respond_table(table_realize);
 
                 sp = new SoundPlayer(Application.StartupPath + "\\sound\\leftAIPlayer\\gang.wav");
                 sp.PlaySync();
@@ -2930,6 +2957,7 @@ namespace mahjong
                         }
                     }
                 }
+                return true;
             }
             #endregion
 
@@ -2974,6 +3002,7 @@ namespace mahjong
                         }
                     }
                 }
+                return true;
             }
 
             if (human_gang.Name == "yes")
@@ -3034,6 +3063,7 @@ namespace mahjong
                         }
                     }
                 }
+                return true;
             }
             #endregion
 
@@ -3043,14 +3073,7 @@ namespace mahjong
                 sp.PlaySync();
             }
             human_guo.Name = "no";//不能取消
-            if (human_peng.Name == "yes" || human_gang.Name == "yes" || human_hu.Name == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
         #endregion
 
